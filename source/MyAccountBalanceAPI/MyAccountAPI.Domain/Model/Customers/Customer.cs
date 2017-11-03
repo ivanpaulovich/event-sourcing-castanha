@@ -1,6 +1,7 @@
 ﻿using MyAccountAPI.Domain.Model.Customers.Events;
 using System.Collections.Generic;
 using System;
+using MyAccountAPI.Domain.Exceptions;
 
 namespace MyAccountAPI.Domain.Model.Customers
 {
@@ -50,7 +51,8 @@ namespace MyAccountAPI.Domain.Model.Customers
         public void Register(Account account)
         {
             Raise(RegisteredDomainEvent.Create(
-                this, this.GetName(), this.GetPIN(), account.Id, account.Amount));
+                this, this.GetName(), this.GetPIN(), 
+                account.Id, account.Amount));
         }
 
         public void Deposit(Guid accountId, Amount amount)
@@ -60,6 +62,10 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         public void Withdraw(Guid accountId, Amount amount)
         {
+            Account account = accounts.Find(e => e.Id == accountId);
+            if (account.Amount < amount)
+                throw new InsuficientFundsException($"The account {accountId} does not have enough funds.");
+
             Raise(WithdrewDomainEvent.Create(this));
         }
 
@@ -74,9 +80,9 @@ namespace MyAccountAPI.Domain.Model.Customers
             name = domainEvent.Name;
             pin = domainEvent.PIN;
 
-            accounts = new List<Account>();
-
             Account account = Account.Create(domainEvent.AccountId, domainEvent.Amount);
+
+            accounts = new List<Account>();
             accounts.Add(account);
         }
 

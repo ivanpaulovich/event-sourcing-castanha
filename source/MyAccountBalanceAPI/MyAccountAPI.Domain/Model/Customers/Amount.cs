@@ -28,5 +28,15 @@
         {
             return new Amount(amount1.Value - amount2.Value);
         }
+
+        public static bool operator <(Amount amount1, Amount amount2)
+        {
+            return amount1.Value < amount2.Value;
+        }
+
+        public static bool operator >(Amount amount1, Amount amount2)
+        {
+            return amount1.Value > amount2.Value;
+        }
     }
 }
