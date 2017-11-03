@@ -8,9 +8,9 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
-using Jambo.Auth.Application.Commands;
+using BearerAuthAPI.Application.Commands;
 
-namespace Jambo.Auth.UI
+namespace BearerAuthAPI.UI
 {
     [Route("api/[controller]")]
     public class AccountController : Controller

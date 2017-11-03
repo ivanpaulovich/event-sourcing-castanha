@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jambo.Auth.Application", "Jambo.Auth.Application\Jambo.Auth.Application.csproj", "{CADA8CE3-F53F-46FE-80B1-F898AEC640E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BearerAuthAPI.Application", "BearerAuthAPI.Application\BearerAuthAPI.Application.csproj", "{CADA8CE3-F53F-46FE-80B1-F898AEC640E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jambo.Auth.Infrastructure", "Jambo.Auth.Infrastructure\Jambo.Auth.Infrastructure.csproj", "{D91971DB-5A62-4BB5-B310-6BF4E9C8596F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearerAuthAPI.Infrastructure", "BearerAuthAPI.Infrastructure\BearerAuthAPI.Infrastructure.csproj", "{D91971DB-5A62-4BB5-B310-6BF4E9C8596F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jambo.Auth.UI", "Jambo.Auth.UI\Jambo.Auth.UI.csproj", "{4BECC370-4749-48C2-82FF-47ADE3BE0FAA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearerAuthAPI.UI", "BearerAuthAPI.UI\BearerAuthAPI.UI.csproj", "{4BECC370-4749-48C2-82FF-47ADE3BE0FAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

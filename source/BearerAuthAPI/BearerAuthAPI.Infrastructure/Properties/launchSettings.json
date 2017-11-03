@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Jambo.Auth.Infrastructure": {
+    "BearerAuthAPI.Infrastructure": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

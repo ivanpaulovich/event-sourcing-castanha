@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jambo.Auth.Application\Jambo.Auth.Application.csproj" />
-    <ProjectReference Include="..\Jambo.Auth.UI\Jambo.Auth.UI.csproj" />
+    <ProjectReference Include="..\BearerAuthAPI.Application\BearerAuthAPI.Application.csproj" />
+    <ProjectReference Include="..\BearerAuthAPI.UI\BearerAuthAPI.UI.csproj" />
   </ItemGroup>
 
 </Project>

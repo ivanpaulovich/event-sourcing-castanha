@@ -1,4 +1,4 @@
-﻿namespace Jambo.Auth.UI
+﻿namespace BearerAuthAPI.UI
 {
     public class Config
     {

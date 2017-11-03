@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Jambo.Auth.Infrastructure
+namespace BearerAuthAPI.Infrastructure
 {
     public class Startup
     {
