@@ -4,6 +4,9 @@ namespace MyAccountAPI.Domain.Model.Customers.Events
 {
     public class WithdrewDomainEvent : DomainEvent
     {
+        public Guid AccountId { get; private set; }
+        public Amount Amount { get; private set; }
+
         public WithdrewDomainEvent(Guid aggregateRootId, int version, 
             DateTime createdDate, Header header)
             : base(aggregateRootId, version, createdDate, header)

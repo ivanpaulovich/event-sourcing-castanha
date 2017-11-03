@@ -1,5 +1,4 @@
 ﻿using MyAccountAPI.Domain.Model.Customers.Events;
-using MyAccountAPI.Domain.Exceptions;
 using System.Collections.Generic;
 using System;
 
@@ -83,14 +82,20 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         protected void When(DepositedDomainEvent domainEvent)
         {
+            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
+            account.Deposit(domainEvent.Amount);
         }
 
         protected void When(WithdrewDomainEvent domainEvent)
         {
+            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
+            account.Withdraw(domainEvent.Amount);
         }
 
         protected void When(ClosedDomainEvent domainEvent)
         {
+            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
+            accounts.Remove(account);
         }
     }
 }

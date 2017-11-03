@@ -18,5 +18,15 @@
         {
             return Value.ToString();
         }
+
+        public static Amount operator +(Amount amount1, Amount amount2)
+        {
+            return new Amount(amount1.Value + amount2.Value);
+        }
+
+        public static Amount operator -(Amount amount1, Amount amount2)
+        {
+            return new Amount(amount1.Value - amount2.Value);
+        }
     }
 }

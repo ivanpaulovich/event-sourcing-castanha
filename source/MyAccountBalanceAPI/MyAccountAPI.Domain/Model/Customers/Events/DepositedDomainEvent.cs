@@ -4,6 +4,9 @@ namespace MyAccountAPI.Domain.Model.Customers.Events
 {
     public class DepositedDomainEvent : DomainEvent
     {
+        public Guid AccountId { get; private set; }
+        public Amount Amount { get; private set; }
+
         public DepositedDomainEvent(Guid aggregateRootId, int version, 
             DateTime createdDate, Header header)
             : base(aggregateRootId, version, createdDate, header)

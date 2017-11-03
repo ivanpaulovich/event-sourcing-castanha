@@ -33,5 +33,15 @@ namespace MyAccountAPI.Domain.Model.Customers
             account.amount = amount;
             return account;
         }
+
+        public void Deposit(Amount depositedAmount)
+        {
+            amount = Amount + depositedAmount;
+        }
+
+        public void Withdraw(Amount depositedAmount)
+        {
+            amount = Amount - depositedAmount;
+        }
     }
 }
