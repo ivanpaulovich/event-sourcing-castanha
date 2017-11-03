@@ -9,7 +9,7 @@ namespace MyAccountAPI.Domain.Model.Customers
         public PIN(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
-                throw new DomainException("The 'PIN' field is required");
+                throw new PINShouldNotBeEmptyException("The 'PIN' field is required");
 
             this.Text = text;
         }

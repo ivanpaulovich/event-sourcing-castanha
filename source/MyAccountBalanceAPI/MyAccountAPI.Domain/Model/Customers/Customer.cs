@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using MyAccountAPI.Domain.Exceptions;
+using System.Linq;
 
 namespace MyAccountAPI.Domain.Model.Customers
 {
@@ -57,12 +58,19 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         public void Deposit(Guid accountId, Amount amount)
         {
+            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
+            if (account == null)
+                throw new AccountNotFoundException($"The account {accountId} does not exists.");
+
             Raise(DepositedDomainEvent.Create(this));
         }
 
         public void Withdraw(Guid accountId, Amount amount)
         {
-            Account account = accounts.Find(e => e.Id == accountId);
+            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
+            if (account == null)
+                throw new AccountNotFoundException($"The account {accountId} does not exists.");
+
             if (account.Amount < amount)
                 throw new InsuficientFundsException($"The account {accountId} does not have enough funds.");
 
@@ -71,6 +79,13 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         public void Close(Guid accountId)
         {
+            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
+            if (account == null)
+                throw new AccountNotFoundException($"The account {accountId} does not exists.");
+
+            if (account.Amount > Amount.Create(0))
+                throw new AccountCannotBeClosedException($"The account {accountId} can not be closed because it has funds.");
+
             Raise(ClosedDomainEvent.Create(this));
         }
 

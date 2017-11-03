@@ -9,7 +9,7 @@ namespace MyAccountAPI.Domain.Model.Customers
         public Name(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
-                throw new DomainException("The 'Name' field is required");
+                throw new NameShouldNotBeEmptyException("The 'Name' field is required");
 
             this.Text = text;
         }

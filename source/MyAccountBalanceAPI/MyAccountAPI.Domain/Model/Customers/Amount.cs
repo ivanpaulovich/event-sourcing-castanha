@@ -1,4 +1,6 @@
-﻿namespace MyAccountAPI.Domain.Model.Customers
+﻿using MyAccountAPI.Domain.Exceptions;
+
+namespace MyAccountAPI.Domain.Model.Customers
 {
     public class Amount
     {
@@ -6,6 +8,9 @@
 
         public Amount(double value)
         {
+            if (value <= 0)
+                throw new AmountShouldBePositiveException($"Amount should be greater than zero ({value}).");
+
             this.Value = value;
         }
 
