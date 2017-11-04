@@ -4,8 +4,6 @@ namespace MyAccountAPI.Domain.Model.Customers.Events
 {
     public class ClosedDomainEvent : DomainEvent
     {
-        public Guid AccountId { get; private set; }
-
         public ClosedDomainEvent(Guid aggregateRootId, int version, 
             DateTime createdDate, Header header)
             : base(aggregateRootId, version, createdDate, header)

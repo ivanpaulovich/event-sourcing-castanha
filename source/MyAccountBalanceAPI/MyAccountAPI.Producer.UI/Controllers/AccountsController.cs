@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using MyAccountAPI.Producer.Application.Commands.Accounts;
+using MyAccountAPI.Producer.Application.Queries;
 
 namespace MyAccountAPI.Producer.UI.Controllers
 {
@@ -12,13 +13,18 @@ namespace MyAccountAPI.Producer.UI.Controllers
     public class AccountsController : Controller
     {
         private readonly IMediator mediator;
+        private readonly IAccountsQueries accountsQueries;
 
-        public AccountsController(IMediator mediator)
+        public AccountsController(IMediator mediator, IAccountsQueries accountsQueries)
         {
             if (mediator == null)
                 throw new ArgumentNullException(nameof(mediator));
 
+            if (accountsQueries == null)
+                throw new ArgumentNullException(nameof(accountsQueries));
+
             this.mediator = mediator;
+            this.accountsQueries = accountsQueries;
         }
 
         [HttpPatch("Deposit")]
@@ -35,11 +41,27 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return (IActionResult)Ok();
         }
 
-        [HttpPatch("Close")]
+        [HttpDelete]
         public async Task<IActionResult> Close([FromBody]CloseCommand command)
         {
             await mediator.Send(command);
             return (IActionResult)Ok();
+        }
+
+        [HttpGet("{id}", Name = "GetAccount")]
+        public async Task<IActionResult> GetCustomer(Guid id)
+        {
+            var account = await accountsQueries.GetAsync(id);
+
+            return Ok(account);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var accounts = await accountsQueries.GetAsync();
+
+            return Ok(accounts);
         }
     }
 }

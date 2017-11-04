@@ -46,9 +46,9 @@ namespace MyAccountAPI.Producer.Infrastructure
 
                 options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
                 {
-                    Title = "Blogging HTTP API",
+                    Title = "My Account API",
                     Version = "v1",
-                    Description = "The Blogging Service HTTP API",
+                    Description = "The My Account Service HTTP API",
                     TermsOfService = "Terms Of Service"
                 });
             });

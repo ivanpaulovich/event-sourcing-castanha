@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Reflection;
 using System.Threading;
+using MyAccountAPI.Consumer.Application.DomainEventHandlers.Customers;
 
 namespace MyAccountAPI.Consumer.Infrastructure
 {
@@ -25,7 +26,7 @@ namespace MyAccountAPI.Consumer.Infrastructure
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(BlogCreatedEventHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(RegisteredEventHandler).GetTypeInfo().Assembly);
 
             ContainerBuilder container = new ContainerBuilder();
             container.Populate(services);

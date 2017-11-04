@@ -220,7 +220,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bsi90480\\.nuget\\packages\\": {},
+    "C:\\Users\\ivanp\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -229,17 +229,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\MyAccountAPI.Producer.Application.csproj",
+      "projectUniqueName": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\MyAccountAPI.Producer.Application.csproj",
       "projectName": "MyAccountAPI.Producer.Application",
-      "projectPath": "C:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\MyAccountAPI.Producer.Application.csproj",
-      "packagesPath": "C:\\Users\\bsi90480\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\obj\\",
+      "projectPath": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\MyAccountAPI.Producer.Application.csproj",
+      "packagesPath": "C:\\Users\\ivanp\\.nuget\\packages\\",
+      "outputPath": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\bsi90480\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ivanp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -247,14 +247,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://nuget.oleconsignado.com.br/nuget/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj": {
-              "projectPath": "C:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj"
+            "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj": {
+              "projectPath": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj"
             }
           }
         }

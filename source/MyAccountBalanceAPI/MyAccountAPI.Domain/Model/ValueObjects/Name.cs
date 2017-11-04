@@ -1,22 +1,22 @@
 ﻿using MyAccountAPI.Domain.Exceptions;
 
-namespace MyAccountAPI.Domain.Model.Customers
+namespace MyAccountAPI.Domain.Model.ValueObjects
 {
-    public class PIN
+    public class Name
     {
         public string Text { get; private set; }
 
-        public PIN(string text)
+        public Name(string text)
         {
             if (string.IsNullOrWhiteSpace(text))
-                throw new PINShouldNotBeEmptyException("The 'PIN' field is required");
+                throw new NameShouldNotBeEmptyException("The 'Name' field is required");
 
             this.Text = text;
         }
 
-        public static PIN Create(string text)
+        public static Name Create(string text)
         {
-            return new PIN(text);
+            return new Name(text);
         }
 
         public override string ToString()

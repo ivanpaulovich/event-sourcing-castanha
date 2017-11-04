@@ -2,17 +2,10 @@
 
 namespace MyAccountAPI.Domain.Exceptions
 {
-    public class AmountShouldBePositiveException : MyAccountAPIException
+    public class AmountShouldBePositiveException : DomainException
     {
-        public AmountShouldBePositiveException()
-        { }
-
         public AmountShouldBePositiveException(string message)
             : base(message)
-        { }
-
-        public AmountShouldBePositiveException(string message, Exception innerException)
-            : base(message, innerException)
         { }
     }
 }

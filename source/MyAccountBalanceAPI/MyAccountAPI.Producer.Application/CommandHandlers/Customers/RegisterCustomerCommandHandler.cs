@@ -4,6 +4,8 @@ using System;
 using System.Threading.Tasks;
 using MyAccountAPI.Domain.ServiceBus;
 using MyAccountAPI.Domain.Model.Customers;
+using MyAccountAPI.Domain.Model.ValueObjects;
+using MyAccountAPI.Domain.Model.Accounts;
 
 namespace MyAccountAPI.Producer.Application.CommandHandlers.Customers
 {

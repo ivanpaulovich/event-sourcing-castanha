@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using MyAccountAPI.Domain.Model.Accounts;
 using MyAccountAPI.Domain.Model.Customers;
 using MyAccountAPI.Producer.Infrastructure.DataAccess;
+using MyAccountAPI.Producer.Infrastructure.DataAccess.Repositories.Accounts;
 using MyAccountAPI.Producer.Infrastructure.DataAccess.Repositories.Customers;
 
 namespace MyAccountAPI.Producer.Infrastructure.Modules
@@ -26,6 +28,10 @@ namespace MyAccountAPI.Producer.Infrastructure.Modules
 
             builder.RegisterType<CustomerReadOnlyRepository>()
                 .As<ICustomerReadOnlyRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<AccountReadOnlyRepository>()
+                .As<IAccountReadOnlyRepository>()
                 .InstancePerLifetimeScope();
         }
     }

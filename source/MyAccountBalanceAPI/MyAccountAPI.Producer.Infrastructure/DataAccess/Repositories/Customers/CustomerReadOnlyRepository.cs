@@ -14,9 +14,9 @@ namespace MyAccountAPI.Producer.Infrastructure.DataAccess.Repositories.Customers
             _mongoContext = mongoContext;
         }
 
-        public async Task<Customer> GetCustomer(Guid customerId)
+        public async Task<Customer> Get(Guid id)
         {
-            return await _mongoContext.Customers.Find(e => e.Id == customerId).SingleAsync();
+            return await _mongoContext.Customers.Find(e => e.Id == id).SingleOrDefaultAsync();
         }
     }
 }

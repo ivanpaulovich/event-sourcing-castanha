@@ -1,11 +1,9 @@
 ﻿using Autofac;
-using MyAccountAPI.Domain.Model.Blogs;
-using MyAccountAPI.Domain.Model.Posts;
-using MyAccountAPI.Consumer.Infrastructure;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Blogs;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Posts;
 using MyAccountAPI.Consumer.Infrastructure.DataAccess;
+using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Accounts;
+using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Customers;
+using MyAccountAPI.Domain.Model.Accounts;
+using MyAccountAPI.Domain.Model.Customers;
 
 namespace MyAccountAPI.Consumer.Infrastructure.Modules
 {
@@ -28,20 +26,20 @@ namespace MyAccountAPI.Consumer.Infrastructure.Modules
             builder.Register(c => mongoContext)
                 .As<MongoContext>().SingleInstance();
 
-            builder.RegisterType<BlogReadOnlyRepository>()
-                .As<IBlogReadOnlyRepository>()
+            builder.RegisterType<CustomerReadOnlyRepository>()
+                .As<ICustomerReadOnlyRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<BlogWriteOnlyRepository>()
-                .As<IBlogWriteOnlyRepository>()
+            builder.RegisterType<CustomerWriteOnlyRepository>()
+                .As<ICustomerWriteOnlyRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<PostReadOnlyRepository>()
-                .As<IPostReadOnlyRepository>()
+            builder.RegisterType<AccountReadOnlyRepository>()
+                .As<IAccountReadOnlyRepository>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<PostWriteOnlyRepository>()
-                .As<IPostWriteOnlyRepository>()
+            builder.RegisterType<AccountWriteOnlyRepository>()
+                .As<IAccountWriteOnlyRepository>()
                 .InstancePerLifetimeScope();
         }
     }

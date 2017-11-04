@@ -3,38 +3,44 @@ using System;
 using System.Threading.Tasks;
 using MyAccountAPI.Domain.ServiceBus;
 using MyAccountAPI.Producer.Application.Commands.Accounts;
-using MyAccountAPI.Domain.Model.Customers;
+using MyAccountAPI.Domain.Model.Accounts;
+using MyAccountAPI.Domain.Model.ValueObjects;
+using MyAccountAPI.Domain.Exceptions;
 
 namespace MyAccountAPI.Producer.Application.CommandHandlers.Accounts
 {
-    public class DepositCommandHandler : IAsyncRequestHandler<DepositCommand>
+    public class DepositCommandHandler : IAsyncRequestHandler<DepositCommand, Transaction>
     {
         private readonly IPublisher bus;
-        private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
+        private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
 
         public DepositCommandHandler(
             IPublisher bus,
-            ICustomerReadOnlyRepository customerReadOnlyRepository)
+            IAccountReadOnlyRepository accountReadOnlyRepository)
         {
             if (bus == null)
                 throw new ArgumentNullException(nameof(bus));
 
-            if (customerReadOnlyRepository == null)
-                throw new ArgumentNullException(nameof(customerReadOnlyRepository));
+            if (accountReadOnlyRepository == null)
+                throw new ArgumentNullException(nameof(accountReadOnlyRepository));
 
             this.bus = bus;
-            this.customerReadOnlyRepository = customerReadOnlyRepository;
+            this.accountReadOnlyRepository = accountReadOnlyRepository;
         }
 
-        public async Task Handle(DepositCommand command)
+        public async Task<Transaction> Handle(DepositCommand command)
         {
-            Customer customer = await customerReadOnlyRepository.GetCustomer(command.CustomerId);
-            customer.Deposit(
-                command.AccountId, 
-                Amount.Create(command.Amount));
+            Account account = await accountReadOnlyRepository.Get(command.AccountId);
+            if (account == null)
+                throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
 
-            var domainEvents = customer.GetEvents();
+            Transaction transaction = Credit.Create(Amount.Create(command.Amount));
+            account.Deposit(transaction);
+
+            var domainEvents = account.GetEvents();
             await bus.Publish(domainEvents, command.Header);
+
+            return transaction;
         }
     }
 }

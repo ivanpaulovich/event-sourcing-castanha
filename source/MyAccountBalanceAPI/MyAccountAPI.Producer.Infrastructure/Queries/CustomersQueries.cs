@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System;
 using System.Dynamic;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace MyAccountAPI.Producer.Infrastructure.Queries
 {
@@ -29,9 +30,14 @@ namespace MyAccountAPI.Producer.Infrastructure.Queries
             this.database = mongoClient.GetDatabase(databaseName);
         }
 
-        public async Task<ExpandoObject> GetCustomerAsync(Guid id)
+        public async Task<ExpandoObject> GetAsync(Guid id)
         {
             return await Customers.Find(Builders<ExpandoObject>.Filter.Eq("_id", id)).SingleAsync();
+        }
+
+        public async Task<IEnumerable<ExpandoObject>> GetAsync()
+        {
+            return await Customers.Find(e => true).ToListAsync();
         }
     }
 }

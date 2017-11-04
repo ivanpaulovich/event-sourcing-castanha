@@ -1,8 +1,8 @@
 ﻿using MyAccountAPI.Domain.Model.Customers.Events;
 using System.Collections.Generic;
 using System;
-using MyAccountAPI.Domain.Exceptions;
-using System.Linq;
+using MyAccountAPI.Domain.Model.ValueObjects;
+using MyAccountAPI.Domain.Model.Accounts;
 
 namespace MyAccountAPI.Domain.Model.Customers
 {
@@ -29,10 +29,13 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         private Customer()
         {
-            Register<RegisteredDomainEvent>(When);
-            Register<DepositedDomainEvent>(When);
-            Register<WithdrewDomainEvent>(When);
-            Register<ClosedDomainEvent>(When);
+            Register<RegisteredDomainEvent>(When);            
+        }
+
+        public static Customer Create()
+        {
+            Customer customer = new Customer();
+            return customer;
         }
 
         public static Customer Create(PIN pin, Name name)
@@ -51,72 +54,27 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         public void Register(Account account)
         {
+            if (account == null)
+                throw new ArgumentNullException(nameof(account));
+
             Raise(RegisteredDomainEvent.Create(
                 this, this.GetName(), this.GetPIN(), 
-                account.Id, account.Amount));
-        }
-
-        public void Deposit(Guid accountId, Amount amount)
-        {
-            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
-            if (account == null)
-                throw new AccountNotFoundException($"The account {accountId} does not exists.");
-
-            Raise(DepositedDomainEvent.Create(this));
-        }
-
-        public void Withdraw(Guid accountId, Amount amount)
-        {
-            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
-            if (account == null)
-                throw new AccountNotFoundException($"The account {accountId} does not exists.");
-
-            if (account.Amount < amount)
-                throw new InsuficientFundsException($"The account {accountId} does not have enough funds.");
-
-            Raise(WithdrewDomainEvent.Create(this));
-        }
-
-        public void Close(Guid accountId)
-        {
-            Account account = accounts.Where(e => e.Id == accountId).FirstOrDefault();
-            if (account == null)
-                throw new AccountNotFoundException($"The account {accountId} does not exists.");
-
-            if (account.Amount > Amount.Create(0))
-                throw new AccountCannotBeClosedException($"The account {accountId} can not be closed because it has funds.");
-
-            Raise(ClosedDomainEvent.Create(this));
+                account.Id, account.GetCurrentBalance()));
         }
 
         protected void When(RegisteredDomainEvent domainEvent)
         {
+            if (domainEvent == null)
+                throw new ArgumentNullException(nameof(domainEvent));
+
             Id = domainEvent.AggregateRootId;
             name = domainEvent.Name;
             pin = domainEvent.PIN;
 
-            Account account = Account.Create(domainEvent.AccountId, domainEvent.Amount);
+            Account account = Account.Load(domainEvent.AccountId, domainEvent.InitialAmount);
 
             accounts = new List<Account>();
             accounts.Add(account);
-        }
-
-        protected void When(DepositedDomainEvent domainEvent)
-        {
-            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
-            account.Deposit(domainEvent.Amount);
-        }
-
-        protected void When(WithdrewDomainEvent domainEvent)
-        {
-            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
-            account.Withdraw(domainEvent.Amount);
-        }
-
-        protected void When(ClosedDomainEvent domainEvent)
-        {
-            Account account = accounts.Find(e => e.Id == domainEvent.AccountId);
-            accounts.Remove(account);
         }
     }
 }

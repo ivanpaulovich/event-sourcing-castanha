@@ -29,6 +29,12 @@ namespace MyAccountAPI.Producer.Infrastructure.Modules
                 .WithParameter("connectionString", connectionString)
                 .WithParameter("databaseName", databaseName)
                 .SingleInstance();
+
+            builder.RegisterType<AccountsQueries>()
+                .As<IAccountsQueries>()
+                .WithParameter("connectionString", connectionString)
+                .WithParameter("databaseName", databaseName)
+                .SingleInstance();
         }
     }
 }

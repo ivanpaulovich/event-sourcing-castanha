@@ -5,6 +5,6 @@ namespace MyAccountAPI.Domain.Model.Customers
 {
     public interface ICustomerReadOnlyRepository
     {
-        Task<Customer> GetCustomer(Guid customerId);
+        Task<Customer> Get(Guid id);
     }
 }

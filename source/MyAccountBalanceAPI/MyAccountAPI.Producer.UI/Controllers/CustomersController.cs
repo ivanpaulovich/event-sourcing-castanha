@@ -5,6 +5,7 @@ using MyAccountAPI.Domain.Model.Customers;
 using MyAccountAPI.Producer.Application.Commands.Customers;
 using MyAccountAPI.Producer.Application.Queries;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MyAccountAPI.Producer.UI.Controllers
@@ -14,18 +15,18 @@ namespace MyAccountAPI.Producer.UI.Controllers
     public class CustomersController : Controller
     {
         private readonly IMediator mediator;
-        private readonly ICustomersQueries customerQueries;
+        private readonly ICustomersQueries customersQueries;
 
-        public CustomersController(IMediator mediator, ICustomersQueries customerQueries)
+        public CustomersController(IMediator mediator, ICustomersQueries customersQueries)
         {
             if (mediator == null)
                 throw new ArgumentNullException(nameof(mediator));
 
-            if (customerQueries == null)
-                throw new ArgumentNullException(nameof(customerQueries));
+            if (customersQueries == null)
+                throw new ArgumentNullException(nameof(customersQueries));
 
             this.mediator = mediator;
-            this.customerQueries = customerQueries;
+            this.customersQueries = customersQueries;
         }
 
         [HttpPost]
@@ -38,18 +39,27 @@ namespace MyAccountAPI.Producer.UI.Controllers
                 CustomerId = customer.Id,
                 SSN = customer.GetPIN().Text,
                 Name = customer.GetName().Text,
-                Accounts = customer.GetAccounts()
+                AccountId = customer.GetAccounts().First().Id,
+                CurrentBalance = customer.GetAccounts().First().GetCurrentBalance()
             };
 
             return CreatedAtRoute("GetCustomer", new { id = customer.Id }, result);
         }
 
-        [HttpGet(Name = "GetCustomer")]
+        [HttpGet("{id}", Name = "GetCustomer")]
         public async Task<IActionResult> GetCustomer(Guid id)
         {
-            var school = await customerQueries.GetCustomerAsync(id);
+            var customer = await customersQueries.GetAsync(id);
 
-            return Ok(school);
+            return Ok(customer);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var customers = await customersQueries.GetAsync();
+
+            return Ok(customers);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MyAccountAPI.Consumer.Infrastructure.ServiceBus;
 using MyAccountAPI.Domain.ServiceBus;
-using MediatR;
 
 namespace MyAccountAPI.Consumer.Infrastructure.Modules
 {

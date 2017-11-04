@@ -1,8 +1,8 @@
 ﻿using MyAccountAPI.Domain.Model;
-using MyAccountAPI.Domain.Model.Blogs;
-using MyAccountAPI.Domain.Model.Posts;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using MyAccountAPI.Domain.Model.Customers;
+using MyAccountAPI.Domain.Model.Accounts;
 
 namespace MyAccountAPI.Consumer.Infrastructure.DataAccess
 {
@@ -23,19 +23,19 @@ namespace MyAccountAPI.Consumer.Infrastructure.DataAccess
            mongoClient.DropDatabase(databaseName);
         }
 
-        public IMongoCollection<Blog> Blogs
+        public IMongoCollection<Account> Accounts
         {
             get
             {
-                return database.GetCollection<Blog>("Blogs");
+                return database.GetCollection<Account>("Accounts");
             }
         }
 
-        public IMongoCollection<Post> Posts
+        public IMongoCollection<Customer> Customers
         {
             get
             {
-                return database.GetCollection<Post>("Posts");
+                return database.GetCollection<Customer>("Customers");
             }
         }
 
@@ -51,25 +51,25 @@ namespace MyAccountAPI.Consumer.Infrastructure.DataAccess
                 cm.MapProperty(c => c.Version).SetElementName("_version");
             });
 
-            BsonClassMap.RegisterClassMap<Blog>(cm =>
+            BsonClassMap.RegisterClassMap<Account>(cm =>
             {
-                cm.MapField("url").SetElementName("url");
-                cm.MapField("rating").SetElementName("rating");
-                cm.MapField("enabled").SetElementName("enabled");
+                cm.MapField("currentBalance").SetElementName("currentBalance");
+                cm.MapField("transactions").SetElementName("transactions");
             });
 
-            BsonClassMap.RegisterClassMap<Post>(cm =>
+            BsonClassMap.RegisterClassMap<Transaction>(cm =>
             {
-                cm.MapField("title").SetElementName("title");
-                cm.MapField("content").SetElementName("content");
-                cm.MapField("blogId").SetElementName("blogId");
-                cm.MapField("enabled").SetElementName("enabled");
-                cm.MapField("published").SetElementName("published");
+                cm.MapField("amount").SetElementName("amount");
             });
 
-            BsonClassMap.RegisterClassMap<Comment>(cm =>
+            BsonClassMap.RegisterClassMap<Credit>();
+
+            BsonClassMap.RegisterClassMap<Debit>();
+
+            BsonClassMap.RegisterClassMap<Customer>(cm =>
             {
-                cm.MapField("message").SetElementName("message");
+                cm.MapField("name").SetElementName("name");
+                cm.MapField("pin").SetElementName("pin");
             });
         }
     }

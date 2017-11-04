@@ -6,9 +6,10 @@ services:
     ports:
         - 27017:27017
   kafka:
-    image: landoop/fast-data-dev:latest
+    image: spotify/kafka
     ports:
-        - 3030:3030
+        - 2181:2181
         - 9092:9092
     environment:
-      - ADV_HOST=10.0.75.1
+      - ADVERTISED_HOST=10.0.75.1
+      - ADVERTISED_PORT=9092

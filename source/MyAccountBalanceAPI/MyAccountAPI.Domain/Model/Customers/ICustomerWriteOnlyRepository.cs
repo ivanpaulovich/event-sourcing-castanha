@@ -4,7 +4,7 @@ namespace MyAccountAPI.Domain.Model.Customers
 {
     public interface ICustomerWriteOnlyRepository
     {
-        Task AddCustomer(Customer customer);
-        Task UpdateCustomer(Customer customer);
+        Task Add(Customer customer);
+        Task Update(Customer customer);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MyAccountAPI.Domain.Exceptions;
 
-namespace MyAccountAPI.Domain.Model.Customers
+namespace MyAccountAPI.Domain.Model.ValueObjects
 {
     public class Amount
     {
@@ -8,7 +8,7 @@ namespace MyAccountAPI.Domain.Model.Customers
 
         public Amount(double value)
         {
-            if (value <= 0)
+            if (value < 0)
                 throw new AmountShouldBePositiveException($"Amount should be greater than zero ({value}).");
 
             this.Value = value;
@@ -42,6 +42,16 @@ namespace MyAccountAPI.Domain.Model.Customers
         public static bool operator >(Amount amount1, Amount amount2)
         {
             return amount1.Value > amount2.Value;
+        }
+
+        public static bool operator <=(Amount amount1, Amount amount2)
+        {
+            return amount1.Value <= amount2.Value;
+        }
+
+        public static bool operator >=(Amount amount1, Amount amount2)
+        {
+            return amount1.Value >= amount2.Value;
         }
     }
 }

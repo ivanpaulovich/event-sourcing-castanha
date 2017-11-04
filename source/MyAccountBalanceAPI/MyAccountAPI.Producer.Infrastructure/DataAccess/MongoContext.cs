@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MyAccountAPI.Domain.Model.Customers;
+using MyAccountAPI.Domain.Model.Accounts;
 
 namespace MyAccountAPI.Producer.Infrastructure.DataAccess
 {
@@ -30,6 +31,14 @@ namespace MyAccountAPI.Producer.Infrastructure.DataAccess
             }
         }
 
+        public IMongoCollection<Account> Accounts
+        {
+            get
+            {
+                return database.GetCollection<Account>("Accounts");
+            }
+        }
+
         private void Map()
         {
             BsonClassMap.RegisterClassMap<Entity>(cm =>
@@ -44,8 +53,18 @@ namespace MyAccountAPI.Producer.Infrastructure.DataAccess
 
             BsonClassMap.RegisterClassMap<Account>(cm =>
             {
+                cm.MapField("currentBalance").SetElementName("currentBalance");
+                cm.MapField("transactions").SetElementName("transactions");
+            });
+
+            BsonClassMap.RegisterClassMap<Transaction>(cm =>
+            {
                 cm.MapField("amount").SetElementName("amount");
             });
+
+            BsonClassMap.RegisterClassMap<Credit>();
+
+            BsonClassMap.RegisterClassMap<Debit>();
 
             BsonClassMap.RegisterClassMap<Customer>(cm =>
             {
