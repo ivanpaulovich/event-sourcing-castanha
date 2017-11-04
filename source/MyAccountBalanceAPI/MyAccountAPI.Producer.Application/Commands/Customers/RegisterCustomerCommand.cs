@@ -8,7 +8,7 @@ namespace MyAccountAPI.Producer.Application.Commands.Customers
     public class RegisterCustomerCommand : CommandBase, IRequest<Customer>
     {
         [DataMember]
-        public string SSN { get; private set; }
+        public string PIN { get; private set; }
 
         [DataMember]
         public string Name { get; private set; }

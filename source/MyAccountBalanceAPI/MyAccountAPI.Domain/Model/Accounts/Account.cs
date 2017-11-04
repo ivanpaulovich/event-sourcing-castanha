@@ -9,7 +9,13 @@ namespace MyAccountAPI.Domain.Model.Accounts
 {
     public class Account : AggregateRoot
     {
+        private Guid customerId;
         private Amount currentBalance;
+
+        public Guid GetCustomerId()
+        {
+            return customerId;
+        }
 
         public Amount GetCurrentBalance()
         {
@@ -31,19 +37,21 @@ namespace MyAccountAPI.Domain.Model.Accounts
             Register<ClosedDomainEvent>(When);
         }
 
-        public static Account Create(Amount initialAmount)
+        public static Account Create(Guid customerId, Amount initialAmount)
         {
             if (initialAmount == null)
                 throw new ArgumentNullException(nameof(initialAmount));
 
             Account account = new Account();
+            account.customerId = customerId;
             account.currentBalance = initialAmount;
             return account;
         }
 
-        public static Account Create()
+        public static Account Create(Guid customerId)
         {
             Account account = new Account();
+            account.customerId = customerId;
             return account;
         }
 
@@ -60,7 +68,7 @@ namespace MyAccountAPI.Domain.Model.Accounts
 
         public void Deposit(Transaction transaction)
         {
-            Raise(DepositedDomainEvent.Create(this, transaction.Id, transaction.GetAmount()));
+            Raise(DepositedDomainEvent.Create(this, transaction.Id, transaction.GetCustomerId(), transaction.GetAmount()));
         }
 
         public void Withdraw(Transaction transaction)
@@ -68,7 +76,7 @@ namespace MyAccountAPI.Domain.Model.Accounts
             if (GetCurrentBalance() < transaction.GetAmount())
                 throw new InsuficientFundsException($"The account {Id} does not have enough funds to withdraw {transaction.GetAmount()}.");
 
-            Raise(WithdrewDomainEvent.Create(this, transaction.Id, transaction.GetAmount()));
+            Raise(WithdrewDomainEvent.Create(this, transaction.Id, transaction.GetCustomerId(), transaction.GetAmount()));
         }
 
         protected void When(DepositedDomainEvent domainEvent)
@@ -76,7 +84,7 @@ namespace MyAccountAPI.Domain.Model.Accounts
             if (transactions == null)
                 transactions = new List<Transaction>();
 
-            Transaction transaction = Credit.Load(domainEvent.TransactionId, domainEvent.Amount);
+            Transaction transaction = Credit.Load(domainEvent.TransactionId, domainEvent.CustomerId, domainEvent.Amount);
             transactions.Add(transaction);
 
             currentBalance = currentBalance + domainEvent.Amount;
@@ -87,7 +95,7 @@ namespace MyAccountAPI.Domain.Model.Accounts
             if (transactions == null)
                 transactions = new List<Transaction>();
 
-            Transaction transaction = Debit.Load(domainEvent.TransactionId, domainEvent.Amount);
+            Transaction transaction = Debit.Load(domainEvent.TransactionId, domainEvent.CustomerId, domainEvent.Amount);
             transactions.Add(transaction);
 
             currentBalance = currentBalance - domainEvent.Amount;

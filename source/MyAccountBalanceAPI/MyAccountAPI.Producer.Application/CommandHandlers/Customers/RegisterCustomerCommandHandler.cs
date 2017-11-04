@@ -24,10 +24,11 @@ namespace MyAccountAPI.Producer.Application.CommandHandlers.Customers
         public async Task<Customer> Handle(RegisterCustomerCommand command)
         {
             Customer customer = Customer.Create(
-                PIN.Create(command.SSN),
+                PIN.Create(command.PIN),
                 Name.Create(command.Name));
 
             Account account = Account.Create(
+                customer.Id,
                 Amount.Create(command.InitialAmount));
 
             customer.Register(account);

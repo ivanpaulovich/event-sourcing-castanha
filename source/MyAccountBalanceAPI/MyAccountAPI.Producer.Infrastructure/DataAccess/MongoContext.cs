@@ -55,6 +55,7 @@ namespace MyAccountAPI.Producer.Infrastructure.DataAccess
             {
                 cm.MapField("currentBalance").SetElementName("currentBalance");
                 cm.MapField("transactions").SetElementName("transactions");
+                cm.MapField("customerId").SetElementName("customerId");
             });
 
             BsonClassMap.RegisterClassMap<Transaction>(cm =>

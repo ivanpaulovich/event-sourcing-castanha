@@ -16,25 +16,27 @@ namespace MyAccountAPI.Domain.Model.Accounts
 
         }
 
-        public static Debit Create(Amount amount)
+        public static Debit Create(Guid customerId, Amount amount)
         {
             if (amount == null)
                 throw new ArgumentNullException(nameof(amount));
 
-            Debit Debit = new Debit();
-            Debit.amount = amount;
-            return Debit;
+            Debit debit = new Debit();
+            debit.customerId = customerId;
+            debit.amount = amount;
+            return debit;
         }
 
-        public static Debit Load(Guid id, Amount amount)
+        public static Debit Load(Guid id, Guid customerId, Amount amount)
         {
             if (amount == null)
                 throw new ArgumentNullException(nameof(amount));
 
-            Debit Debit = new Debit();
-            Debit.Id = id;
-            Debit.amount = amount;
-            return Debit;
+            Debit debit = new Debit();
+            debit.Id = id;
+            debit.customerId = customerId;
+            debit.amount = amount;
+            return debit;
         }
     }
 }

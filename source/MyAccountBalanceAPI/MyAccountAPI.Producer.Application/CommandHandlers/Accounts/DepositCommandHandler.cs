@@ -34,7 +34,7 @@ namespace MyAccountAPI.Producer.Application.CommandHandlers.Accounts
             if (account == null)
                 throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
 
-            Transaction transaction = Credit.Create(Amount.Create(command.Amount));
+            Transaction transaction = Credit.Create(command.CustomerId, Amount.Create(command.Amount));
             account.Deposit(transaction);
 
             var domainEvents = account.GetEvents();

@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using MyAccountAPI.Producer.Application.Commands.Accounts;
 using MyAccountAPI.Producer.Application.Queries;
+using MyAccountAPI.Domain.Exceptions;
 
 namespace MyAccountAPI.Producer.UI.Controllers
 {
@@ -52,6 +53,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
         public async Task<IActionResult> GetCustomer(Guid id)
         {
             var account = await accountsQueries.GetAsync(id);
+
+            if (account == null)
+                throw new CustomerNotFoundException($"The customer {id} does not exists or is not processed yet.");
 
             return Ok(account);
         }

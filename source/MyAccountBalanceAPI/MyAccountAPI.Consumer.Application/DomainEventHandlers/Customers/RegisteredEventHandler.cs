@@ -31,7 +31,7 @@ namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Customers
             customer.Apply(domainEvent);
             customerWriteOnlyRepository.Add(customer).Wait();
 
-            Account account = Account.Create();
+            Account account = Account.Create(domainEvent.AggregateRootId);
             account.Apply(domainEvent);
             accountWriteOnlyRepository.Add(account).Wait();
         }

@@ -9,6 +9,9 @@ namespace MyAccountAPI.Producer.Application.Commands.Accounts
     public class DepositCommand : CommandBase, IRequest<Transaction>
     {
         [DataMember]
+        public Guid CustomerId { get; private set; }
+
+        [DataMember]
         public Guid AccountId { get; private set; }
 
         [DataMember]

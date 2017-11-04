@@ -32,7 +32,7 @@ namespace MyAccountAPI.Producer.Infrastructure.Queries
 
         public async Task<ExpandoObject> GetAsync(Guid id)
         {
-            return await Accounts.Find(Builders<ExpandoObject>.Filter.Eq("_id", id)).SingleAsync();
+            return await Accounts.Find(Builders<ExpandoObject>.Filter.Eq("_id", id)).SingleOrDefaultAsync();
         }
 
         public async Task<IEnumerable<ExpandoObject>> GetAsync()
