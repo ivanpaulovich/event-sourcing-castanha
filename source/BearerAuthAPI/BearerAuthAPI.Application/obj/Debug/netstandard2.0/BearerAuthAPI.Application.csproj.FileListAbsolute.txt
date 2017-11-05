@@ -1,0 +1,8 @@
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\bin\Debug\netstandard2.0\BearerAuthAPI.Application.deps.json
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\bin\Debug\netstandard2.0\BearerAuthAPI.Application.dll
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\bin\Debug\netstandard2.0\BearerAuthAPI.Application.pdb
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\obj\Debug\netstandard2.0\BearerAuthAPI.Application.csproj.CoreCompileInputs.cache
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\obj\Debug\netstandard2.0\BearerAuthAPI.Application.AssemblyInfoInputs.cache
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\obj\Debug\netstandard2.0\BearerAuthAPI.Application.AssemblyInfo.cs
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\obj\Debug\netstandard2.0\BearerAuthAPI.Application.dll
+D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Application\obj\Debug\netstandard2.0\BearerAuthAPI.Application.pdb
