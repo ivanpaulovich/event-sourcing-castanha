@@ -27,7 +27,7 @@ Application started. Press Ctrl+C to shut down.
 3. Click on the yellow box and hit 'Try it out!'.
 4. Store the Bearer Token. 
 
-#### How to the Consumer API
+#### How to run the Consumer API
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
 ```
@@ -49,7 +49,9 @@ $ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
 11/4/2017 10:39:34 PM Waiting for events..
 ```
 
-#### How to the Producer API
+#### How to run the Producer API
+
+![Authorization](https://github.com/ivanpaulovich/myaccountbalanceapi/blob/master/Producer.png)
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
 ```
