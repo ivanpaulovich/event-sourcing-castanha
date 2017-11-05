@@ -8,7 +8,7 @@
 
 #### Setup
 
-* Run the ´./up-kafka-mongodb.sh´ to run Kafka and MongoDB as Docker Containers
+* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers
 
 #### How to run Bearer Authencation API
 
@@ -19,7 +19,7 @@
 
 #### How to the Consumer API
 
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` edit the appsettings.json with the appropriete connections strings:
+1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder update the appsettings.json with the appropriate connections strings or leave if you are using the default `./up-kafka-mongodb.sh` script:
 ```
 {
   "MongoDB": {
@@ -33,5 +33,5 @@
   }
 }
 ```
-2. At 'source\MyAccountBalanceAPI' folder run the command `dotnet run --project MyAccountAPI.Consumer.Infrastructure`
-3. At 'source\MyAccountBalanceAPI' folder run the command `dotnet run --project MyAccountAPI.Producer.Infrastructure`
+2. At `source\MyAccountBalanceAPI` folder run the command `dotnet run --project MyAccountAPI.Consumer.Infrastructure`
+3. At `source\MyAccountBalanceAPI` folder run the command `dotnet run --project MyAccountAPI.Producer.Infrastructure`
