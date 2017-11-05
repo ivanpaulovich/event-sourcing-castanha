@@ -119,6 +119,78 @@ Application started. Press Ctrl+C to shut down.
 ```
 
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
+Follow a few samples requests:
+
+POST api/Customers
+```
+{
+  "pin": "08724050601",
+  "name": "Ivan Paulovich",
+  "initialAmount": 1600
+}
+```
+
+returns
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "ssn": "08724050601",
+  "name": "Ivan Paulovich",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "currentBalance": {
+    "value": 1600
+  }
+}
+```
+
+GET api/Customers will returns
+```
+[
+  {
+    "_id": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+    "_version": 1,
+    "name": {
+      "Text": "Ivan Paulovich"
+    },
+    "pin": {
+      "Text": "08724050601"
+    }
+  }
+]
+```
+
+GET api/Accounts will returns
+```
+[
+  {
+    "_id": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+    "_version": 1,
+    "currentBalance": {
+      "Value": 1600
+    },
+    "transactions": null,
+    "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183"
+  }
+]
+```
+
+PATCH /api/Accounts/Deposit
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "amount": 350
+}
+```
+
+PATCH /api/Accounts/Withdraw
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "amount": 670
+}
+```
 
 ### Running with Visual Studio 2017
 
