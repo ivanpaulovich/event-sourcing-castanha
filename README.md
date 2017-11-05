@@ -4,11 +4,34 @@
 
 * [Visual Studio 2017 + Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
 * [.NET SDK 2.0](https://www.microsoft.com/net/download/core)
-* [Docker](https://docs.docker.com/docker-for-windows/install/) (Opcional)
+* [Docker](https://docs.docker.com/docker-for-windows/install/)
 
-#### Setup
+#### Environment setup
 
-* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers
+* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers. Please wait the ~800mb to download.
+
+```
+$ ./up-kafka-mongodb.sh
+Pulling mongodb (mongo:latest)...
+latest: Pulling from library/mongo
+Digest: sha256:2c55bcc870c269771aeade05fc3dd3657800540e0a48755876a1dc70db1e76d9
+Status: Downloaded newer image for mongo:latest
+Pulling kafka (spotify/kafka:latest)...
+latest: Pulling from spotify/kafka
+Digest: sha256:cf8f8f760b48a07fb99df24fab8201ec8b647634751e842b67103a25a388981b
+Status: Downloaded newer image for spotify/kafka:latest
+Creating setup_mongodb_1 ...
+Creating setup_kafka_1 ...
+Creating setup_mongodb_1
+Creating setup_mongodb_1 ... done
+```
+* Check if the data layer is done by the command:
+
+```
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mongo               latest              d22888af0ce0        17 hours ago        361MB
+```
 
 ### Running by dotnet commands
 
