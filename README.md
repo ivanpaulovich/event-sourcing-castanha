@@ -31,6 +31,7 @@ Creating setup_mongodb_1 ... done
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 mongo               latest              d22888af0ce0        17 hours ago        361MB
+spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
 ```
 
 ### Running by dotnet commands
