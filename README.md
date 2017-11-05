@@ -10,7 +10,7 @@
 
 * Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers
 
-#### How to run Bearer Authencation API
+#### How to run the Bearer Authencation API
 
 1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project BearerAuthAPI.Infrastructure`
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:15878/swagger).
@@ -19,7 +19,7 @@
 
 #### How to the Consumer API
 
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder update the appsettings.json with the appropriate connections strings or leave if you are using the default `./up-kafka-mongodb.sh` script:
+1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave if you are with the default values:
 ```
 {
   "MongoDB": {
@@ -33,5 +33,33 @@
   }
 }
 ```
-2. At `source\MyAccountBalanceAPI` folder run the command `dotnet run --project MyAccountAPI.Consumer.Infrastructure`
-3. At `source\MyAccountBalanceAPI` folder run the command `dotnet run --project MyAccountAPI.Producer.Infrastructure`
+2. Run the command `dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj`
+
+#### How to the Producer API
+
+1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave if you are with the default values:
+```
+{
+  "MongoDB": {
+    "ConnectionString": "mongodb://10.0.75.1:27017",
+    "Database": "MyAccountAPIv05"
+  },
+
+  "ServiceBus": {
+    "ConnectionString": "10.0.75.1:9092",
+    "Topic": "MyAccountAPIv05"
+  }
+}
+```
+2. Run the command `dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj`
+
+```
+$ dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj
+Using launch settings from .\Properties\launchSettings.json...
+Hosting environment: Development
+Content root path: D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure
+Now listening on: http://localhost:14398
+Application started. Press Ctrl+C to shut down.
+```
+
+2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
