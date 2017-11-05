@@ -1,4 +1,4 @@
-# myaccountbalanceapi
+A solution for Account Balance based on a Event-Driven architecture with DDD and CQRS. The full solution contains a Account Balance Web API which receives Commands and Queries and produces events and returns JSON. There is a Consoumer App that reads the Event Stream and do a projection on a MongoDB database. The Producer API is behind a security layer with Bearer Authentication and is necessary to run the Auth API to get the JWT. 
 
 #### Requirements
 
@@ -25,7 +25,7 @@ Creating setup_kafka_1 ...
 Creating setup_mongodb_1
 Creating setup_mongodb_1 ... done
 ```
-* Check if the data layer is done by the command:
+* Check if the data layer is done with the command:
 
 ```
 $ docker images
@@ -34,7 +34,7 @@ mongo               latest              d22888af0ce0        17 hours ago        
 spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
 ```
 
-### Running by dotnet commands
+### Running with dotnet commands
 
 #### How to run the Bearer Authencation API
 
@@ -104,6 +104,6 @@ Application started. Press Ctrl+C to shut down.
 
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
 
-### Running by Visual Studio
+### Running with Visual Studio 2017
 
 Run the projects `BearerAuthAPI.Infrastructure`, `MyAccountAPI.Consumer.Infrastructure` and `MyAccountAPI.Producer.Infrastructure`.
