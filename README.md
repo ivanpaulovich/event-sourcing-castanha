@@ -38,19 +38,30 @@ spotify/kafka       latest              a9e0a5b8b15e        11 months ago       
 
 #### How to run the Bearer Authencation API
 
-1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project ./BearerAuthAPI.Infrastructure`.
+1. Run the command: `dotnet run` At `source\BearerAuthAPI` folder.
 ```
-$ dotnet run --project ./BearerAuthAPI.Infrastructure.csproj
-Using launch settings from .\Properties\launchSettings.json...
+$ dotnet run
+Using launch settings from D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure\Properties\launchSettings.json...
 Hosting environment: Development
 Content root path: D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure
 Now listening on: http://localhost:15878
 Application started. Press Ctrl+C to shut down.
 ```
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:15878/swagger).
-3. Click on the yellow box and hit 'Try it out!'.
-4. Store the Bearer Token. 
-
+3. Post the following credentials:
+```
+{
+  "username": "ivanpaulovich",
+  "password": "mysecret"
+}
+```
+4. Store the Bearer Token.
+```
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzA4MmE3OS1lMWY3LTQ4MTktYmU1Mi1hOTQwMTBkM2VjZTciLCJzdWIiOiJzdHJpbmciLCJleHAiOjE1MTI0Nzg5ODgsImlzcyI6Imh0dHA6Ly9teWFjY291bnRhcGkiLCJhdWQiOiJodHRwOi8vbXlhY2NvdW50YXBpIn0.9YKGmKaptLBDcExHhPOQ3_j9TsdbkcRf8ZtvIkdq8Go",
+  "expiration": "2017-12-05T13:03:08Z"
+}
+```
 #### How to run the Consumer API
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
@@ -67,10 +78,15 @@ Application started. Press Ctrl+C to shut down.
   }
 }
 ```
-2. Run the command `dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj`
+2. Run the command `dotnet run` at `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder 
 ```
-$ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
-11/4/2017 10:39:34 PM Waiting for events..
+$ dotnet run
+11/5/2017 11:17:20 AM Waiting for events..
+11/5/2017 11:18:20 AM Waiting for events..
+11/5/2017 11:19:20 AM Waiting for events..
+11/5/2017 11:20:20 AM Waiting for events..
+11/5/2017 11:21:20 AM Waiting for events..
+11/5/2017 11:22:20 AM Waiting for events..
 ```
 
 #### How to run the Producer API
@@ -91,11 +107,11 @@ $ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
   }
 }
 ```
-2. Run the command `dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj`
+2. Run the command `dotnet run` at the `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder.
 
 ```
-$ dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj
-Using launch settings from .\Properties\launchSettings.json...
+$ dotnet run
+Using launch settings from D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure\Properties\launchSettings.json...
 Hosting environment: Development
 Content root path: D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure
 Now listening on: http://localhost:14398
@@ -103,6 +119,78 @@ Application started. Press Ctrl+C to shut down.
 ```
 
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
+Follow a few samples requests:
+
+POST api/Customers
+```
+{
+  "pin": "08724050601",
+  "name": "Ivan Paulovich",
+  "initialAmount": 1600
+}
+```
+
+returns
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "ssn": "08724050601",
+  "name": "Ivan Paulovich",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "currentBalance": {
+    "value": 1600
+  }
+}
+```
+
+GET api/Customers will returns
+```
+[
+  {
+    "_id": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+    "_version": 1,
+    "name": {
+      "Text": "Ivan Paulovich"
+    },
+    "pin": {
+      "Text": "08724050601"
+    }
+  }
+]
+```
+
+GET api/Accounts will returns
+```
+[
+  {
+    "_id": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+    "_version": 1,
+    "currentBalance": {
+      "Value": 1600
+    },
+    "transactions": null,
+    "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183"
+  }
+]
+```
+
+PATCH /api/Accounts/Deposit
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "amount": 350
+}
+```
+
+PATCH /api/Accounts/Withdraw
+```
+{
+  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
+  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
+  "amount": 670
+}
+```
 
 ### Running with Visual Studio 2017
 
