@@ -67,7 +67,7 @@ namespace MyAccountAPI.Consumer.Infrastructure.ServiceBus
                         {
                             Console.WriteLine(ex.BusinessMessage);
                         }
-                        catch (TransactionConflictException ex)
+                        catch (TransactionConflictException)
                         {
                             Console.WriteLine("transaction error: " + msg.Value);
                         }

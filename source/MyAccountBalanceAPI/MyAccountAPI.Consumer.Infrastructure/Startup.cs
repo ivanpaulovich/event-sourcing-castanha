@@ -53,6 +53,7 @@ namespace MyAccountAPI.Consumer.Infrastructure
 
             while (true)
             {
+                Console.WriteLine($"{DateTime.Now.ToString()} Waiting for events..");
                 Thread.Sleep(1000 * 60);
             }
         }
