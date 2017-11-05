@@ -10,6 +10,8 @@
 
 * Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers
 
+### Running by dotnet commands
+
 #### How to run the Bearer Authencation API
 
 1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project BearerAuthAPI.Infrastructure`
@@ -19,7 +21,7 @@
 
 #### How to the Consumer API
 
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave if you are with the default values:
+1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
 ```
 {
   "MongoDB": {
@@ -34,10 +36,14 @@
 }
 ```
 2. Run the command `dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj`
+```
+$ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
+11/4/2017 10:39:34 PM Waiting for events..
+```
 
 #### How to the Producer API
 
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave if you are with the default values:
+1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
 ```
 {
   "MongoDB": {
@@ -63,3 +69,7 @@ Application started. Press Ctrl+C to shut down.
 ```
 
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
+
+### Running by Visual Studio
+
+Run the projects `BearerAuthAPI.Infrastructure`, `MyAccountAPI.Consumer.Infrastructure` and `MyAccountAPI.Producer.Infrastructure`.
