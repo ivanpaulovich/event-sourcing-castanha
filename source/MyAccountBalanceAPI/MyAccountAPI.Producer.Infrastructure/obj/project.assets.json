@@ -13260,9 +13260,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Infrastructure\\MyAccountAPI.Producer.Infrastructure.csproj",
       "projectName": "MyAccountAPI.Producer.Infrastructure",
@@ -13305,6 +13302,23 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
+          "Microsoft.NETCore.App": {
+            "target": "Package",
+            "version": "2.0.0",
+            "autoReferenced": true
+          },
+          "Autofac": {
+            "target": "Package",
+            "version": "4.6.0"
+          },
+          "Autofac.Extensions.DependencyInjection": {
+            "target": "Package",
+            "version": "4.2.0"
+          },
+          "MediatR": {
+            "target": "Package",
+            "version": "3.0.1"
+          },
           "MediatR.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "2.0.0"
@@ -13313,14 +13327,6 @@
             "target": "Package",
             "version": "2.4.4"
           },
-          "MediatR": {
-            "target": "Package",
-            "version": "3.0.1"
-          },
-          "Autofac.Extensions.DependencyInjection": {
-            "target": "Package",
-            "version": "4.2.0"
-          },
           "Confluent.Kafka": {
             "target": "Package",
             "version": "0.11.0",
@@ -13328,26 +13334,17 @@
               "NU1701"
             ]
           },
-          "Microsoft.NETCore.App": {
+          "Newtonsoft.Json": {
             "target": "Package",
-            "version": "2.0.0",
-            "autoReferenced": true
-          },
-          "Swashbuckle.AspNetCore": {
-            "target": "Package",
-            "version": "1.0.0"
+            "version": "10.0.3"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "2.0.0"
           },
-          "Autofac": {
+          "Swashbuckle.AspNetCore": {
             "target": "Package",
-            "version": "4.6.0"
-          },
-          "Newtonsoft.Json": {
-            "target": "Package",
-            "version": "10.0.3"
+            "version": "1.0.0"
           }
         },
         "imports": [

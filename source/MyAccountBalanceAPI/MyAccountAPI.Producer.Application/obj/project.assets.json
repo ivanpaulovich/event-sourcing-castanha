@@ -225,9 +225,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.Application\\MyAccountAPI.Producer.Application.csproj",
       "projectName": "MyAccountAPI.Producer.Application",
@@ -267,15 +264,15 @@
     "frameworks": {
       "netstandard2.0": {
         "dependencies": {
-          "MediatR": {
-            "target": "Package",
-            "version": "3.0.1"
-          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
             "version": "2.0.0",
             "autoReferenced": true
+          },
+          "MediatR": {
+            "target": "Package",
+            "version": "3.0.1"
           }
         },
         "imports": [

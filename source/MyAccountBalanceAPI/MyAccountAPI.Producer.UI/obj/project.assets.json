@@ -12743,9 +12743,6 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
       "projectUniqueName": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Producer.UI\\MyAccountAPI.Producer.UI.csproj",
       "projectName": "MyAccountAPI.Producer.UI",
@@ -12791,27 +12788,27 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "MediatR.Extensions.Microsoft.DependencyInjection": {
-            "target": "Package",
-            "version": "2.0.0"
-          },
-          "MediatR": {
-            "target": "Package",
-            "version": "3.0.1"
-          },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
             "version": "2.0.0",
             "autoReferenced": true
           },
-          "Swashbuckle.AspNetCore": {
+          "MediatR": {
             "target": "Package",
-            "version": "1.0.0"
+            "version": "3.0.1"
+          },
+          "MediatR.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "2.0.0"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
             "version": "2.0.0"
+          },
+          "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "1.0.0"
           }
         },
         "imports": [

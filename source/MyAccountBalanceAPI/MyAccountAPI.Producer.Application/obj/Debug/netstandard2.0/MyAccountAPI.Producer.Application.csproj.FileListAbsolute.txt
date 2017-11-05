@@ -1,0 +1,10 @@
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\bin\Debug\netstandard2.0\MyAccountAPI.Producer.Application.deps.json
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\bin\Debug\netstandard2.0\MyAccountAPI.Producer.Application.dll
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\bin\Debug\netstandard2.0\MyAccountAPI.Producer.Application.pdb
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\bin\Debug\netstandard2.0\MyAccountAPI.Domain.dll
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\bin\Debug\netstandard2.0\MyAccountAPI.Domain.pdb
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\obj\Debug\netstandard2.0\MyAccountAPI.Producer.Application.csproj.CoreCompileInputs.cache
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\obj\Debug\netstandard2.0\MyAccountAPI.Producer.Application.AssemblyInfoInputs.cache
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\obj\Debug\netstandard2.0\MyAccountAPI.Producer.Application.AssemblyInfo.cs
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\obj\Debug\netstandard2.0\MyAccountAPI.Producer.Application.dll
+D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Application\obj\Debug\netstandard2.0\MyAccountAPI.Producer.Application.pdb
