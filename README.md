@@ -38,7 +38,7 @@ spotify/kafka       latest              a9e0a5b8b15e        11 months ago       
 
 #### How to run the Bearer Authencation API
 
-1. Run the command: `dotnet run` At `source\BearerAuthAPI` folder.
+1. Run the command: `dotnet run` At `source\BearerAuthAPI\BearerAuthAPI.Infrastructure` folder.
 ```
 $ dotnet run
 Using launch settings from D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure\Properties\launchSettings.json...
