@@ -38,9 +38,8 @@ spotify/kafka       latest              a9e0a5b8b15e        11 months ago       
 
 #### How to run the Bearer Authencation API
 
-1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project ./BearerAuthAPI.Infrastructure`.
+1. Run the command: `dotnet run` At `source\BearerAuthAPI` folder.
 ```
-$ dotnet run --project ./BearerAuthAPI.Infrastructure
 $ dotnet run
 Using launch settings from D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure\Properties\launchSettings.json...
 Hosting environment: Development
@@ -79,10 +78,15 @@ Application started. Press Ctrl+C to shut down.
   }
 }
 ```
-2. Run the command `dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj`
+2. Run the command `dotnet run` at `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder 
 ```
-$ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
-11/4/2017 10:39:34 PM Waiting for events..
+$ dotnet run
+11/5/2017 11:17:20 AM Waiting for events..
+11/5/2017 11:18:20 AM Waiting for events..
+11/5/2017 11:19:20 AM Waiting for events..
+11/5/2017 11:20:20 AM Waiting for events..
+11/5/2017 11:21:20 AM Waiting for events..
+11/5/2017 11:22:20 AM Waiting for events..
 ```
 
 #### How to run the Producer API
@@ -103,11 +107,11 @@ $ dotnet run --project ./MyAccountAPI.Consumer.Infrastructure.csproj
   }
 }
 ```
-2. Run the command `dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj`
+2. Run the command `dotnet run` at the `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder.
 
 ```
-$ dotnet run --project ./MyAccountAPI.Producer.Infrastructure.csproj
-Using launch settings from .\Properties\launchSettings.json...
+$ dotnet run
+Using launch settings from D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure\Properties\launchSettings.json...
 Hosting environment: Development
 Content root path: D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure
 Now listening on: http://localhost:14398
