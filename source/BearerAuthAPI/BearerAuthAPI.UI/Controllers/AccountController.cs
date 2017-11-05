@@ -46,7 +46,7 @@ namespace BearerAuthAPI.UI
                 config.Issuer,
                 config.Issuer,
                 GetTokenClaims(user),
-                expires: DateTime.UtcNow.AddDays(1),
+                expires: DateTime.UtcNow.AddMonths(1),
                 signingCredentials: new SigningCredentials(
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config.SecretKey)),
                     SecurityAlgorithms.HmacSha256)

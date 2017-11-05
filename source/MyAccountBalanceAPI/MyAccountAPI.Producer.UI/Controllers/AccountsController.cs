@@ -28,6 +28,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             this.accountsQueries = accountsQueries;
         }
 
+        /// <summary>
+        /// Deposit from an account
+        /// </summary>
         [HttpPatch("Deposit")]
         public async Task<IActionResult> Deposit([FromBody]DepositCommand command)
         {
@@ -35,6 +38,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return (IActionResult)Ok();
         }
 
+        /// <summary>
+        /// Withdraw from an account
+        /// </summary>
         [HttpPatch("Withdraw")]
         public async Task<IActionResult> Withdraw([FromBody]WithdrawCommand command)
         {
@@ -42,6 +48,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return (IActionResult)Ok();
         }
 
+        /// <summary>
+        /// Close an account
+        /// </summary>
         [HttpDelete]
         public async Task<IActionResult> Close([FromBody]CloseCommand command)
         {
@@ -49,8 +58,11 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return (IActionResult)Ok();
         }
 
+        /// <summary>
+        /// Get an account balance
+        /// </summary>
         [HttpGet("{id}", Name = "GetAccount")]
-        public async Task<IActionResult> GetCustomer(Guid id)
+        public async Task<IActionResult> Get(Guid id)
         {
             var account = await accountsQueries.GetAsync(id);
 
@@ -60,6 +72,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return Ok(account);
         }
 
+        /// <summary>
+        /// List all accounts
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
         {

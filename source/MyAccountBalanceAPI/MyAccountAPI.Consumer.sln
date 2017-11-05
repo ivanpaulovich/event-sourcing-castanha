@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAccountAPI.Consumer.Appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAccountAPI.Consumer.Infrastructure", "MyAccountAPI.Consumer.Infrastructure\MyAccountAPI.Consumer.Infrastructure.csproj", "{645C9138-DA59-48C8-A15E-D720874DD148}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAccountAPI.UnitTests", "MyAccountAPI.UnitTests\MyAccountAPI.UnitTests.csproj", "{318B8D67-7D2C-459C-A669-76546CC1AD9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{645C9138-DA59-48C8-A15E-D720874DD148}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{645C9138-DA59-48C8-A15E-D720874DD148}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{645C9138-DA59-48C8-A15E-D720874DD148}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318B8D67-7D2C-459C-A669-76546CC1AD9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318B8D67-7D2C-459C-A669-76546CC1AD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318B8D67-7D2C-459C-A669-76546CC1AD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318B8D67-7D2C-459C-A669-76546CC1AD9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

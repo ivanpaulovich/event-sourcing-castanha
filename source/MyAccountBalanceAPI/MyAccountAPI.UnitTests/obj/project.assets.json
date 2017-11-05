@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
+      "MediatR/3.0.1": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.1/MediatR.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.1/MediatR.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -1659,10 +1671,34 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
+      },
+      "MyAccountAPI.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "MediatR": "3.0.1"
+        },
+        "compile": {
+          "bin/placeholder/MyAccountAPI.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MyAccountAPI.Domain.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "MediatR/3.0.1": {
+      "sha512": "z29+r6WWtKLaTF6/+2vwRhjJvSUVzFHf9btQ24t3NBWUOcbVTkA7DLm9EXndM3yXXre9mAmhRN73BmQYS6R7qw==",
+      "type": "package",
+      "path": "mediatr/3.0.1",
+      "files": [
+        "lib/net45/MediatR.dll",
+        "lib/netstandard1.1/MediatR.dll",
+        "mediatr.3.0.1.nupkg.sha512",
+        "mediatr.nuspec"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -5604,12 +5640,18 @@
         "xunit.runner.visualstudio.2.2.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "MyAccountAPI.Domain/1.0.0": {
+      "type": "project",
+      "path": "../MyAccountAPI.Domain/MyAccountAPI.Domain.csproj",
+      "msbuildProject": "../MyAccountAPI.Domain/MyAccountAPI.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NET.Test.Sdk >= 15.3.0-preview-20170628-02",
       "Microsoft.NETCore.App >= 2.0.0",
+      "MyAccountAPI.Domain >= 1.0.0",
       "xunit >= 2.2.0",
       "xunit.runner.visualstudio >= 2.2.0"
     ]
@@ -5646,7 +5688,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj": {
+              "projectPath": "D:\\git\\myaccountbalanceapi\\source\\MyAccountBalanceAPI\\MyAccountAPI.Domain\\MyAccountAPI.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

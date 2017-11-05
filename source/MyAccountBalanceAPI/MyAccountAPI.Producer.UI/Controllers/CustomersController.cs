@@ -29,6 +29,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             this.customersQueries = customersQueries;
         }
 
+        /// <summary>
+        /// Register a new Customer
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]RegisterCustomerCommand command)
         {
@@ -46,6 +49,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return CreatedAtRoute("GetCustomer", new { id = customer.Id }, result);
         }
 
+        /// <summary>
+        /// Get a Customer details 
+        /// </summary>
         [HttpGet("{id}", Name = "GetCustomer")]
         public async Task<IActionResult> GetCustomer(Guid id)
         {
@@ -54,6 +60,9 @@ namespace MyAccountAPI.Producer.UI.Controllers
             return Ok(customer);
         }
 
+        /// <summary>
+        /// List all customers
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
         {

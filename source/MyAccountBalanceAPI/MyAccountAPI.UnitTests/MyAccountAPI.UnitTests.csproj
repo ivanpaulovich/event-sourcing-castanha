@@ -12,4 +12,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

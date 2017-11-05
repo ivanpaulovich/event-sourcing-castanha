@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MyAccountAPI.Domain.Model.Customers.Events
+namespace MyAccountAPI.Domain.Model.Accounts.Events
 {
     public class ClosedDomainEvent : DomainEvent
     {

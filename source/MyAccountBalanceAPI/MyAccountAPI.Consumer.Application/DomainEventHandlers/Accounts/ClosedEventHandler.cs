@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using MyAccountAPI.Domain.Exceptions;
 using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Domain.Model.Customers.Events;
+using MyAccountAPI.Domain.Model.Accounts.Events;
 using System;
 
 namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Accounts

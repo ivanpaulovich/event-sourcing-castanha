@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Text;
+using System.IO;
+using System.Reflection;
 
 namespace MyAccountAPI.Producer.Infrastructure
 {
@@ -43,6 +45,11 @@ namespace MyAccountAPI.Producer.Infrastructure
                     });
 
                 options.DescribeAllEnumsAsStrings();
+
+                options.IncludeXmlComments(
+                    Path.ChangeExtension(
+                        Assembly.GetAssembly(typeof(MyAccountAPI.Producer.UI.Controllers.CustomersController)).Location,
+                        "xml"));
 
                 options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
                 {
