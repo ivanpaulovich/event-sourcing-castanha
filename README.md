@@ -14,7 +14,15 @@
 
 #### How to run the Bearer Authencation API
 
-1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project BearerAuthAPI.Infrastructure`
+1. At `source\BearerAuthAPI` folder run the command: `dotnet run --project ./BearerAuthAPI.Infrastructure`.
+```
+$ dotnet run --project ./BearerAuthAPI.Infrastructure.csproj
+Using launch settings from .\Properties\launchSettings.json...
+Hosting environment: Development
+Content root path: D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure
+Now listening on: http://localhost:15878
+Application started. Press Ctrl+C to shut down.
+```
 2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:15878/swagger).
 3. Click on the yellow box and hit 'Try it out!'.
 4. Store the Bearer Token. 
