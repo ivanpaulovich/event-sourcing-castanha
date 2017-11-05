@@ -8,7 +8,7 @@ A solution for Account Balance based on a Event-Driven architecture with DDD and
 
 #### Environment setup
 
-* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers. Please wait the ~800mb to download.
+* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers. Please wait until the ~800mb download be complete.
 
 ```
 $ ./up-kafka-mongodb.sh
