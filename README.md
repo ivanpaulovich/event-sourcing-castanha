@@ -20,7 +20,7 @@
 #### How to the Consumer API
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` edit the appsettings.json with the appropriete connections strings:
-`
+```
 {
   "MongoDB": {
     "ConnectionString": "mongodb://10.0.75.1:27017",
@@ -32,6 +32,6 @@
     "Topic": "MyAccountAPIv05"
   }
 }
-`
+```
 2. At 'source\MyAccountBalanceAPI' folder run the command `dotnet run --project MyAccountAPI.Consumer.Infrastructure`
 3. At 'source\MyAccountBalanceAPI' folder run the command `dotnet run --project MyAccountAPI.Producer.Infrastructure`
