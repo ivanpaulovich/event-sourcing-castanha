@@ -8,7 +8,7 @@ A solution for Account Balance based on a Event-Driven architecture with DDD and
 
 #### Environment setup
 
-* Run the `./up-kafka-mongodb.sh` to run Kafka and MongoDB as Docker Containers. Please wait until the ~800mb download be complete.
+* Run the `./up-kafka-mongodb.sh` script to run Kafka and MongoDB as Docker Containers. Please wait until the ~800mb download to be complete.
 
 ```
 $ ./up-kafka-mongodb.sh
@@ -25,10 +25,17 @@ Creating setup_kafka_1 ...
 Creating setup_mongodb_1
 Creating setup_mongodb_1 ... done
 ```
-* Check if the data layer is done with the command:
+* Check if the data layer is ready with the following commands:
 
 ```
 $ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+mongo               latest              d22888af0ce0        17 hours ago        361MB
+spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
+```
+
+```
+$ docker ps
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 mongo               latest              d22888af0ce0        17 hours ago        361MB
 spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
