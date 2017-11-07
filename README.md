@@ -43,7 +43,15 @@ spotify/kafka       latest              a9e0a5b8b15e        11 months ago       
 
 If Kafka is running good it will be working with the `10.0.75.1:9092` connection string and if MongoDB is running good it will be working at `mongodb://10.0.75.1:27017`.
 
-### Running with dotnet commands
+## Running the applications
+
+You have two options to run the three applications, one is by opening on Visual Studio 2017 and another is by dotnet core commands.
+
+### Option 1 - Running with Visual Studio 2017
+
+Run the projects `BearerAuthAPI.Infrastructure`, `MyAccountAPI.Consumer.Infrastructure` and `MyAccountAPI.Producer.Infrastructure`.
+
+### Option 2 - Running with dotnet commands
 
 #### How to run the Bearer Authencation API
 
@@ -97,7 +105,7 @@ $ dotnet run
 11/5/2017 11:21:20 AM Waiting for events..
 11/5/2017 11:22:20 AM Waiting for events..
 ```
-3. __Attention:__ keep the Console App running.
+3. __Attention:__ keep the Console App running for events processing.
 
 #### How to run the Producer API
 
@@ -128,7 +136,7 @@ Now listening on: http://localhost:14398
 Application started. Press Ctrl+C to shut down.
 ```
 
-2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:14398/swagger).
+2. Navigate to the Kestrel URL them to the swagger UI (eg. http://localhost:14398/swagger).
 Follow a few samples requests:
 
 POST api/Customers
@@ -201,7 +209,3 @@ PATCH /api/Accounts/Withdraw
   "amount": 670
 }
 ```
-
-### Running with Visual Studio 2017
-
-Run the projects `BearerAuthAPI.Infrastructure`, `MyAccountAPI.Consumer.Infrastructure` and `MyAccountAPI.Producer.Infrastructure`.
