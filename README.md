@@ -59,7 +59,7 @@ Open the three solutions with three Visual Studio 2017 them run the following pr
 
 #### How to run the Bearer Authencation API
 
-1. Run the command: `dotnet run` At `source\BearerAuthAPI\BearerAuthAPI.Infrastructure` folder.
+1. Run the command `dotnet run` at `source\BearerAuthAPI\BearerAuthAPI.Infrastructure` folder.
 ```
 $ dotnet run
 Using launch settings from D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure\Properties\launchSettings.json...
@@ -141,7 +141,7 @@ Application started. Press Ctrl+C to shut down.
 ```
 
 2. Navigate to the Swagger UI (eg. http://localhost:14398/swagger).
-Follow a few samples requests:
+Following a few sample requests:
 
 POST api/Customers
 ```
