@@ -36,9 +36,9 @@ spotify/kafka       latest              a9e0a5b8b15e        11 months ago       
 
 ```
 $ docker ps
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mongo               latest              d22888af0ce0        17 hours ago        361MB
-spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
+32452776153f        spotify/kafka       "supervisord -n"         2 days ago          Up 2 days           0.0.0.0:2181->2181/tcp, 0.0.0.0:9092->9092/tcp   setup_kafka_1
+ba28cf144478        mongo               "docker-entrypoint..."   2 days ago          Up 2 days           0.0.0.0:27017->27017/tcp                         setup_mongodb_1
 ```
 
 If Kafka is running good it will be working with the `10.0.75.1:9092` connection string and if MongoDB is running good it will be working at `mongodb://10.0.75.1:27017`.
