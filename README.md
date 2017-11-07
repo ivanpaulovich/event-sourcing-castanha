@@ -64,7 +64,7 @@ Application started. Press Ctrl+C to shut down.
   "password": "mysecret"
 }
 ```
-4. Store the Bearer Token.
+4. Store the Bearer Token because you will need the token value later to log on Producer API.
 ```
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzA4MmE3OS1lMWY3LTQ4MTktYmU1Mi1hOTQwMTBkM2VjZTciLCJzdWIiOiJzdHJpbmciLCJleHAiOjE1MTI0Nzg5ODgsImlzcyI6Imh0dHA6Ly9teWFjY291bnRhcGkiLCJhdWQiOiJodHRwOi8vbXlhY2NvdW50YXBpIn0.9YKGmKaptLBDcExHhPOQ3_j9TsdbkcRf8ZtvIkdq8Go",
@@ -97,6 +97,7 @@ $ dotnet run
 11/5/2017 11:21:20 AM Waiting for events..
 11/5/2017 11:22:20 AM Waiting for events..
 ```
+3. *Attention:* keep the Console App running.
 
 #### How to run the Producer API
 
