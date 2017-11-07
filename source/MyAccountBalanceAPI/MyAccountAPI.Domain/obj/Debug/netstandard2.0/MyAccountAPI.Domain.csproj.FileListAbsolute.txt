@@ -1,8 +1,0 @@
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\bin\Debug\netstandard2.0\MyAccountAPI.Domain.deps.json
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\bin\Debug\netstandard2.0\MyAccountAPI.Domain.dll
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\bin\Debug\netstandard2.0\MyAccountAPI.Domain.pdb
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\obj\Debug\netstandard2.0\MyAccountAPI.Domain.csproj.CoreCompileInputs.cache
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\obj\Debug\netstandard2.0\MyAccountAPI.Domain.AssemblyInfoInputs.cache
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\obj\Debug\netstandard2.0\MyAccountAPI.Domain.AssemblyInfo.cs
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\obj\Debug\netstandard2.0\MyAccountAPI.Domain.dll
-D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Domain\obj\Debug\netstandard2.0\MyAccountAPI.Domain.pdb
