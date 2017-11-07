@@ -68,7 +68,7 @@ Content root path: D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI
 Now listening on: http://localhost:15878
 Application started. Press Ctrl+C to shut down.
 ```
-2. Navigate to the Kestrel URL and navigate to swagger (eg. http://localhost:15878/swagger).
+2. Navigate to Swagger UI at (eg. http://localhost:15878/swagger).
 3. Post the following credentials:
 ```
 {
@@ -140,7 +140,7 @@ Now listening on: http://localhost:14398
 Application started. Press Ctrl+C to shut down.
 ```
 
-2. Navigate to the Kestrel URL them to the swagger UI (eg. http://localhost:14398/swagger).
+2. Navigate to the Swagger UI (eg. http://localhost:14398/swagger).
 Follow a few samples requests:
 
 POST api/Customers
