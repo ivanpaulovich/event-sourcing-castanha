@@ -41,6 +41,8 @@ mongo               latest              d22888af0ce0        17 hours ago        
 spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
 ```
 
+If Kafka is running good it will be working with the `10.0.75.1:9092` connection string and if MongoDB is running good it will be working at `mongodb://10.0.75.1:27017`.
+
 ### Running with dotnet commands
 
 #### How to run the Bearer Authencation API
