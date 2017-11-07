@@ -49,7 +49,7 @@ You have two options to run the three applications, one is by opening on Visual 
 
 ### Option 1 - Running with Visual Studio 2017
 
-Run the projects with Visual Studio 2017 with .NET Core 2.0 SDK installed.
+Open the three solutions with three Visual Studio 2017 them run the following projects.
 
 * `BearerAuthAPI.Infrastructure`
 * `MyAccountAPI.Consumer.Infrastructure` 
