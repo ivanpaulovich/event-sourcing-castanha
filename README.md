@@ -1,4 +1,4 @@
-A solution for Account Balance based on a Event-Driven architecture with DDD and CQRS. The full solution contains a Account Balance Web API which receives Commands and Queries and produces events and returns JSON. There is a Consoumer App that reads the Event Stream and do a projection on a MongoDB database. The Producer API is behind a security layer with Bearer Authentication and is necessary to run the Auth API to get the JWT. 
+A solution for Account Balance based on a Event-Driven architecture with DDD and CQRS. The full solution contains an Web API which receives Commands to produces Domain Events, and Queries to return JSON. There is a Consumer App that reads the Event Stream and do a projection on a MongoDB database. The Producer API is behind a security layer with Bearer Authentication, to gain access is necessary to run the Auth API to get the JWT. 
 
 #### Requirements
 
