@@ -4,12 +4,13 @@ A solution for Account Balance based on a Event-Driven architecture with DDD and
 * A Web API for authentication and JWT generation.
 
 #### Requirements
-
 * [Visual Studio 2017 + Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
 * [.NET SDK 2.0](https://www.microsoft.com/net/download/core)
 * [Docker](https://docs.docker.com/docker-for-windows/install/)
 
 #### Environment setup
+
+*If you already have valid connections strings for Kafka and MongoDB you could skip this topic and go to the Running the applications topic.*
 
 * Run the `./up-kafka-mongodb.sh` script to run Kafka and MongoDB as Docker Containers. Please wait until the ~800mb download to be complete.
 
