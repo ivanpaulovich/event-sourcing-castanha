@@ -147,7 +147,7 @@ Application started. Press Ctrl+C to shut down.
 2. Navigate to the Swagger UI (eg. http://localhost:14398/swagger).
 Following a few sample requests:
 
-POST api/Customers
+__POST__ api/Customers
 ```
 {
   "pin": "08724050601",
@@ -169,7 +169,7 @@ returns
 }
 ```
 
-GET api/Customers will returns
+__GET__ api/Customers will returns
 ```
 [
   {
@@ -185,7 +185,7 @@ GET api/Customers will returns
 ]
 ```
 
-GET api/Accounts will returns
+__GET__ api/Accounts will returns
 ```
 [
   {
@@ -200,7 +200,7 @@ GET api/Accounts will returns
 ]
 ```
 
-PATCH /api/Accounts/Deposit
+__PATCH__ /api/Accounts/Deposit
 ```
 {
   "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
@@ -209,7 +209,7 @@ PATCH /api/Accounts/Deposit
 }
 ```
 
-PATCH /api/Accounts/Withdraw
+__PATCH__ /api/Accounts/Withdraw
 ```
 {
   "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
