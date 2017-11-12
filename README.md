@@ -90,6 +90,7 @@ Application started. Press Ctrl+C to shut down.
 #### How to run the Consumer API
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
+
 ```
 {
   "MongoDB": {
@@ -103,7 +104,9 @@ Application started. Press Ctrl+C to shut down.
   }
 }
 ```
+
 2. Run the command `dotnet run` at `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder 
+
 ```
 $ dotnet run
 11/5/2017 11:17:20 AM Waiting for events..
@@ -113,6 +116,7 @@ $ dotnet run
 11/5/2017 11:21:20 AM Waiting for events..
 11/5/2017 11:22:20 AM Waiting for events..
 ```
+
 3. __Attention:__ keep the Console App running for events processing.
 
 #### How to run the Producer API
@@ -120,6 +124,7 @@ $ dotnet run
 ![Authorization](https://github.com/ivanpaulovich/myaccountbalanceapi/blob/master/Producer.png)
 
 1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
+
 ```
 {
   "MongoDB": {
@@ -133,6 +138,7 @@ $ dotnet run
   }
 }
 ```
+
 2. Run the command `dotnet run` at the `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder.
 
 ```
@@ -148,6 +154,7 @@ Application started. Press Ctrl+C to shut down.
 Following a few sample requests:
 
 __POST__ api/Customers
+
 ```
 {
   "pin": "08724050601",
@@ -157,6 +164,7 @@ __POST__ api/Customers
 ```
 
 returns
+
 ```
 {
   "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
@@ -170,6 +178,7 @@ returns
 ```
 
 __GET__ api/Customers will returns
+
 ```
 [
   {
@@ -186,6 +195,7 @@ __GET__ api/Customers will returns
 ```
 
 __GET__ api/Accounts will returns
+
 ```
 [
   {
@@ -201,6 +211,7 @@ __GET__ api/Accounts will returns
 ```
 
 __PATCH__ /api/Accounts/Deposit
+
 ```
 {
   "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
@@ -210,6 +221,7 @@ __PATCH__ /api/Accounts/Deposit
 ```
 
 __PATCH__ /api/Accounts/Withdraw
+
 ```
 {
   "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
