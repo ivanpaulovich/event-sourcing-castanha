@@ -3,6 +3,8 @@ A solution for Account Balance based on a Event-Driven architecture with DDD and
 * A Consumer App that reads the Event Stream and do a projection to a MongoDB database.
 * A Web API for authentication and JWT generation.
 
+[My Account Balance API Source Code on GitHub](https://github.com/ivanpaulovich/myaccountbalanceapi)
+
 #### Requirements
 * [Visual Studio 2017 + Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
 * [.NET SDK 2.0](https://www.microsoft.com/net/download/core)
