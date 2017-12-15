@@ -1,39 +1,26 @@
-﻿using Autofac;
-using MyAccountAPI.Producer.Application.Queries;
-using MyAccountAPI.Producer.Infrastructure.Queries;
-using System;
-
-namespace MyAccountAPI.Producer.Infrastructure.Modules
+﻿namespace MyAccountAPI.Producer.Infrastructure.Modules
 {
+    using Autofac;
+    using MyAccountAPI.Producer.Application.Queries;
+    using MyAccountAPI.Producer.Infrastructure.Queries;
+    
     public class QueriesModule : Module
     {
-        public readonly string connectionString;
-        public readonly string databaseName;
-
-        public QueriesModule(string connectionString, string databaseName)
-        {
-            if (string.IsNullOrWhiteSpace(connectionString))
-                throw new ArgumentNullException(nameof(connectionString));
-
-            if (string.IsNullOrWhiteSpace(databaseName))
-                throw new ArgumentNullException(nameof(databaseName));
-
-            this.connectionString = connectionString;
-            this.databaseName = databaseName;
-        }
+        public string ConnectionString { get; set; }
+        public string DatabaseName { get; set; }
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CustomersQueries>()
                 .As<ICustomersQueries>()
-                .WithParameter("connectionString", connectionString)
-                .WithParameter("databaseName", databaseName)
+                .WithParameter("connectionString", ConnectionString)
+                .WithParameter("databaseName", DatabaseName)
                 .SingleInstance();
 
             builder.RegisterType<AccountsQueries>()
                 .As<IAccountsQueries>()
-                .WithParameter("connectionString", connectionString)
-                .WithParameter("databaseName", databaseName)
+                .WithParameter("connectionString", ConnectionString)
+                .WithParameter("databaseName", DatabaseName)
                 .SingleInstance();
         }
     }

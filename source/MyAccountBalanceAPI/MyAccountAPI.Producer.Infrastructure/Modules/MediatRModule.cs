@@ -1,12 +1,12 @@
-﻿using Autofac;
-using Autofac.Features.Variance;
-using MediatR;
-using System.Collections.Generic;
-using System.Reflection;
-using MyAccountAPI.Producer.Application.Commands.Customers;
-
-namespace MyAccountAPI.Producer.Infrastructure.Modules
+﻿namespace MyAccountAPI.Producer.Infrastructure.Modules
 {
+    using Autofac;
+    using Autofac.Features.Variance;
+    using MediatR;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using MyAccountAPI.Producer.Application.Commands.Customers;
+
     public class MediatRModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)

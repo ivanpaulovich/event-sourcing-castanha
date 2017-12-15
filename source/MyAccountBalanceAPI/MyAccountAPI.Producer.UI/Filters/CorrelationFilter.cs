@@ -1,14 +1,14 @@
-﻿using MyAccountAPI.Producer.Application.Commands;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace MyAccountAPI.Producer.UI.Filters
+﻿namespace MyAccountAPI.Producer.UI.Filters
 {
+    using MyAccountAPI.Producer.Application.Commands;
+    using Microsoft.AspNetCore.Mvc.Filters;
+    using System;
+    using System.Collections.Generic;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Linq;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
+
     public class CorrelationFilter : ActionFilterAttribute
     {
         private Guid correlationId;

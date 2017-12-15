@@ -1,15 +1,15 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Producer.Application.Commands.Customers;
-using MyAccountAPI.Producer.Application.Queries;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MyAccountAPI.Producer.UI.Controllers
+﻿namespace MyAccountAPI.Producer.UI.Controllers
 {
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using MyAccountAPI.Domain.Model.Customers;
+    using MyAccountAPI.Producer.Application.Commands.Customers;
+    using MyAccountAPI.Producer.Application.Queries;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     [Authorize]
     [Route("api/[controller]")]
     public class CustomersController : Controller

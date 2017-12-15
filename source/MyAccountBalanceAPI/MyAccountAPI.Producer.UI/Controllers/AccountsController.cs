@@ -1,14 +1,14 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
-using MyAccountAPI.Producer.Application.Commands.Accounts;
-using MyAccountAPI.Producer.Application.Queries;
-using MyAccountAPI.Domain.Exceptions;
-
-namespace MyAccountAPI.Producer.UI.Controllers
+﻿namespace MyAccountAPI.Producer.UI.Controllers
 {
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
+    using MyAccountAPI.Producer.Application.Commands.Accounts;
+    using MyAccountAPI.Producer.Application.Queries;
+    using MyAccountAPI.Domain.Exceptions;
+
     [Authorize]
     [Route("api/[controller]")]
     public class AccountsController : Controller

@@ -1,23 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1705;NU1701;CS1591</NoWarn>
-    <DocumentationFile>bin\Debug\netcoreapp2.0\MyAccountAPI.Producer.Infrastructure.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DataAccess\NewFolder\**" />
-    <Content Remove="DataAccess\NewFolder\**" />
-    <EmbeddedResource Remove="DataAccess\NewFolder\**" />
-    <None Remove="DataAccess\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MyAccountAPI.Producer.UI\MyAccountAPI.Producer.UI.csproj" />
     <PackageReference Include="Autofac" Version="4.6.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="MediatR" Version="3.0.1" />
@@ -25,8 +16,16 @@
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
     <PackageReference Include="Confluent.Kafka" Version="0.11.0" NoWarn="NU1701" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
+    <ProjectReference Include="..\MyAccountAPI.Producer.Application\MyAccountAPI.Producer.Application.csproj" />
+  </ItemGroup>
+
+  <Target Name="CopyFiles" AfterTargets="build">
+    <Copy DestinationFolder="..\MyAccountAPI.Producer.UI\bin\Debug\netcoreapp2.0" SourceFiles="$(OutputPath)\MyAccountAPI.Producer.Infrastructure.dll" SkipUnchangedFiles="false" />
+    <Copy DestinationFolder="..\MyAccountAPI.Producer.UI\bin\Debug\netcoreapp2.0" SourceFiles="$(OutputPath)\MyAccountAPI.Producer.Infrastructure.pdb" SkipUnchangedFiles="false" />
+  </Target>
 
 </Project>

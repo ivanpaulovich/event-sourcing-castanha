@@ -1,26 +1,20 @@
-﻿using Autofac;
-using MyAccountAPI.Domain.ServiceBus;
-using MyAccountAPI.Producer.Infrastructure.ServiceBus;
-
-namespace MyAccountAPI.Producer.Infrastructure.Modules
+﻿namespace MyAccountAPI.Producer.Infrastructure.Modules
 {
+    using Autofac;
+    using MyAccountAPI.Domain.ServiceBus;
+    using MyAccountAPI.Producer.Infrastructure.ServiceBus;
+
     public class BusModule : Module
     {
-        private readonly string brokerList;
-        private readonly string topic;
-
-        public BusModule(string brokerList, string topic)
-        {
-            this.brokerList = brokerList;
-            this.topic = topic;
-        }
+        public string BrokerList { get; set; }
+        public string Topic { get; set; }
 
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<Bus>()
                 .As<IPublisher>()
-                .WithParameter("brokerList", brokerList)
-                .WithParameter("topic", topic)
+                .WithParameter("brokerList", BrokerList)
+                .WithParameter("topic", Topic)
                 .SingleInstance();
         }
     }
