@@ -1,14 +1,14 @@
-﻿using MediatR;
-using System;
-using System.Threading.Tasks;
-using MyAccountAPI.Domain.ServiceBus;
-using MyAccountAPI.Producer.Application.Commands.Accounts;
-using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using MyAccountAPI.Domain.Exceptions;
-
-namespace MyAccountAPI.Producer.Application.CommandHandlers.Accounts
+﻿namespace MyAccountAPI.Producer.Application.CommandHandlers.Accounts
 {
+    using MediatR;
+    using System;
+    using System.Threading.Tasks;
+    using MyAccountAPI.Domain.ServiceBus;
+    using MyAccountAPI.Producer.Application.Commands.Accounts;
+    using MyAccountAPI.Domain.Model.Accounts;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using MyAccountAPI.Domain.Exceptions;
+
     public class WithdrawCommandHandler : IAsyncRequestHandler<WithdrawCommand, Transaction>
     {
         private readonly IPublisher bus;

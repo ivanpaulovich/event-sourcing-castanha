@@ -1,8 +1,8 @@
-﻿using MediatR;
-using System;
-
-namespace MyAccountAPI.Domain.ServiceBus
+﻿namespace MyAccountAPI.Domain.ServiceBus
 {
+    using MediatR;
+    using System;
+
     public interface ISubscriber : IDisposable
     {
         void Listen(IMediator mediator);

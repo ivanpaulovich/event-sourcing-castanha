@@ -1,10 +1,10 @@
-﻿using MongoDB.Driver;
-using MyAccountAPI.Domain.Model.Customers;
-using System;
-using System.Threading.Tasks;
-
-namespace MyAccountAPI.Producer.Infrastructure.DataAccess.Repositories.Customers
+﻿namespace MyAccountAPI.Producer.Infrastructure.DataAccess.Repositories.Customers
 {
+    using MongoDB.Driver;
+    using MyAccountAPI.Domain.Model.Customers;
+    using System;
+    using System.Threading.Tasks;
+    
     public class CustomerReadOnlyRepository : ICustomerReadOnlyRepository
     {
         private readonly MongoContext _mongoContext;

@@ -1,7 +1,7 @@
-﻿using MyAccountAPI.Domain.Model;
-
-namespace MyAccountAPI.Domain.Exceptions
+﻿namespace MyAccountAPI.Domain.Exceptions
 {
+    using MyAccountAPI.Domain.Model;
+
     public class TransactionConflictException : MyAccountAPIException
     {
         public AggregateRoot AggregateRoot { get; private set; }

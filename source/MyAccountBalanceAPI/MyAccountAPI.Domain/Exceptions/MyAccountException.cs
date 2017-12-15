@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyAccountAPI.Domain.Exceptions
+﻿namespace MyAccountAPI.Domain.Exceptions
 {
+    using System;
+
     public class MyAccountAPIException : Exception
     {
         public MyAccountAPIException()

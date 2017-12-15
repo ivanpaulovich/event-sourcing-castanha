@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyAccountAPI.Domain.Model
+﻿namespace MyAccountAPI.Domain.Model
 {
+    using System;
+
     public class Header
     {
         public Guid CorrelationId { get; private set; }

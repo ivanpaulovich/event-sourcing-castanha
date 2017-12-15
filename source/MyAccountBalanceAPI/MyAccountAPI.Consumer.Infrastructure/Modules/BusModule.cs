@@ -1,9 +1,9 @@
-﻿using Autofac;
-using MyAccountAPI.Consumer.Infrastructure.ServiceBus;
-using MyAccountAPI.Domain.ServiceBus;
-
-namespace MyAccountAPI.Consumer.Infrastructure.Modules
+﻿namespace MyAccountAPI.Consumer.Infrastructure.Modules
 {
+    using Autofac;
+    using MyAccountAPI.Consumer.Infrastructure.ServiceBus;
+    using MyAccountAPI.Domain.ServiceBus;
+
     public class BusModule : Module
     {
         public string BrokerList { get; set; }

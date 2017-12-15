@@ -1,9 +1,7 @@
-﻿using MyAccountAPI.Domain.Model;
-using MediatR;
-using System;
-
-namespace MyAccountAPI.Domain.Model
+﻿namespace MyAccountAPI.Domain.Model
 {
+    using System;
+
     public class DomainEvent : IDomainEvent
     {
         public Guid AggregateRootId { get; private set; }

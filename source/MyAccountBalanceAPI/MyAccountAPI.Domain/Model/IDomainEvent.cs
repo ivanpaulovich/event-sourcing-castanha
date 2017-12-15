@@ -1,7 +1,7 @@
-﻿using MediatR;
-
-namespace MyAccountAPI.Domain.Model
+﻿namespace MyAccountAPI.Domain.Model
 {
+    using MediatR;
+
     public interface IDomainEvent : IRequest
     {
     }

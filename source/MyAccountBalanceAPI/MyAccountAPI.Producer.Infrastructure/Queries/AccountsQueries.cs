@@ -1,12 +1,12 @@
-﻿using MyAccountAPI.Producer.Application.Queries;
-using MongoDB.Driver;
-using System;
-using System.Dynamic;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-namespace MyAccountAPI.Producer.Infrastructure.Queries
+﻿namespace MyAccountAPI.Producer.Infrastructure.Queries
 {
+    using MyAccountAPI.Producer.Application.Queries;
+    using MongoDB.Driver;
+    using System;
+    using System.Dynamic;
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
     public class AccountsQueries : IAccountsQueries
     {
         private readonly IMongoDatabase database;

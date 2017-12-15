@@ -1,11 +1,11 @@
-﻿using MyAccountAPI.Domain.Model;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Domain.Model.Accounts;
-
-namespace MyAccountAPI.Producer.Infrastructure.DataAccess
+﻿namespace MyAccountAPI.Producer.Infrastructure.DataAccess
 {
+    using MyAccountAPI.Domain.Model;
+    using MongoDB.Bson.Serialization;
+    using MongoDB.Driver;
+    using MyAccountAPI.Domain.Model.Customers;
+    using MyAccountAPI.Domain.Model.Accounts;
+
     public class MongoContext
     {
         private readonly MongoClient mongoClient;

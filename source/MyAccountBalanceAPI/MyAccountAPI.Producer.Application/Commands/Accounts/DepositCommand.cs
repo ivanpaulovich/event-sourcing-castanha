@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MyAccountAPI.Domain.Model.Accounts;
-using System;
-using System.Runtime.Serialization;
-
-namespace MyAccountAPI.Producer.Application.Commands.Accounts
+﻿namespace MyAccountAPI.Producer.Application.Commands.Accounts
 {
+    using MediatR;
+    using MyAccountAPI.Domain.Model.Accounts;
+    using System;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class DepositCommand : CommandBase, IRequest<Transaction>
     {

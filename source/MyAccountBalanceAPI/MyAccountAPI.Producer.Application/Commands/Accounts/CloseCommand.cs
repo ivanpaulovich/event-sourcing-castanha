@@ -1,9 +1,9 @@
-﻿using MediatR;
-using System;
-using System.Runtime.Serialization;
-
-namespace MyAccountAPI.Producer.Application.Commands.Accounts
+﻿namespace MyAccountAPI.Producer.Application.Commands.Accounts
 {
+    using MediatR;
+    using System;
+    using System.Runtime.Serialization;
+
     [DataContract]
     public class CloseCommand : CommandBase, IRequest
     {

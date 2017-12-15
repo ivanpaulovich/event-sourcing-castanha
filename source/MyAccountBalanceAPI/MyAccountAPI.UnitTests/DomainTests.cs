@@ -1,15 +1,15 @@
-using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using System;
-using Xunit;
-using System.Linq;
-using MyAccountAPI.Domain.Model.Customers.Events;
-using MyAccountAPI.Domain.Model.Accounts.Events;
-using MyAccountAPI.Domain.Exceptions;
-
 namespace MyAccountAPI.Domain.UnitTests
 {
+    using MyAccountAPI.Domain.Model.Accounts;
+    using MyAccountAPI.Domain.Model.Customers;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using System;
+    using Xunit;
+    using System.Linq;
+    using MyAccountAPI.Domain.Model.Customers.Events;
+    using MyAccountAPI.Domain.Model.Accounts.Events;
+    using MyAccountAPI.Domain.Exceptions;
+
     public class DomainTests
     {
         [Fact]

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyAccountAPI.Domain.Model
+﻿namespace MyAccountAPI.Domain.Model
 {
+    using System;
+
     public class Entity : IEntity
     {
         public Guid Id { get; protected set; }

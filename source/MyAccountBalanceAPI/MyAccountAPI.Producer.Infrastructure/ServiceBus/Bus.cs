@@ -1,14 +1,14 @@
-﻿using Confluent.Kafka;
-using Confluent.Kafka.Serialization;
-using MyAccountAPI.Domain.Model;
-using MyAccountAPI.Domain.ServiceBus;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyAccountAPI.Producer.Infrastructure.ServiceBus
+﻿namespace MyAccountAPI.Producer.Infrastructure.ServiceBus
 {
+    using Confluent.Kafka;
+    using Confluent.Kafka.Serialization;
+    using MyAccountAPI.Domain.Model;
+    using MyAccountAPI.Domain.ServiceBus;
+    using Newtonsoft.Json;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+
     public class Bus : IPublisher
     {
         public readonly string brokerList;

@@ -1,12 +1,12 @@
-﻿using Autofac;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Accounts;
-using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Customers;
-using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.Customers;
-
-namespace MyAccountAPI.Consumer.Infrastructure.Modules
+﻿namespace MyAccountAPI.Consumer.Infrastructure.Modules
 {
+    using Autofac;
+    using MyAccountAPI.Consumer.Infrastructure.DataAccess;
+    using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Accounts;
+    using MyAccountAPI.Consumer.Infrastructure.DataAccess.Repositories.Customers;
+    using MyAccountAPI.Domain.Model.Accounts;
+    using MyAccountAPI.Domain.Model.Customers;
+
     public class ApplicationModule : Module
     {
         public string ConnectionString { get; set; }

@@ -1,14 +1,14 @@
-﻿using MyAccountAPI.Producer.Application.Commands.Customers;
-using MediatR;
-using System;
-using System.Threading.Tasks;
-using MyAccountAPI.Domain.ServiceBus;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using MyAccountAPI.Domain.Model.Accounts;
-
-namespace MyAccountAPI.Producer.Application.CommandHandlers.Customers
+﻿namespace MyAccountAPI.Producer.Application.CommandHandlers.Customers
 {
+    using MyAccountAPI.Producer.Application.Commands.Customers;
+    using MediatR;
+    using System;
+    using System.Threading.Tasks;
+    using MyAccountAPI.Domain.ServiceBus;
+    using MyAccountAPI.Domain.Model.Customers;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using MyAccountAPI.Domain.Model.Accounts;
+
     public class RegisterCustomerCommandHandler : IAsyncRequestHandler<RegisterCustomerCommand, Customer>
     {
         private readonly IPublisher bus;

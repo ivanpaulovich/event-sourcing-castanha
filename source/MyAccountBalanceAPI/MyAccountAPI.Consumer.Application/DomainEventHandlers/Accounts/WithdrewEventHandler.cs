@@ -1,12 +1,12 @@
-﻿using MediatR;
-using MyAccountAPI.Domain.Exceptions;
-using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.Accounts.Events;
-using MyAccountAPI.Domain.Model.Customers;
-using System;
-
-namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Blogs
+﻿namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Blogs
 {
+    using MediatR;
+    using MyAccountAPI.Domain.Exceptions;
+    using MyAccountAPI.Domain.Model.Accounts;
+    using MyAccountAPI.Domain.Model.Accounts.Events;
+    using MyAccountAPI.Domain.Model.Customers;
+    using System;
+
     public class WithdrewEventHandler : IRequestHandler<WithdrewDomainEvent>
     {
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;

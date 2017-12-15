@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Threading.Tasks;
-
-namespace MyAccountAPI.Producer.Application.Queries
+﻿namespace MyAccountAPI.Producer.Application.Queries
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Dynamic;
+    using System.Threading.Tasks;
+
     public interface ICustomersQueries
     {
         Task<ExpandoObject> GetAsync(Guid id);

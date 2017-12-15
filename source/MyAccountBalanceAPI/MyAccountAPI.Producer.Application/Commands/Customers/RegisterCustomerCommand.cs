@@ -1,9 +1,9 @@
-﻿using MediatR;
-using System.Runtime.Serialization;
-using MyAccountAPI.Domain.Model.Customers;
-
-namespace MyAccountAPI.Producer.Application.Commands.Customers
+﻿namespace MyAccountAPI.Producer.Application.Commands.Customers
 {
+    using MediatR;
+    using System.Runtime.Serialization;
+    using MyAccountAPI.Domain.Model.Customers;
+    
     [DataContract]
     public class RegisterCustomerCommand : CommandBase, IRequest<Customer>
     {

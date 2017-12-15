@@ -1,9 +1,9 @@
-using MyAccountAPI.Domain.Exceptions;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using Xunit;
-
 namespace MyAccountAPI.Domain.UnitTests
 {
+    using MyAccountAPI.Domain.Exceptions;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using Xunit;
+
     public class ValueObjectsTests
     {
         [Fact]

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MyAccountAPI.Domain.Model
+﻿namespace MyAccountAPI.Domain.Model
 {
+    using System;
+    using System.Collections.Generic;
+
     public abstract class AggregateRoot : Entity
     {
         private readonly Dictionary<Type, Action<object>> handlers = new Dictionary<Type, Action<object>>();

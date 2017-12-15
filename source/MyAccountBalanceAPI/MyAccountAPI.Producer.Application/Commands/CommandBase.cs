@@ -1,10 +1,7 @@
-﻿using MyAccountAPI.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyAccountAPI.Producer.Application.Commands
+﻿namespace MyAccountAPI.Producer.Application.Commands
 {
+    using MyAccountAPI.Domain.Model;
+
     public class CommandBase
     {
         public Header Header { get; set; }

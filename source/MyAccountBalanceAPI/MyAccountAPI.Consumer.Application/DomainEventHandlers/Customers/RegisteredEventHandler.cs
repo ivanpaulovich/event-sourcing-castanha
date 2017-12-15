@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MyAccountAPI.Domain.Model.Accounts;
-using MyAccountAPI.Domain.Model.Customers;
-using MyAccountAPI.Domain.Model.Customers.Events;
-using System;
-
-namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Customers
+﻿namespace MyAccountAPI.Consumer.Application.DomainEventHandlers.Customers
 {
+    using MediatR;
+    using MyAccountAPI.Domain.Model.Accounts;
+    using MyAccountAPI.Domain.Model.Customers;
+    using MyAccountAPI.Domain.Model.Customers.Events;
+    using System;
+    
     public class RegisteredEventHandler : IRequestHandler<RegisteredDomainEvent>
     {
         private readonly ICustomerWriteOnlyRepository customerWriteOnlyRepository;

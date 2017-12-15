@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MyAccountAPI.Domain.Exceptions
+﻿namespace MyAccountAPI.Domain.Exceptions
 {
     public class PINShouldNotBeEmptyException : DomainException
     {
