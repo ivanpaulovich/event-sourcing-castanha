@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,9 +11,16 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="Autofac.Configuration" Version="4.0.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.0" />
     <PackageReference Include="MediatR" Version="3.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
     <PackageReference Include="Confluent.Kafka" Version="0.11.0" NoWarn="NU1701" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
@@ -22,10 +30,5 @@
     <ProjectReference Include="..\MyAccountAPI.Consumer.Application\MyAccountAPI.Consumer.Application.csproj" />
     <ProjectReference Include="..\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
   </ItemGroup>
-
-  <Target Name="CopyFiles" AfterTargets="build">
-    <Copy DestinationFolder="..\MyAccountAPI.Consumer.UI\bin\Debug\netcoreapp2.0" SourceFiles="$(OutputPath)\MyAccountAPI.Consumer.Infrastructure.dll" SkipUnchangedFiles="false" />
-    <Copy DestinationFolder="..\MyAccountAPI.Consumer.UI\bin\Debug\netcoreapp2.0" SourceFiles="$(OutputPath)\MyAccountAPI.Consumer.Infrastructure.pdb" SkipUnchangedFiles="false" />
-  </Target>
 
 </Project>

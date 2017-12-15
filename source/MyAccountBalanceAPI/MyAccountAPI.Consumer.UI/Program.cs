@@ -1,9 +1,9 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.IO;
-
-namespace MyAccountAPI.Consumer.Infrastructure
+﻿namespace MyAccountAPI.Consumer.UI
 {
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.IO;
+
     class Program
     {
         public static void Main(string[] args)
@@ -11,6 +11,7 @@ namespace MyAccountAPI.Consumer.Infrastructure
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile("autofac.json")
                 .AddEnvironmentVariables();
 
             IConfigurationRoot configuration = builder.Build();

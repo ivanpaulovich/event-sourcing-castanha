@@ -9,19 +9,13 @@ namespace MyAccountAPI.Consumer.Infrastructure.Modules
 {
     public class ApplicationModule : Module
     {
-        public readonly string connectionString;
-        public readonly string database;
-
-        public ApplicationModule(string connectionString, string database)
-        {
-            this.connectionString = connectionString;
-            this.database = database;
-        }
+        public string ConnectionString { get; set; }
+        public string DatabaseName { get; set; }
 
         protected override void Load(ContainerBuilder builder)
         {
-            MongoContext mongoContext = new MongoContext(connectionString, database);
-            mongoContext.DatabaseReset(database);
+            MongoContext mongoContext = new MongoContext(ConnectionString, DatabaseName);
+            mongoContext.DatabaseReset(DatabaseName);
 
             builder.Register(c => mongoContext)
                 .As<MongoContext>().SingleInstance();
