@@ -30,11 +30,11 @@
 
         public async Task<Transaction> Handle(WithdrawCommand command)
         {
-            Account account = await accountReadOnlyRepository.Get(command.AccountId);
+            Account account = await accountReadOnlyRepository.GetAccount(command.AccountId);
             if (account == null)
                 throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
 
-            Transaction transaction = Credit.Create(command.CustomerId, Amount.Create(command.Amount));
+            Transaction transaction = Debit.Create(command.CustomerId, Amount.Create(command.Amount));
             account.Withdraw(transaction);
 
             var domainEvents = account.GetEvents();

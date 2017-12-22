@@ -1,11 +1,11 @@
-﻿using MyAccountAPI.Domain.Model.Customers.Events;
-using System.Collections.Generic;
-using System;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using MyAccountAPI.Domain.Model.Accounts;
-
-namespace MyAccountAPI.Domain.Model.Customers
+﻿namespace MyAccountAPI.Domain.Model.Customers
 {
+    using MyAccountAPI.Domain.Model.Customers.Events;
+    using System.Collections.Generic;
+    using System;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using MyAccountAPI.Domain.Model.Accounts;
+
     public class Customer : AggregateRoot
     {
         private Name name;

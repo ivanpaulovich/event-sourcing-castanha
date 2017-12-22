@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
     <ProjectReference Include="..\MyAccountAPI.Producer.Application\MyAccountAPI.Producer.Application.csproj" />
+    <ProjectReference Include="..\MyAccountAPI.Producer.Infrastructure\MyAccountAPI.Producer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@
     using MyAccountAPI.Producer.Application.Commands.Accounts;
     using MyAccountAPI.Producer.Application.Queries;
     using MyAccountAPI.Domain.Exceptions;
+    using MyAccountAPI.Domain.Model.Accounts;
 
     [Authorize]
     [Route("api/[controller]")]
@@ -32,20 +33,20 @@
         /// Deposit from an account
         /// </summary>
         [HttpPatch("Deposit")]
-        public async Task<IActionResult> Deposit([FromBody]DepositCommand command)
+        public async Task<Transaction> Deposit([FromBody]DepositCommand command)
         {
-            await mediator.Send(command);
-            return (IActionResult)Ok();
+            Transaction transaction = await mediator.Send(command);
+            return transaction;
         }
 
         /// <summary>
         /// Withdraw from an account
         /// </summary>
         [HttpPatch("Withdraw")]
-        public async Task<IActionResult> Withdraw([FromBody]WithdrawCommand command)
+        public async Task<Transaction> Withdraw([FromBody]WithdrawCommand command)
         {
-            await mediator.Send(command);
-            return (IActionResult)Ok();
+            Transaction transaction = await mediator.Send(command);
+            return transaction;
         }
 
         /// <summary>

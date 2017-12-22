@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
 
-    public interface IAccountReadOnlyRepository
+    public interface ITransactionReadOnlyRepository
     {
-        Task<Account> GetAccount(Guid accountId);
+        Task<Transaction> GetTransaction(Guid transactionId);
     }
 }

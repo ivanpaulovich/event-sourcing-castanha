@@ -1,12 +1,12 @@
-﻿using MyAccountAPI.Domain.Exceptions;
-using MyAccountAPI.Domain.Model.Accounts.Events;
-using MyAccountAPI.Domain.Model.Customers.Events;
-using MyAccountAPI.Domain.Model.ValueObjects;
-using System;
-using System.Collections.Generic;
-
-namespace MyAccountAPI.Domain.Model.Accounts
+﻿namespace MyAccountAPI.Domain.Model.Accounts
 {
+    using MyAccountAPI.Domain.Exceptions;
+    using MyAccountAPI.Domain.Model.Accounts.Events;
+    using MyAccountAPI.Domain.Model.Customers.Events;
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using System;
+    using System.Collections.Generic;
+
     public class Account : AggregateRoot
     {
         private Guid customerId;

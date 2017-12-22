@@ -30,7 +30,7 @@
 
         public async Task<Transaction> Handle(DepositCommand command)
         {
-            Account account = await accountReadOnlyRepository.Get(command.AccountId);
+            Account account = await accountReadOnlyRepository.GetAccount(command.AccountId);
             if (account == null)
                 throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
 

@@ -14,6 +14,11 @@
         "BrokerList": "10.0.75.1:9092",
         "Topic": "MyAccountAPIv05"
       }
+    },
+    {
+      "type": "MyAccountAPI.Consumer.Infrastructure.Modules.MediatRModule",
+      "properties": {
+      }
     }
   ]
 }

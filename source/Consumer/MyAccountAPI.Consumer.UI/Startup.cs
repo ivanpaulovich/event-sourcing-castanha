@@ -28,10 +28,6 @@
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            LoadInfrastructureAssemblies();
-
-            services.AddMediatR(typeof(RegisteredEventHandler).GetTypeInfo().Assembly);
-
             ContainerBuilder builder = new ContainerBuilder();
             builder.Populate(services);
             builder.RegisterModule(new ConfigurationModule(Configuration));
@@ -39,16 +35,6 @@
             serviceProvider = new AutofacServiceProvider(builder.Build());
 
             return serviceProvider;
-        }
-
-        private void LoadInfrastructureAssemblies()
-        {
-            string[] fileNames = Directory.EnumerateFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll", SearchOption.TopDirectoryOnly)
-                .Where(filePath => Path.GetFileName(filePath).StartsWith("MyAccountAPI.Consumer.Infrastructure", StringComparison.OrdinalIgnoreCase))
-                .ToArray();
-
-            foreach (string file in fileNames)
-                AssemblyLoadContext.Default.LoadFromAssemblyPath(file);
         }
 
         public void Run()

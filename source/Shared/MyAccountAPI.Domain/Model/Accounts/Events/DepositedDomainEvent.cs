@@ -1,8 +1,8 @@
-﻿using MyAccountAPI.Domain.Model.ValueObjects;
-using System;
-
-namespace MyAccountAPI.Domain.Model.Accounts.Events
+﻿namespace MyAccountAPI.Domain.Model.Accounts.Events
 {
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using System;
+
     public class DepositedDomainEvent : DomainEvent
     {
         public Guid TransactionId { get; private set; }

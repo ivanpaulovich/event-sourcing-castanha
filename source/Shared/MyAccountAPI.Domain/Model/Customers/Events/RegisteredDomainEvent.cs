@@ -1,8 +1,8 @@
-﻿using MyAccountAPI.Domain.Model.ValueObjects;
-using System;
-
-namespace MyAccountAPI.Domain.Model.Customers.Events
+﻿namespace MyAccountAPI.Domain.Model.Customers.Events
 {
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using System;
+
     public class RegisteredDomainEvent : DomainEvent
     {
         public Name Name { get; private set; }

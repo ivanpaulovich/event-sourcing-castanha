@@ -28,7 +28,7 @@
 
         public void Handle(DepositedDomainEvent domainEvent)
         {
-            Account account = accountReadOnlyRepository.Get(domainEvent.AggregateRootId).Result;
+            Account account = accountReadOnlyRepository.GetAccount(domainEvent.AggregateRootId).Result;
 
             if (account == null)
                 throw new AccountNotFoundException($"The account {domainEvent.AggregateRootId} does not exists or is already closed.");

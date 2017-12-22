@@ -1,8 +1,8 @@
-﻿using MyAccountAPI.Domain.Model.ValueObjects;
-using System;
-
-namespace MyAccountAPI.Domain.Model.Accounts
+﻿namespace MyAccountAPI.Domain.Model.Accounts
 {
+    using MyAccountAPI.Domain.Model.ValueObjects;
+    using System;
+
     public class Transaction : Entity
     {
         protected Guid customerId;

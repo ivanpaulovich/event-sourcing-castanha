@@ -14,9 +14,12 @@
             _mongoContext = mongoContext;
         }
 
-        public async Task<Account> Get(Guid id)
+        public async Task<Account> GetAccount(Guid id)
         {
-            return await _mongoContext.Accounts.Find(e => e.Id == id).SingleAsync();
+            return await _mongoContext
+                .Accounts
+                .Find(e => e.Id == id)
+                .SingleAsync();
         }
     }
 }

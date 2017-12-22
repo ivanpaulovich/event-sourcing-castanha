@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace MyAccountAPI.Domain.Model.Customers
+﻿namespace MyAccountAPI.Domain.Model.Customers
 {
+    using System.Threading.Tasks;
+
     public interface ICustomerWriteOnlyRepository
     {
         Task Add(Customer customer);

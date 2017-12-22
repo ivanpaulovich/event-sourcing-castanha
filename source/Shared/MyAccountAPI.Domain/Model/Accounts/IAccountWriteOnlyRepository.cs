@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace MyAccountAPI.Domain.Model.Accounts
+﻿namespace MyAccountAPI.Domain.Model.Accounts
 {
+    using System.Threading.Tasks;
+
     public interface IAccountWriteOnlyRepository
     {
         Task Add(Account account);

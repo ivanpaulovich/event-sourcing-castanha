@@ -1,7 +1,7 @@
-﻿using MyAccountAPI.Domain.Exceptions;
-
-namespace MyAccountAPI.Domain.Model.ValueObjects
+﻿namespace MyAccountAPI.Domain.Model.ValueObjects
 {
+    using MyAccountAPI.Domain.Exceptions;
+
     public class PIN
     {
         public string Text { get; private set; }

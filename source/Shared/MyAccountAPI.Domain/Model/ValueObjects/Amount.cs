@@ -1,7 +1,7 @@
-﻿using MyAccountAPI.Domain.Exceptions;
-
-namespace MyAccountAPI.Domain.Model.ValueObjects
+﻿namespace MyAccountAPI.Domain.Model.ValueObjects
 {
+    using MyAccountAPI.Domain.Exceptions;
+
     public class Amount
     {
         public double Value { get; private set; }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MyAccountAPI.Domain.Model.Accounts.Events
+﻿namespace MyAccountAPI.Domain.Model.Accounts.Events
 {
+    using System;
+    
     public class ClosedDomainEvent : DomainEvent
     {
         public ClosedDomainEvent(Guid aggregateRootId, int version, 
