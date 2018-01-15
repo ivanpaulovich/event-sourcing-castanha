@@ -40,18 +40,6 @@
             var domainEvents = account.GetEvents();
             await bus.Publish(domainEvents, command.Header);
 
-            bool received = false;
-            for (int i = 0; i < 5; i++)
-            {
-                received = await accountReadOnlyRepository.CheckTransactionReceived(account.Id, transaction.Id);
-                if (received)
-                    break;
-            }
-
-            //if (!received)
-            //{
-            //}
-
             return transaction;
         }
     }
