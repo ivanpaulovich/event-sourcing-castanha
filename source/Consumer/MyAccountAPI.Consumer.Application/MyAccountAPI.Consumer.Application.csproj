@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
+    <ProjectReference Include="..\MyAccountAPI.Consumer.Domain\MyAccountAPI.Consumer.Domain.csproj" />
   </ItemGroup>
   
 </Project>

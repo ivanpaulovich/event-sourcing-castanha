@@ -8,8 +8,4 @@
     <PackageReference Include="MediatR" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MyAccountAPI.Producer.Domain\MyAccountAPI.Producer.Domain.csproj" />
-  </ItemGroup>
-  
 </Project>

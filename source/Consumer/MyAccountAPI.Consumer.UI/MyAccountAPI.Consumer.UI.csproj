@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\MyAccountAPI.Domain\MyAccountAPI.Domain.csproj" />
+    <ProjectReference Include="..\MyAccountAPI.Consumer.Domain\MyAccountAPI.Consumer.Domain.csproj" />
     <ProjectReference Include="..\MyAccountAPI.Consumer.Application\MyAccountAPI.Consumer.Application.csproj" />
     <ProjectReference Include="..\MyAccountAPI.Consumer.Infrastructure\MyAccountAPI.Consumer.Infrastructure.csproj" />
   </ItemGroup>
