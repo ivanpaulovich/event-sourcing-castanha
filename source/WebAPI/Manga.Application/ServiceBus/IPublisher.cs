@@ -6,6 +6,6 @@
     
     public interface IPublisher
     {
-        Task Publish(IEnumerable<DomainEvent> domainEvents);
+        Task Publish(IEnumerable<IDomainEvent> domainEvents);
     }
 }

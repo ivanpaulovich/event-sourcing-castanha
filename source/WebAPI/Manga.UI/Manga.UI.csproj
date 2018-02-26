@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Manga.Infrastructure\Manga.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="logs\" />
+  </ItemGroup>
+
 </Project>
