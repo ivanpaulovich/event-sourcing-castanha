@@ -1,0 +1,22 @@
+﻿{
+  "defaultAssembly": "MyAccountAPI.Producer.UI",
+  "modules": [
+    {
+      "type": "MyAccountAPI.Producer.UI.Modules.UIModuley",
+      "properties": {
+      }
+    },
+    {
+      "type": "MyAccountAPI.Producer.UI.Modules.ApplicationModule",
+      "properties": {
+      }
+    },
+    {
+      "type": "MyAccountAPI.Producer.UI.Modules.InfrastructureModule",
+      "properties": {
+        "ConnectionString": "mongodb://10.0.75.1:27017",
+        "DatabaseName": "MyAccountAPI.Producer-V01"
+      }
+    }
+  ]
+}
