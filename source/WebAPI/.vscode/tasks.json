@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Manga.UI/Manga.UI.csproj"
+                "${workspaceFolder}/Castanha.UI/Castanha.UI.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

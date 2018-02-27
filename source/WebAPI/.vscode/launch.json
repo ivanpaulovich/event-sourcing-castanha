@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Manga.UI/bin/Debug/netcoreapp2.0/Manga.UI.dll",
+            "program": "${workspaceFolder}/Castanha.UI/bin/Debug/netcoreapp2.0/Castanha.UI.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Manga.UI",
+            "cwd": "${workspaceFolder}/Castanha.UI",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

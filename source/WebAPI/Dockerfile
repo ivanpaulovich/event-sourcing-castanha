@@ -6,6 +6,6 @@ EXPOSE 80
 WORKDIR /app
 COPY . .
 
-WORKDIR /app/Manga.UI
+WORKDIR /app/Castanha.UI
 
 ENTRYPOINT ["dotnet", "run"]
