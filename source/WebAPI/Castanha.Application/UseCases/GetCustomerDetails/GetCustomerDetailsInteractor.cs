@@ -1,18 +1,18 @@
 ﻿namespace Castanha.Application.UseCases.GetCustomerDetails
 {
     using System.Threading.Tasks;
-    using Castanha.Application.Responses;
+    using Castanha.Application.Outputs;
     using Castanha.Domain.Customers;
 
-    public class GetCustomerDetailsInteractor : IInputBoundary<GetCustomerDetaisCommand>
+    public class GetCustomerDetailsInteractor : IInputBoundary<GetCustomerDetaisInput>
     {
         private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
-        private readonly IOutputBoundary<CustomerResponse> outputBoundary;
+        private readonly IOutputBoundary<CustomerOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
 
         public GetCustomerDetailsInteractor(
             ICustomerReadOnlyRepository customerReadOnlyRepository,
-            IOutputBoundary<CustomerResponse> outputBoundary,
+            IOutputBoundary<CustomerOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.customerReadOnlyRepository = customerReadOnlyRepository;
@@ -20,10 +20,10 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Handle(GetCustomerDetaisCommand message)
+        public async Task Process(GetCustomerDetaisInput message)
         {
             Domain.Customers.Customer customer = await this.customerReadOnlyRepository.Get(message.CustomerId);
-            CustomerResponse response = responseConverter.Map<CustomerResponse>(customer);
+            CustomerOutput response = responseConverter.Map<CustomerOutput>(customer);
 
             outputBoundary.Populate(response);
         }

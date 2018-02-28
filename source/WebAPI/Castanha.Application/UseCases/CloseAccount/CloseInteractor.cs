@@ -5,17 +5,17 @@
     using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.ServiceBus;
 
-    public class CloseInteractor : IInputBoundary<CloseCommand>
+    public class CloseInteractor : IInputBoundary<CloseInput>
     {
         private readonly IPublisher bus;
         private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
-        private readonly IOutputBoundary<CloseResponse> outputBoundary;
+        private readonly IOutputBoundary<CloseOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
 
         public CloseInteractor(
             ICustomerReadOnlyRepository customerReadOnlyRepository,
             IPublisher bus,
-            IOutputBoundary<CloseResponse> outputBoundary,
+            IOutputBoundary<CloseOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.bus = bus;
@@ -24,7 +24,7 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Handle(CloseCommand request)
+        public async Task Process(CloseInput request)
         {
             Customer customer = await customerReadOnlyRepository.GetByAccount(request.AccountId);
             Account account = customer.FindAccount(request.AccountId);
@@ -34,7 +34,7 @@
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);
 
-            CloseResponse response = responseConverter.Map<CloseResponse>(account);
+            CloseOutput response = responseConverter.Map<CloseOutput>(account);
             this.outputBoundary.Populate(response);
         }
     }

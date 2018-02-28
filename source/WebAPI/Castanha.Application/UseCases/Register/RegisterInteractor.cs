@@ -3,19 +3,19 @@
     using System.Threading.Tasks;
     using Castanha.Domain.Customers;
     using Castanha.Domain.ValueObjects;
-    using Castanha.Application.Responses;
+    using Castanha.Application.Outputs;
     using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.ServiceBus;
 
-    public class RegisterInteractor : IInputBoundary<RegisterCommand>
+    public class RegisterInteractor : IInputBoundary<RegisterInput>
     {
         private readonly IPublisher bus;
-        private readonly IOutputBoundary<RegisterResponse> outputBoundary;
+        private readonly IOutputBoundary<RegisterOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
         
         public RegisterInteractor(
             IPublisher bus,
-            IOutputBoundary<RegisterResponse> outputBoundary,
+            IOutputBoundary<RegisterOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.bus = bus;
@@ -23,7 +23,7 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Handle(RegisterCommand message)
+        public async Task Process(RegisterInput message)
         {
             Customer customer = new Customer(new PIN(message.PIN), new Name(message.Name));
 
@@ -36,9 +36,9 @@
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);
 
-            CustomerResponse customerResponse = responseConverter.Map<CustomerResponse>(customer);
-            AccountResponse accountResponse = responseConverter.Map<AccountResponse>(account);
-            RegisterResponse response = new RegisterResponse(customerResponse, accountResponse);
+            CustomerOutput customerResponse = responseConverter.Map<CustomerOutput>(customer);
+            AccountOutput accountResponse = responseConverter.Map<AccountOutput>(account);
+            RegisterOutput response = new RegisterOutput(customerResponse, accountResponse);
 
             outputBoundary.Populate(response);
         }

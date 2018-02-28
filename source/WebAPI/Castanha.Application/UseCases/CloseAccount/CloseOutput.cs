@@ -1,12 +1,17 @@
 ﻿namespace Castanha.Application.UseCases.CloseAccount
 {
     using System;
-    public class CloseCommand
+    public class CloseOutput
     {
         public Guid AccountId { get; private set; }
-        public CloseCommand(Guid guid)
+        public CloseOutput()
         {
-            this.AccountId = guid;
+
+        }
+
+        public CloseOutput(Guid accountId)
+        {
+            AccountId = accountId;
         }
     }
 }

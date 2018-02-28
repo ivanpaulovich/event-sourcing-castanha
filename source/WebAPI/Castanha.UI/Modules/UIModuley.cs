@@ -6,13 +6,10 @@
 
     public class UIModuley : Autofac.Module
     {
-        public string ConnectionString { get; set; }
-        public string DatabaseName { get; set; }
-
         protected override void Load(ContainerBuilder builder)
         {
             //
-            // Register all Types in Castanha.UI
+            // Register all Presenters in Castanha.UI
             //
             builder.RegisterAssemblyTypes(typeof(RegisterPresenter).Assembly)
                 .AsClosedTypesOf(typeof(IOutputBoundary<>))

@@ -1,23 +1,23 @@
 ﻿namespace Castanha.Application.UseCases.Withdraw
 {
     using System.Threading.Tasks;
-    using Castanha.Application.Responses;
+    using Castanha.Application.Outputs;
     using Castanha.Domain.Customers;
     using Castanha.Domain.Customers.Accounts;
     using Castanha.Domain.ValueObjects;
     using Castanha.Application.ServiceBus;
 
-    public class WithdrawInteractor : IInputBoundary<WithdrawCommand>
+    public class WithdrawInteractor : IInputBoundary<WithdrawInput>
     {
         private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
         private readonly IPublisher bus;
-        private readonly IOutputBoundary<WithdrawResponse> outputBoundary;
+        private readonly IOutputBoundary<WithdrawOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
         
         public WithdrawInteractor(
             ICustomerReadOnlyRepository customerReadOnlyRepository,
             IPublisher bus,
-            IOutputBoundary<WithdrawResponse> outputBoundary,
+            IOutputBoundary<WithdrawOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.customerReadOnlyRepository = customerReadOnlyRepository;
@@ -26,7 +26,7 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Handle(WithdrawCommand command)
+        public async Task Process(WithdrawInput command)
         {
             Customer customer = await customerReadOnlyRepository.GetByAccount(command.AccountId);
             if (customer == null)
@@ -39,8 +39,8 @@
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);
 
-            TransactionResponse transactionResponse = responseConverter.Map<TransactionResponse>(credit);
-            WithdrawResponse response = new WithdrawResponse(transactionResponse, account.CurrentBalance.Value);
+            TransactionOutput transactionResponse = responseConverter.Map<TransactionOutput>(credit);
+            WithdrawOutput response = new WithdrawOutput(transactionResponse, account.CurrentBalance.Value);
 
             outputBoundary.Populate(response);
         }

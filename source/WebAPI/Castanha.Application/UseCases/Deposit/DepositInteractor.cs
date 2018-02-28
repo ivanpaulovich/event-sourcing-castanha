@@ -1,23 +1,23 @@
 ﻿namespace Castanha.Application.UseCases.Deposit
 {
     using System.Threading.Tasks;
-    using Castanha.Application.Responses;
+    using Castanha.Application.Outputs;
     using Castanha.Domain.Customers;
     using Castanha.Domain.Customers.Accounts;
     using Castanha.Domain.ValueObjects;
     using Castanha.Application.ServiceBus;
 
-    public class DepositInteractor : IInputBoundary<DepositCommand>
+    public class DepositInteractor : IInputBoundary<DepositInput>
     {
         private readonly IPublisher bus;
         private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
-        private readonly IOutputBoundary<DepositResponse> outputBoundary;
+        private readonly IOutputBoundary<DepositOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
 
         public DepositInteractor(
             ICustomerReadOnlyRepository customerReadOnlyRepository,
             IPublisher bus,
-            IOutputBoundary<DepositResponse> outputBoundary,
+            IOutputBoundary<DepositOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.customerReadOnlyRepository = customerReadOnlyRepository;
@@ -26,7 +26,7 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Handle(DepositCommand command)
+        public async Task Process(DepositInput command)
         {
             Customer customer = await customerReadOnlyRepository.GetByAccount(command.AccountId);
             if (customer == null)
@@ -39,8 +39,8 @@
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);
 
-            TransactionResponse transactionResponse = responseConverter.Map<TransactionResponse>(credit);
-            DepositResponse response = new DepositResponse(transactionResponse, account.CurrentBalance.Value);
+            TransactionOutput transactionResponse = responseConverter.Map<TransactionOutput>(credit);
+            DepositOutput response = new DepositOutput(transactionResponse, account.CurrentBalance.Value);
 
             outputBoundary.Populate(response);
         }

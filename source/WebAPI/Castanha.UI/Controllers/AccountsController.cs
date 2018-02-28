@@ -14,10 +14,10 @@
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
-        private readonly IInputBoundary<CloseCommand> closeAccountInput;
-        private readonly IInputBoundary<DepositCommand> depositInput;
-        private readonly IInputBoundary<WithdrawCommand> withdrawInput;
-        private readonly IInputBoundary<GetAccountDetailsCommand> getAccountDetailsInput;
+        private readonly IInputBoundary<CloseInput> closeAccountInput;
+        private readonly IInputBoundary<DepositInput> depositInput;
+        private readonly IInputBoundary<WithdrawInput> withdrawInput;
+        private readonly IInputBoundary<GetAccountDetailsInput> getAccountDetailsInput;
 
         private readonly ClosePresenter closePresenter;
         private readonly DepositPresenter depositPresenter;
@@ -25,10 +25,10 @@
         private readonly AccountDetailsPresenter getAccountDetailsPresenter;
 
         public AccountsController(
-            IInputBoundary<CloseCommand> closeAccountnput,
-            IInputBoundary<DepositCommand> depositnput,
-            IInputBoundary<WithdrawCommand> withdrawInput,
-            IInputBoundary<GetAccountDetailsCommand> getAccountDetailsInput,
+            IInputBoundary<CloseInput> closeAccountnput,
+            IInputBoundary<DepositInput> depositnput,
+            IInputBoundary<WithdrawInput> withdrawInput,
+            IInputBoundary<GetAccountDetailsInput> getAccountDetailsInput,
             ClosePresenter closePresenter,
             DepositPresenter depositPresenter,
             WithdrawPresenter withdrawPresenter,
@@ -51,9 +51,9 @@
         [HttpDelete("{accountId}")]
         public async Task<IActionResult> Close(Guid accountId)
         {
-            var request = new CloseCommand(accountId);
+            var request = new CloseInput(accountId);
 
-            await closeAccountInput.Handle(request);
+            await closeAccountInput.Process(request);
             return closePresenter.ViewModel;
         }
 
@@ -63,9 +63,9 @@
         [HttpPatch("Deposit")]
         public async Task<IActionResult> Deposit([FromBody]DepositRequest message)
         {
-            var request = new DepositCommand(message.AccountId, message.Amount);
+            var request = new DepositInput(message.AccountId, message.Amount);
 
-            await depositInput.Handle(request);
+            await depositInput.Process(request);
             return depositPresenter.ViewModel;
         }
 
@@ -75,9 +75,9 @@
         [HttpPatch("Withdraw")]
         public async Task<IActionResult> Withdraw([FromBody]WithdrawRequest message)
         {
-            var request = new WithdrawCommand(message.AccountId, message.Amount);
+            var request = new WithdrawInput(message.AccountId, message.Amount);
 
-            await withdrawInput.Handle(request);
+            await withdrawInput.Process(request);
             return withdrawPresenter.ViewModel;
         }
 
@@ -88,9 +88,9 @@
         [HttpGet("{accountId}", Name = "GetAccount")]
         public async Task<IActionResult> Get(Guid accountId)
         {
-            var request = new GetAccountDetailsCommand(accountId);
+            var request = new GetAccountDetailsInput(accountId);
 
-            await getAccountDetailsInput.Handle(request);
+            await getAccountDetailsInput.Process(request);
             return getAccountDetailsPresenter.ViewModel;
         }
     }

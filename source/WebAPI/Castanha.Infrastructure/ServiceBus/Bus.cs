@@ -58,7 +58,7 @@
             }
         }
 
-        public void Listen(IMediator mediator)
+        public void Listen()
         {
             using (var consumer = new Consumer<string, string>(constructConfig(brokerList, true), new StringDeserializer(Encoding.UTF8), new StringDeserializer(Encoding.UTF8)))
             {
@@ -69,9 +69,9 @@
 
                     try
                     {
-                        Type eventType = Type.GetType(msg.Key);
-                        DomainEvent domainEvent = (DomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
-                        mediator.Send(domainEvent).Wait();
+                        //Type eventType = Type.GetType(msg.Key);
+                        //DomainEvent domainEvent = (DomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
+                        //mediator.Send(domainEvent).Wait();
                     }
                     catch (DomainException ex)
                     {

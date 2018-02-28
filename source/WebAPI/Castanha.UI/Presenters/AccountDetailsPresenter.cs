@@ -1,17 +1,17 @@
 ﻿namespace Castanha.UI.Presenters
 {
     using Castanha.Application;
-    using Castanha.Application.Responses;
+    using Castanha.Application.Outputs;
     using Castanha.UI.Model;
     using Microsoft.AspNetCore.Mvc;
     using System.Collections.Generic;
 
-    public class AccountDetailsPresenter : IOutputBoundary<AccountResponse>
+    public class AccountDetailsPresenter : IOutputBoundary<AccountOutput>
     {
         public IActionResult ViewModel { get; private set; }
-        public AccountResponse Response { get; private set; }
+        public AccountOutput Response { get; private set; }
 
-        public void Populate(AccountResponse response)
+        public void Populate(AccountOutput response)
         {
             Response = response;
 

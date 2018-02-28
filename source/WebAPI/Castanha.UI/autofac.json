@@ -15,7 +15,12 @@
       "type": "Castanha.UI.Modules.InfrastructureModule",
       "properties": {
         "ConnectionString": "mongodb://10.0.75.1:27017",
-        "DatabaseName": "Castanha-V01",
+        "DatabaseName": "Castanha-V01"
+      }
+    },
+    {
+      "type": "Castanha.UI.Modules.BusModule",
+      "properties": {
         "BrokerList": "10.0.75.1:9092",
         "Topic": "Castanha-V01"
       }
