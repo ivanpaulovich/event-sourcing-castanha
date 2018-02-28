@@ -3,14 +3,14 @@
     using Castanha.Domain.ValueObjects;
     using System;
 
-    public class RegisteredDomainEvent : DomainEvent
+    public class CustomerRegisteredDomainEvent : DomainEvent
     {
         public Name Name { get; private set; }
         public PIN PIN { get; private set; }
         public Guid AccountId { get; private set; }
         public Amount InitialAmount { get; private set; }
 
-        public RegisteredDomainEvent(Guid aggregateRootId, int version, 
+        public CustomerRegisteredDomainEvent(Guid aggregateRootId, int version, 
             DateTime createdDate, Header header, 
             Name name, PIN pin, Guid accountId, Amount initialAmount)
             : base(aggregateRootId, version, createdDate, header)
@@ -21,13 +21,13 @@
             this.InitialAmount = initialAmount;
         }
 
-        public static RegisteredDomainEvent Create(AggregateRoot aggregateRoot,
+        public static CustomerRegisteredDomainEvent Create(AggregateRoot aggregateRoot,
             Name name, PIN pin, Guid accountId, Amount initialAmount)
         {
             if (aggregateRoot == null)
                 throw new ArgumentNullException(nameof(aggregateRoot));
 
-            RegisteredDomainEvent domainEvent = new RegisteredDomainEvent(
+            CustomerRegisteredDomainEvent domainEvent = new CustomerRegisteredDomainEvent(
                 aggregateRoot.Id, aggregateRoot.Version, DateTime.UtcNow, null, 
                 name, pin, accountId, initialAmount);
 

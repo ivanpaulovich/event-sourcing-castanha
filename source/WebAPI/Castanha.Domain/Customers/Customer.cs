@@ -25,9 +25,9 @@
             }
         }
 
-        protected Customer()
+        public Customer()
         {
-            Register<RegisteredDomainEvent>(When);
+            Register<CustomerRegisteredDomainEvent>(When);
 
             accounts = new List<Account>();
         }
@@ -51,12 +51,12 @@
             if (account == null)
                 throw new ArgumentNullException(nameof(account));
 
-            Raise(RegisteredDomainEvent.Create(
+            Raise(CustomerRegisteredDomainEvent.Create(
                 this, this.Name, this.PIN,
                 account.Id, account.CurrentBalance));
         }
 
-        protected void When(RegisteredDomainEvent domainEvent)
+        protected void When(CustomerRegisteredDomainEvent domainEvent)
         {
             if (domainEvent == null)
                 throw new ArgumentNullException(nameof(domainEvent));

@@ -19,6 +19,7 @@
             //
             builder.RegisterType<Bus>()
                 .As<IPublisher>()
+                .As<ISubscriber>()
                 .WithParameter("brokerList", BrokerList)
                 .WithParameter("topic", Topic)
                 .SingleInstance();

@@ -4,7 +4,7 @@
     using Castanha.Application;
     using Castanha.UI.Presenters;
 
-    public class UIModuley : Autofac.Module
+    public class UIModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {

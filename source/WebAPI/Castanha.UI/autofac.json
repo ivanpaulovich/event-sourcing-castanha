@@ -2,7 +2,7 @@
   "defaultAssembly": "Castanha.UI",
   "modules": [
     {
-      "type": "Castanha.UI.Modules.UIModuley",
+      "type": "Castanha.UI.Modules.UIModule",
       "properties": {
       }
     },

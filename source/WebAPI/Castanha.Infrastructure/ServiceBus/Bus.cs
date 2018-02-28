@@ -4,19 +4,19 @@
     using Confluent.Kafka.Serialization;
     using Castanha.Application.ServiceBus;
     using Castanha.Domain;
-    using MediatR;
     using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+    using Castanha.Application;
 
     public class Bus : IPublisher, ISubscriber
     {
-        public readonly string brokerList;
-        public readonly string topic;
-
-        private readonly Producer<string, string> _producer;
+        private readonly string brokerList;
+        private readonly string topic;
+        private readonly Producer<string, string> producer;
+        private readonly IDispatcher dispatcher;
 
         private static Dictionary<string, object> constructConfig(string brokerList, bool enableAutoCommit) =>
             new Dictionary<string, object>
@@ -38,7 +38,7 @@
             this.brokerList = brokerList;
             this.topic = topic;
 
-            _producer = new Producer<string, string>(
+            producer = new Producer<string, string>(
                 new Dictionary<string, object>()
                 {{
                     "bootstrap.servers",
@@ -53,7 +53,7 @@
             {
                 string data = JsonConvert.SerializeObject(domainEvent, Formatting.Indented);
 
-                Message<string, string> message = await _producer.ProduceAsync(
+                Message<string, string> message = await producer.ProduceAsync(
                     topic, domainEvent.GetType().AssemblyQualifiedName, data);
             }
         }
@@ -69,9 +69,9 @@
 
                     try
                     {
-                        //Type eventType = Type.GetType(msg.Key);
-                        //DomainEvent domainEvent = (DomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
-                        //mediator.Send(domainEvent).Wait();
+                        Type eventType = Type.GetType(msg.Key);
+                        DomainEvent domainEvent = (DomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
+                        dispatcher.Send(domainEvent);
                     }
                     catch (DomainException ex)
                     {
@@ -143,7 +143,7 @@
 
         public void Dispose()
         {
-            _producer.Dispose();
+            producer.Dispose();
         }
     }
 }
