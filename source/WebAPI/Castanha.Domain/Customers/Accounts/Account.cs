@@ -1,5 +1,6 @@
 ﻿namespace Castanha.Domain.Customers.Accounts
 {
+    using Castanha.Domain.Customers.Events;
     using Castanha.Domain.ValueObjects;
     using System.Collections.Generic;
     using System.Linq;
@@ -48,6 +49,23 @@
         {
             if (CurrentBalance > new Amount(0))
                 throw new AccountCannotBeClosedException($"The account {Id} can not be closed because it has funds.");
+        }
+
+        public void When(CustomerRegisteredDomainEvent domainEvent)
+        {
+            Id = domainEvent.AccountId;
+
+            //
+            // TODO: Verify if is applicable that the CurrentBalance 
+            // could be an function from the Transaction History
+            //
+            CurrentBalance = domainEvent.TransactionAmount; 
+
+            Credit credit = new Credit();
+            credit.When(domainEvent);
+
+            transactions = new List<Transaction>();
+            transactions.Add(credit);
         }
     }
 }

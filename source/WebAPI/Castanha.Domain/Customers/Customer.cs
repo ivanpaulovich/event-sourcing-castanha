@@ -51,23 +51,27 @@
             if (account == null)
                 throw new ArgumentNullException(nameof(account));
 
-            Raise(CustomerRegisteredDomainEvent.Create(
-                this, this.Name, this.PIN,
-                account.Id, account.CurrentBalance));
+            var domainEvent = new CustomerRegisteredDomainEvent(
+                // Customer
+                Id, Version, Name, PIN,
+                // Account
+                account.Id,
+                // Transaction
+                account.Transactions.First().Id,
+                account.Transactions.First().Amount, 
+                account.Transactions.First().TransactionDate);
+
+            Raise(domainEvent); 
         }
 
         protected void When(CustomerRegisteredDomainEvent domainEvent)
         {
-            if (domainEvent == null)
-                throw new ArgumentNullException(nameof(domainEvent));
-
             Id = domainEvent.AggregateRootId;
-            Name = domainEvent.Name;
-            PIN = domainEvent.PIN;
+            Name = domainEvent.CustomerName;
+            PIN = domainEvent.CustomerPIN;
 
             Account account = new Account();
-            Credit credit = new Credit(domainEvent.InitialAmount);
-            account.Deposit(credit);
+            account.When(domainEvent);
 
             accounts = new List<Account>();
             accounts.Add(account);

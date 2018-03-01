@@ -5,33 +5,30 @@
 
     public class CustomerRegisteredDomainEvent : DomainEvent
     {
-        public Name Name { get; private set; }
-        public PIN PIN { get; private set; }
+        public Name CustomerName { get; private set; }
+        public PIN CustomerPIN { get; private set; }
         public Guid AccountId { get; private set; }
-        public Amount InitialAmount { get; private set; }
+        public Guid TransactionId { get; private set; }
+        public Amount TransactionAmount { get; private set; }
+        public DateTime TransactionDate { get; private set; }
 
-        public CustomerRegisteredDomainEvent(Guid aggregateRootId, int version, 
-            DateTime createdDate, Header header, 
-            Name name, PIN pin, Guid accountId, Amount initialAmount)
-            : base(aggregateRootId, version, createdDate, header)
+        public CustomerRegisteredDomainEvent(
+            Guid aggregateRootId, 
+            int version,
+            Name customerName,
+            PIN customerPIN, 
+            Guid accountId,
+            Guid transactionId,
+            Amount transactionAmount,
+            DateTime transactionDate)
+            : base(aggregateRootId, version)
         {
-            this.Name = name;
-            this.PIN = pin;
+            this.CustomerName = customerName;
+            this.CustomerPIN = customerPIN;
             this.AccountId = accountId;
-            this.InitialAmount = initialAmount;
-        }
-
-        public static CustomerRegisteredDomainEvent Create(AggregateRoot aggregateRoot,
-            Name name, PIN pin, Guid accountId, Amount initialAmount)
-        {
-            if (aggregateRoot == null)
-                throw new ArgumentNullException(nameof(aggregateRoot));
-
-            CustomerRegisteredDomainEvent domainEvent = new CustomerRegisteredDomainEvent(
-                aggregateRoot.Id, aggregateRoot.Version, DateTime.UtcNow, null, 
-                name, pin, accountId, initialAmount);
-
-            return domainEvent;
+            this.TransactionId = transactionId;
+            this.TransactionAmount = transactionAmount;
+            this.TransactionDate = transactionDate;
         }
     }
 }

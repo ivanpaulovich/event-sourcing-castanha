@@ -1,5 +1,6 @@
 ﻿namespace Castanha.Domain.Customers.Accounts
 {
+    using Castanha.Domain.Customers.Events;
     using Castanha.Domain.ValueObjects;
     using System;
 
@@ -18,6 +19,13 @@
         {
             Amount = amount;
             TransactionDate = DateTime.Now;
+        }
+
+        public void When(CustomerRegisteredDomainEvent domainEvent)
+        {
+            Id = domainEvent.TransactionId;
+            Amount = domainEvent.TransactionAmount;
+            TransactionDate = domainEvent.TransactionDate;
         }
     }
 }

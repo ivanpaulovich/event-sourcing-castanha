@@ -1,5 +1,7 @@
 ﻿namespace Castanha.Domain.Customers.Accounts
 {
+    using System;
+    using Castanha.Domain.Customers.Events;
     using Castanha.Domain.ValueObjects;
 
     public class Credit : Transaction
