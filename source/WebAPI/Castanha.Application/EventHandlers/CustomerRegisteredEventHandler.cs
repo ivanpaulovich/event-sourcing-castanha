@@ -3,7 +3,7 @@
     using Castanha.Domain.Customers;
     using Castanha.Domain.Customers.Events;
 
-    public class CustomerRegisteredEventHandler
+    public class CustomerRegisteredEventHandler : IEventHandler<CustomerRegisteredDomainEvent>
     {
         private readonly ICustomerWriteOnlyRepository customerWriteOnlyRepository;
 

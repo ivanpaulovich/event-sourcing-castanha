@@ -33,10 +33,11 @@
                 }
             };
 
-        public Bus(string brokerList, string topic)
+        public Bus(string brokerList, string topic, IDispatcher dispatcher)
         {
             this.brokerList = brokerList;
             this.topic = topic;
+            this.dispatcher = dispatcher;
 
             producer = new Producer<string, string>(
                 new Dictionary<string, object>()

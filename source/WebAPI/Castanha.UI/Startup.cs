@@ -12,6 +12,8 @@
     using System.Linq;
     using Autofac.Configuration;
     using System.Runtime.Loader;
+    using System.Threading;
+    using Castanha.Application.ServiceBus;
 
     public class Startup
     {
@@ -65,7 +67,8 @@
             builder.RegisterModule(new ConfigurationModule(Configuration));
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, 
+            ISubscriber subscriber)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +76,10 @@
             }
 
             app.UseCors("CorsPolicy");
+
+            ThreadPool.QueueUserWorkItem(delegate {
+                subscriber.Listen();
+            });
 
             app.UseMvc();
 

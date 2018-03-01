@@ -1,8 +1,6 @@
 ﻿namespace Castanha.UI.Modules
 {
     using Autofac;
-    using Castanha.Application.ServiceBus;
-    using Castanha.Infrastructure.ServiceBus;
 
     public class ApplicationModule : Autofac.Module
     {
@@ -15,6 +13,7 @@
             // ISubscriber
             // IInputBoundary<>
             // IOutputBoundary<>
+            // IEventHandler
             //
             builder.RegisterAssemblyTypes(typeof(Application.UseCases.Register.RegisterInteractor).Assembly)
                 .AsImplementedInterfaces()
