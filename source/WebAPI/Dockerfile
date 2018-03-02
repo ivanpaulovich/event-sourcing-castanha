@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0-sdk
+FROM microsoft/aspnetcore:2.0.0-jessie
 
 ENV ASPNETCORE_URLS="http://*:80"
 
