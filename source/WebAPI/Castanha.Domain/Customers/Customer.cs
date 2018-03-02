@@ -1,35 +1,19 @@
 ﻿namespace Castanha.Domain.Customers
 {
-    using System.Collections.Generic;
     using System;
     using Castanha.Domain.ValueObjects;
-    using Castanha.Domain.Customers.Accounts;
-    using System.Linq;
     using Castanha.Domain.Customers.Events;
+    using Castanha.Domain.Accounts;
 
     public class Customer : AggregateRoot
     {
         public Name Name { get; private set; }
         public PIN PIN { get; private set; }
-
-        private List<Account> accounts;
-        public IReadOnlyCollection<Account> Accounts
-        {
-            get
-            {
-                return accounts.AsReadOnly();
-            }
-            private set
-            {
-                accounts = value.ToList();
-            }
-        }
-
+        public AccountCollection Accounts { get; private set; }
+        
         public Customer()
         {
-            Register<CustomerRegisteredDomainEvent>(When);
-
-            accounts = new List<Account>();
+            Register<RegisteredDomainEvent>(When);
         }
 
         public Customer(PIN pin, Name name)
@@ -39,48 +23,27 @@
             Name = name;
         }
 
-        public virtual void RemoveAccount(Guid accountID)
+        public virtual void Register(Guid accountId, Credit credit)
         {
-            Account account = FindAccount(accountID);
-            account.Close();
-            accounts.Remove(account);
-        }
-
-        public virtual void Register(Account account)
-        {
-            if (account == null)
-                throw new ArgumentNullException(nameof(account));
-
-            var domainEvent = new CustomerRegisteredDomainEvent(
-                // Customer
+            var domainEvent = new RegisteredDomainEvent(
                 Id, Version, Name, PIN,
-                // Account
-                account.Id,
-                // Transaction
-                account.Transactions.First().Id,
-                account.Transactions.First().Amount, 
-                account.Transactions.First().TransactionDate);
+                accountId,
+                credit.Id,
+                credit.Amount,
+                credit.TransactionDate);
 
             Raise(domainEvent); 
         }
 
-        protected void When(CustomerRegisteredDomainEvent domainEvent)
+        protected void When(RegisteredDomainEvent domainEvent)
         {
             Id = domainEvent.AggregateRootId;
+            Version = domainEvent.Version;
             Name = domainEvent.CustomerName;
             PIN = domainEvent.CustomerPIN;
 
-            Account account = new Account();
-            account.When(domainEvent);
-
-            accounts = new List<Account>();
-            accounts.Add(account);
-        }
-
-        public virtual Account FindAccount(Guid accountID)
-        {
-            Account account = Accounts.Where(e => e.Id == accountID).FirstOrDefault();
-            return account;
+            Accounts = new AccountCollection();
+            Accounts.Add(domainEvent.AccountId);
         }
     }
 }

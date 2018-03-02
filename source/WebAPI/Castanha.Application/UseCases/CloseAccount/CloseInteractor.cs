@@ -1,37 +1,35 @@
 ﻿namespace Castanha.Application.UseCases.CloseAccount
 {
     using System.Threading.Tasks;
-    using Castanha.Domain.Customers;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.ServiceBus;
+    using Castanha.Application.Repositories;
+    using Castanha.Domain.Accounts;
 
     public class CloseInteractor : IInputBoundary<CloseInput>
     {
         private readonly IPublisher bus;
-        private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
+        private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IOutputBoundary<CloseOutput> outputBoundary;
         private readonly IResponseConverter responseConverter;
 
         public CloseInteractor(
-            ICustomerReadOnlyRepository customerReadOnlyRepository,
+            IAccountReadOnlyRepository accountReadOnlyRepository,
             IPublisher bus,
             IOutputBoundary<CloseOutput> outputBoundary,
             IResponseConverter responseConverter)
         {
             this.bus = bus;
-            this.customerReadOnlyRepository = customerReadOnlyRepository;
+            this.accountReadOnlyRepository = accountReadOnlyRepository;
             this.outputBoundary = outputBoundary;
             this.responseConverter = responseConverter;
         }
 
         public async Task Process(CloseInput request)
         {
-            Customer customer = await customerReadOnlyRepository.GetByAccount(request.AccountId);
-            Account account = customer.FindAccount(request.AccountId);
-
+            Account account = await accountReadOnlyRepository.Get(request.AccountId);
             account.Close();
 
-            var domainEvents = customer.GetEvents();
+            var domainEvents = account.GetEvents();
             await bus.Publish(domainEvents);
 
             CloseOutput response = responseConverter.Map<CloseOutput>(account);

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using Castanha.Application.Outputs;
-    using Castanha.Domain.Customers;
+    using Castanha.Application.Repositories;
 
     public class GetCustomerDetailsInteractor : IInputBoundary<GetCustomerDetaisInput>
     {

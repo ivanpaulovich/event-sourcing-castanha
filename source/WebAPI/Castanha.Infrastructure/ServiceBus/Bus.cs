@@ -71,7 +71,7 @@
                     try
                     {
                         Type eventType = Type.GetType(msg.Key);
-                        DomainEvent domainEvent = (DomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
+                        IDomainEvent domainEvent = (IDomainEvent)JsonConvert.DeserializeObject(msg.Value, eventType);
                         dispatcher.Send(domainEvent);
                     }
                     catch (DomainException ex)

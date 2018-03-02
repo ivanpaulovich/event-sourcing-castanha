@@ -2,8 +2,8 @@
 {
     using Castanha.Application.Outputs;
     using AutoMapper;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.UseCases.CloseAccount;
+    using Castanha.Domain.Accounts;
 
     public class AccountsProfile : Profile
     {
@@ -11,7 +11,7 @@
         {
             CreateMap<Account, AccountOutput>()
                 .ForMember(dest => dest.AccountId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.CurrentBalance, opt => opt.MapFrom(src => src.CurrentBalance.Value));
+                .ForMember(dest => dest.CurrentBalance, opt => opt.MapFrom(src => src.GetCurrentBalance().Value));
 
             CreateMap<Debit, TransactionOutput>()
                 .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount.Value))

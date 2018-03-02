@@ -4,7 +4,7 @@
 
     public class CastanhaException : Exception
     {
-        internal CastanhaException()
+        public CastanhaException()
         { }
 
         internal CastanhaException(string message)

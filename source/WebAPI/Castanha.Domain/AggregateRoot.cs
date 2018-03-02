@@ -6,9 +6,9 @@
     public abstract class AggregateRoot : Entity, IAggregateRoot
     {
         private readonly Dictionary<Type, Action<object>> handlers = new Dictionary<Type, Action<object>>();
-        private readonly List<DomainEvent> domainEvents = new List<DomainEvent>();
+        private readonly List<IDomainEvent> domainEvents = new List<IDomainEvent>();
         
-        public int Version { get; private set; }
+        public int Version { get; protected set; }
 
         public AggregateRoot()
         {
@@ -20,19 +20,19 @@
             handlers.Add(typeof(T), e => when((T)e));
         }
 
-        protected void Raise(DomainEvent domainEvent)
+        protected void Raise(IDomainEvent domainEvent)
         {
             domainEvents.Add(domainEvent);
             handlers[domainEvent.GetType()](domainEvent);
             Version++;
         }
 
-        public IReadOnlyCollection<DomainEvent> GetEvents()
+        public IReadOnlyCollection<IDomainEvent> GetEvents()
         {
             return domainEvents;
         }
 
-        public void Apply(DomainEvent domainEvent)
+        public void Apply(IDomainEvent domainEvent)
         {
             handlers[domainEvent.GetType()](domainEvent);
             Version++;

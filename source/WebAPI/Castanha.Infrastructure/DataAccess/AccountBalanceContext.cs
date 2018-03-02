@@ -1,8 +1,8 @@
 ﻿namespace Castanha.Infrastructure.DataAccess
 {
     using Castanha.Domain;
+    using Castanha.Domain.Accounts;
     using Castanha.Domain.Customers;
-    using Castanha.Domain.Customers.Accounts;
     using MongoDB.Bson.Serialization;
     using MongoDB.Driver;
 
@@ -26,6 +26,14 @@
             }
         }
 
+        public IMongoCollection<Account> Accounts
+        {
+            get
+            {
+                return database.GetCollection<Account>("Accounts");
+            }
+        }
+
         private void Map()
         {
             BsonClassMap.RegisterClassMap<Entity>(cm =>
@@ -38,12 +46,22 @@
                 cm.AutoMap();
             });
 
+            BsonClassMap.RegisterClassMap<AccountCollection>(cm =>
+            {
+                cm.AutoMap();
+            });
+
             BsonClassMap.RegisterClassMap<Transaction>(cm =>
             {
                 cm.AutoMap();
                 cm.SetIsRootClass(true);
                 cm.AddKnownType(typeof(Debit));
                 cm.AddKnownType(typeof(Credit));
+            });
+
+            BsonClassMap.RegisterClassMap<TransactionCollection>(cm =>
+            {
+                cm.AutoMap();
             });
 
             BsonClassMap.RegisterClassMap<Customer>(cm =>

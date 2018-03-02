@@ -4,8 +4,8 @@
     using Castanha.Domain.Customers;
     using Castanha.Domain.ValueObjects;
     using Castanha.Application.Outputs;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.ServiceBus;
+    using Castanha.Domain.Accounts;
 
     public class RegisterInteractor : IInputBoundary<RegisterInput>
     {
@@ -26,12 +26,12 @@
         public async Task Process(RegisterInput message)
         {
             Customer customer = new Customer(new PIN(message.PIN), new Name(message.Name));
-
             Account account = new Account();
             Credit credit = new Credit(new Amount(message.InitialAmount));
-            account.Deposit(credit);
 
-            customer.Register(account);
+            customer.Register(
+                account.Id, 
+                credit);
 
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);
