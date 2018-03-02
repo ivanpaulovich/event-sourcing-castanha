@@ -28,9 +28,17 @@
         {
             Amount totalAmount = new Amount(0);
 
+            //
+            // TODO: Think on a better Strategy
+            //
+
             foreach (var item in Items)
             {
-                totalAmount += item.Amount;
+                if (item is Debit)
+                    totalAmount -= item.Amount;
+
+                if (item is Credit)
+                    totalAmount += item.Amount;
             }
 
             return totalAmount;

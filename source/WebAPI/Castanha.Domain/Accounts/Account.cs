@@ -1,5 +1,6 @@
 ﻿namespace Castanha.Domain.Accounts
 {
+    using System;
     using Castanha.Domain.Accounts.Events;
     using Castanha.Domain.Customers.Events;
     using Castanha.Domain.ValueObjects;
@@ -16,6 +17,19 @@
             Register<ClosedDomainEvent>(When);
 
             Transactions = new TransactionCollection();
+        }
+
+        public void Open(Credit credit)
+        {
+            var domainEvent = new OpenedDomainEvent(
+                    Id,
+                    Version,
+                    credit.Id,
+                    credit.Amount,
+                    credit.TransactionDate
+                );
+
+            Raise(domainEvent);
         }
 
         public void Deposit(Credit credit)

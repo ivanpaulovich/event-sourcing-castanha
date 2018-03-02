@@ -16,12 +16,14 @@
             IEventHandler<RegisteredDomainEvent> customerRegisteredEventhandler,
             IEventHandler<DepositedDomainEvent> depositedEventhandler,
             IEventHandler<WithdrewDomainEvent> withdrewEventhandler,
-            IEventHandler<ClosedDomainEvent> closedEventhandler)
+            IEventHandler<ClosedDomainEvent> closedEventhandler,
+            IEventHandler<OpenedDomainEvent> openedEventhandler)
         {
             Register(customerRegisteredEventhandler);
             Register(depositedEventhandler);
             Register(withdrewEventhandler);
             Register(closedEventhandler);
+            Register(openedEventhandler);
         }
 
         private void Register(object handler)
@@ -32,7 +34,7 @@
             if (!handlers.ContainsKey(eventType))
                 handlers.Add(eventType, new List<object>());
 
-            List<object> handlersList = new List<object>();
+            List<object> handlersList = handlers[eventType];
             handlersList.Add(handler);
         }
 

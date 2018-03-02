@@ -25,14 +25,19 @@
 
         public async Task Process(RegisterInput message)
         {
-            Customer customer = new Customer(new PIN(message.PIN), new Name(message.Name));
-            Account account = new Account();
-            account.Deposit(new Credit(new Amount(message.InitialAmount)));
+            Customer customer = new Customer(
+                new PIN(message.PIN), 
+                new Name(message.Name));
 
+            Account account = new Account();
+            account.Open(new Credit(new Amount(message.InitialAmount)));
             customer.Register(account.Id);
 
-            var domainEvents = customer.GetEvents();
-            await bus.Publish(domainEvents);
+            var customerEvents = customer.GetEvents();
+            var accountEvents = account.GetEvents();
+
+            await bus.Publish(customerEvents);
+            await bus.Publish(accountEvents);
 
             CustomerOutput customerResponse = responseConverter.Map<CustomerOutput>(customer);
             AccountOutput accountResponse = responseConverter.Map<AccountOutput>(account);

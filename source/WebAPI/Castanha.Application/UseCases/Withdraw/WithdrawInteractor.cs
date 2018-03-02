@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using Castanha.Application.Outputs;
-    using Castanha.Domain.Customers;
     using Castanha.Domain.ValueObjects;
     using Castanha.Application.ServiceBus;
     using Castanha.Application.Repositories;
@@ -33,13 +32,13 @@
             if (account == null)
                 throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
 
-            Credit credit = new Credit(new Amount(command.Amount));
-            account.Deposit(credit);
+            Debit debit = new Debit(new Amount(command.Amount));
+            account.Withdraw(debit);
 
             var domainEvents = account.GetEvents();
             await bus.Publish(domainEvents);
 
-            TransactionOutput transactionResponse = responseConverter.Map<TransactionOutput>(credit);
+            TransactionOutput transactionResponse = responseConverter.Map<TransactionOutput>(debit);
             WithdrawOutput response = new WithdrawOutput(transactionResponse, account.GetCurrentBalance().Value);
 
             outputBoundary.Populate(response);
