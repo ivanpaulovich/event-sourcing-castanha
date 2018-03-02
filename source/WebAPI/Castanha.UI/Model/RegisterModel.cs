@@ -10,7 +10,11 @@
         public string Name { get; }
         public List<AccountDetailsModel> Accounts { get; set; }
 
-        public RegisterModel(Guid customerId, string perssonnummer, string name, List<AccountDetailsModel> accounts)
+        public RegisterModel(
+            Guid customerId, 
+            string perssonnummer, 
+            string name, 
+            List<AccountDetailsModel> accounts)
         {
             CustomerId = customerId;
             Personnummer = perssonnummer;

@@ -8,7 +8,7 @@
         public Guid CustomerId { get; private set; }
         public string Personnummer { get; private set; }
         public string Name { get; private set; }
-        public IReadOnlyList<AccountOutput> Accounts { get; private set; }
+        public IReadOnlyList<Guid> Accounts { get; private set; }
 
         public CustomerOutput()
         {
@@ -16,7 +16,7 @@
         }
 
         public CustomerOutput(Guid customerId, string personnummer, string name,
-            List<AccountOutput> accounts)
+            List<Guid> accounts)
         {
             CustomerId = customerId;
             Personnummer = personnummer;

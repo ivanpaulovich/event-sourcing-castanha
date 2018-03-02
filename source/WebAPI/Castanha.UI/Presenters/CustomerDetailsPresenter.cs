@@ -4,6 +4,7 @@
     using Castanha.Application.Outputs;
     using Castanha.UI.Model;
     using Microsoft.AspNetCore.Mvc;
+    using System;
     using System.Collections.Generic;
 
     public class CustomerDetailsPresenter : IOutputBoundary<CustomerOutput>
@@ -21,26 +22,11 @@
                 return;
             }
 
-            List<AccountDetailsModel> accounts = new List<AccountDetailsModel>();
+            List<Guid> accounts = new List<Guid>();
 
             foreach (var account in response.Accounts)
             {
-                List<TransactionModel> transactions = new List<TransactionModel>();
-
-                foreach (var item in account.Transactions)
-                {
-                    var transaction = new TransactionModel(
-                        item.Amount,
-                        item.Description,
-                        item.TransactionDate);
-
-                    transactions.Add(transaction);
-                }
-
-                accounts.Add(new AccountDetailsModel(
-                    account.AccountId,
-                    account.CurrentBalance,
-                    transactions));
+                accounts.Add(account);
             }
 
             CustomerDetailsModel model = new CustomerDetailsModel(
