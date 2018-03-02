@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Castanha.UI.Model
+﻿namespace Castanha.UI.Model
 {
+    using System;
+    using System.Collections.Generic;
+
     public class CustomerDetailsModel
     {
         public Guid CustomerId { get; }
         public string Personnummer { get; }
         public string Name { get; }
-        public List<Guid> Accounts { get; }
+        public List<AccountDetailsModel> Accounts { get; }
 
-        public CustomerDetailsModel(Guid customerId, string personnummer, string name, List<Guid> accounts)
+        public CustomerDetailsModel(
+            Guid customerId, 
+            string personnummer, 
+            string name, 
+            List<AccountDetailsModel> accounts)
         {
             CustomerId = customerId;
             Personnummer = personnummer;

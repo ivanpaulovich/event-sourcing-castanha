@@ -22,11 +22,26 @@
                 return;
             }
 
-            List<Guid> accounts = new List<Guid>();
+            List<AccountDetailsModel> accounts = new List<AccountDetailsModel>();
 
             foreach (var account in response.Accounts)
             {
-                accounts.Add(account);
+                List<TransactionModel> transactions = new List<TransactionModel>();
+
+                foreach (var item in account.Transactions)
+                {
+                    var transaction = new TransactionModel(
+                        item.Amount,
+                        item.Description,
+                        item.TransactionDate);
+
+                    transactions.Add(transaction);
+                }
+
+                accounts.Add(new AccountDetailsModel(
+                    account.AccountId,
+                    account.CurrentBalance,
+                    transactions));
             }
 
             CustomerDetailsModel model = new CustomerDetailsModel(
