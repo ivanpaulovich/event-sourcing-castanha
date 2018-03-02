@@ -30,7 +30,7 @@
             return await mongoContext
                 .Accounts
                 .Find(e => e.Id == id)
-                .SingleAsync();
+                .SingleOrDefaultAsync();
         }
 
         public async Task Update(Account account)

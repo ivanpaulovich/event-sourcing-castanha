@@ -39,8 +39,16 @@
             foreach (var accountId in customer.Accounts.Items)
             {
                 Account account = await accountReadOnlyRepository.Get(accountId);
-                AccountOutput accountOutput = responseConverter.Map<AccountOutput>(account);
-                accounts.Add(accountOutput);
+
+                //
+                // TODO: The "Accout closed state" is not propagating to the Customer Aggregate
+                //
+
+                if (account != null)
+                {
+                    AccountOutput accountOutput = responseConverter.Map<AccountOutput>(account);
+                    accounts.Add(accountOutput);
+                }
             }
 
             CustomerOutput response = responseConverter.Map<CustomerOutput>(customer);
