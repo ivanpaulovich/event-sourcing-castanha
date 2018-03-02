@@ -10,7 +10,7 @@
 
     public class Dispatcher : IDispatcher
     {
-        private readonly Dictionary<Type, object> handlers = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, List<object>> handlers = new Dictionary<Type, List<object>>();
 
         public Dispatcher(
             IEventHandler<RegisteredDomainEvent> customerRegisteredEventhandler,
@@ -29,7 +29,11 @@
             Type eventType = ((Type[])((TypeInfo)handler.GetType()).ImplementedInterfaces)[0]
                 .GenericTypeArguments[0];
 
-            handlers.Add(eventType, handler);
+            if (!handlers.ContainsKey(eventType))
+                handlers.Add(eventType, new List<object>());
+
+            List<object> handlersList = new List<object>();
+            handlersList.Add(handler);
         }
 
         public void Send(IDomainEvent domainEvent)
@@ -38,9 +42,13 @@
             // TODO: Catch failures (NotFound, Duplicated Handlers, etc)
             //
 
-            dynamic handler = handlers[domainEvent.GetType()];
+            dynamic handlersList = Convert.ChangeType(handlers[domainEvent.GetType()], typeof(List<object>));
             dynamic message = Convert.ChangeType(domainEvent, domainEvent.GetType());
-            handler.Handle(message);
+
+            foreach (var handler in handlersList)
+            {
+                handler.Handle(message);
+            }            
         }
     }
 }

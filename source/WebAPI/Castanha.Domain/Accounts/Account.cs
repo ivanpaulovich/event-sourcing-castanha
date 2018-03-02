@@ -12,7 +12,7 @@
         {
             Register<DepositedDomainEvent>(When);
             Register<WithdrewDomainEvent>(When);
-            Register<RegisteredDomainEvent>(When);
+            Register<OpenedDomainEvent>(When);
             Register<ClosedDomainEvent>(When);
 
             Transactions = new TransactionCollection();
@@ -58,13 +58,13 @@
             Raise(domainEvent);
         }
 
-        protected void When(RegisteredDomainEvent domainEvent)
+        protected void When(OpenedDomainEvent domainEvent)
         {
             //
             // Open an Account
             //
 
-            Id = domainEvent.AccountId;
+            Id = domainEvent.AggregateRootId;
             Transactions = new TransactionCollection();
 
             Transaction credit = new Credit(

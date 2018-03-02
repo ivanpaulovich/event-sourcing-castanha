@@ -27,11 +27,9 @@
         {
             Customer customer = new Customer(new PIN(message.PIN), new Name(message.Name));
             Account account = new Account();
-            Credit credit = new Credit(new Amount(message.InitialAmount));
+            account.Deposit(new Credit(new Amount(message.InitialAmount)));
 
-            customer.Register(
-                account.Id, 
-                credit);
+            customer.Register(account.Id);
 
             var domainEvents = customer.GetEvents();
             await bus.Publish(domainEvents);

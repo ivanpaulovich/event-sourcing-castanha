@@ -2,7 +2,6 @@ namespace Castanha.MappingsTests
 {
     using Castanha.Application;
     using Castanha.Application.Outputs;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Domain.ValueObjects;
     using Castanha.Infrastructure.Mappings;
     using Xunit;

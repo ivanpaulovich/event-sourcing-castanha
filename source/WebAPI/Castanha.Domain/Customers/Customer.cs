@@ -23,14 +23,11 @@
             Name = name;
         }
 
-        public virtual void Register(Guid accountId, Credit credit)
+        public virtual void Register(Guid accountId)
         {
             var domainEvent = new RegisteredDomainEvent(
                 Id, Version, Name, PIN,
-                accountId,
-                credit.Id,
-                credit.Amount,
-                credit.TransactionDate);
+                accountId);
 
             Raise(domainEvent); 
         }
