@@ -1,9 +1,9 @@
-![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/castanha.png)
+![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha.png)
 
 # Architectural Style
 In this project the usecases are first-class modules, when you open the source code you will see that the system looks like an Account Balance Application.  
 
-![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/Flow-Of-Control.png)
+![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Flow-Of-Control.png)
 
 # Main Architectural Concepts
 On of the goals of the clean architecture is to encapsulate the business logic in an clean way, with no dependencies to details like (UI, Database version or Frameworks). And by building a software that looks like your Business Domain at the first look of the source code.
@@ -18,7 +18,7 @@ By following Uncle Bob material, we developed this project to have this Dimensio
 * Independent of Database. 
 * Independent of any external agency.
 
-![Clean Architecture by Uncle Bob](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/CleanArchitecture-Uncle-Bob.jpg)
+![Clean Architecture by Uncle Bob](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/CleanArchitecture-Uncle-Bob.jpg)
 
 ## DDD
 The use cases of this project is to manage an account balance with deposit and credits and its concepts is enforced by the Domain and Application. Also we use the Eric Evans terms like Entities, Value Object, Aggregates, Aggregate Root and etc. And everything is on a single Bounded Context.
@@ -39,7 +39,7 @@ Even though the definition of microservice may be different for different profes
 Loggin is a detail. We plugged Serilog and configured it to redirect every log message to files.
 
 ## Docker
-Docker is a detail of this architecture. And it was implemented to help us make a faster and reliable deployment. You could pull the [Manga latest image any time.](https://hub.docker.com/r/ivanpaulovich/manga/)
+Docker is a detail of this architecture. And it was implemented to help us make a faster and reliable deployment. You could pull the [Castanha latest image any time.](https://hub.docker.com/r/ivanpaulovich/castanha/)
 
 ## Mongo DB
 Mongo DB is a detail. At infrastructure layer we implemented the ICustomerWriteOnlyRepository to update the Mongo database.
@@ -80,22 +80,22 @@ ba28cf144478        mongo               "docker-entrypoint..."   2 days ago     
 
 If everything goes well MongoDB will be running with the following connection string `mongodb://10.0.75.1:27017`.
 
-# Running the latest Docker Build ![Authorization](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=manga)
+# Running the latest Docker Build ![Authorization](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)
 
 If you like to run a Docker container for this project use the latest image:
 
 ```
 $ docker run -p 8000:80 -d \
 	-e modules__2__properties__ConnectionString=mongodb://10.0.75.1:27017 \
-	--name manga-backend \
-	ivanpaulovich/manga:latest
+	--name castanha-backend \
+	ivanpaulovich/castanha:latest
 ```
 Then navigate to http://localhost:8000/swagger and play with de API.
 
 # We are live on Azure
 
-![Live on Azure](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/Swagger.png)
+![Live on Azure](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Swagger.png)
 
-You can play with the latest build by navigating to [the Swagger client](http://grape.westus2.cloudapp.azure.com:8800/swagger "Manga Swagger").
+You can play with the latest build by navigating to [the Swagger client](http://grape.westus2.cloudapp.azure.com:8040/swagger "Castanha Swagger").
 
 This source code and website should be used only for learning purposes and **all data will be erased weekly**.
