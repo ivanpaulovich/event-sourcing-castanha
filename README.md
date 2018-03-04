@@ -1,233 +1,101 @@
-A solution for Account Balance based on a Event-Driven architecture with DDD and CQRS. The full solution contains three applications.
-* A Web API which receives Commands to produces Domain Events also receives Queries to return JSON. 
-* A Consumer App that reads the Event Stream and do a projection to a MongoDB database.
-* A Web API for authentication and JWT generation.
+![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/castanha.png)
 
-[My Account Balance API Source Code on GitHub](https://github.com/ivanpaulovich/myaccountbalanceapi)
+# Architectural Style
+In this project the usecases are first-class modules, when you open the source code you will see that the system looks like an Account Balance Application.  
 
-#### Requirements
-* [Visual Studio 2017 + Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
+![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/Flow-Of-Control.png)
+
+# Main Architectural Concepts
+On of the goals of the clean architecture is to encapsulate the business logic in an clean way, with no dependencies to details like (UI, Database version or Frameworks). And by building a software that looks like your Business Domain at the first look of the source code.
+
+If you are interested check out [The Clean Architecture post by Uncle Bob](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) or his latest book [Clean Architecture](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?ie=UTF8&qid=1518796865&sr=8-1&keywords=clean+architecture).
+
+By following Uncle Bob material, we developed this project to have this Dimensions (Fitness Functions will came later):
+
+* Independent of Frameworks.
+* Testable. 
+* Independent of UI. 
+* Independent of Database. 
+* Independent of any external agency.
+
+![Clean Architecture by Uncle Bob](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/CleanArchitecture-Uncle-Bob.jpg)
+
+## DDD
+The use cases of this project is to manage an account balance with deposit and credits and its concepts is enforced by the Domain and Application. Also we use the Eric Evans terms like Entities, Value Object, Aggregates, Aggregate Root and etc. And everything is on a single Bounded Context.
+
+## TDD
+From the beginning of the project we developed Unit Tests and that helped us to enforce the business rules and to create an application that prevents bugs intead of finding them. We also have Use Case tests and Mapping Tests and a more sophistecated Integration Tests. 
+
+## SOLID
+The SOLID principles are all over the the solution. Knowledge of SOLID is not a prerequisite to understand and run the solution but it is highly recommended.
+
+## Entity-Boundary-Interactor (EBI)
+The goal of EBI architecture is to produce a software implementation agnostic to technology, framework and to have a focus on the use cases and input/output. 
+
+## Microservice
+Even though the definition of microservice may be different for different professionals. We have tried to value some aspects like Continous Delivery, modelled around Business Domain and Independent Deployment.
+
+## Logging
+Loggin is a detail. We plugged Serilog and configured it to redirect every log message to files.
+
+## Docker
+Docker is a detail of this architecture. And it was implemented to help us make a faster and reliable deployment. You could pull the [Manga latest image any time.](https://hub.docker.com/r/ivanpaulovich/manga/)
+
+## Mongo DB
+Mongo DB is a detail. At infrastructure layer we implemented the ICustomerWriteOnlyRepository to update the Mongo database.
+
+## .NET Core 2.0
+.NET Core is a detail. Almost everything in this code base could be ported to older versions.
+
+# Requirements
+* [Visual Studio 2017 with Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
 * [.NET SDK 2.0](https://www.microsoft.com/net/download/core)
 * [Docker](https://docs.docker.com/docker-for-windows/install/)
 
-#### Environment setup
+# Environment setup
 
-*If you already have valid connections strings for Kafka and MongoDB you could skip this topic and go to the Running the applications topic.*
-
-* Run the `./up-kafka-mongodb.sh` script to run Kafka and MongoDB as Docker Containers. Please wait until the ~800mb download to be complete.
+* Run the `./prerequisites.sh` script to download the MongoDB image and run as a Docker container. 
+Please wait until the ~400mb download to be complete.
 
 ```
-$ ./up-kafka-mongodb.sh
+$ ./prerequisites.sh
 Pulling mongodb (mongo:latest)...
 latest: Pulling from library/mongo
 Digest: sha256:2c55bcc870c269771aeade05fc3dd3657800540e0a48755876a1dc70db1e76d9
 Status: Downloaded newer image for mongo:latest
-Pulling kafka (spotify/kafka:latest)...
-latest: Pulling from spotify/kafka
-Digest: sha256:cf8f8f760b48a07fb99df24fab8201ec8b647634751e842b67103a25a388981b
-Status: Downloaded newer image for spotify/kafka:latest
 Creating setup_mongodb_1 ...
-Creating setup_kafka_1 ...
 Creating setup_mongodb_1
 Creating setup_mongodb_1 ... done
 ```
-* Check if the data layer is ready with the following commands:
+* Check Mongo image with the the following commands:
 
 ```
 $ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 mongo               latest              d22888af0ce0        17 hours ago        361MB
-spotify/kafka       latest              a9e0a5b8b15e        11 months ago       443MB
-```
-
-```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-32452776153f        spotify/kafka       "supervisord -n"         2 days ago          Up 2 days           0.0.0.0:2181->2181/tcp, 0.0.0.0:9092->9092/tcp   setup_kafka_1
 ba28cf144478        mongo               "docker-entrypoint..."   2 days ago          Up 2 days           0.0.0.0:27017->27017/tcp                         setup_mongodb_1
 ```
 
-If Kafka is running good it will be working with the `10.0.75.1:9092` connection string and if MongoDB is running good it will be working at `mongodb://10.0.75.1:27017`.
+If everything goes well MongoDB will be running with the following connection string `mongodb://10.0.75.1:27017`.
 
-## Running the applications
+# Running the latest Docker Build ![Authorization](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=manga)
 
-You have two options to run the three applications, one is by opening on Visual Studio 2017 and another is by dotnet core commands.
-
-### Option 1 - Running with Visual Studio 2017
-
-Open the three solutions with three Visual Studio 2017 them run the following projects.
-
-* `BearerAuthAPI.Infrastructure`
-* `MyAccountAPI.Consumer.Infrastructure` 
-* `MyAccountAPI.Producer.Infrastructure`.
-
-### Option 2 - Running with dotnet commands
-
-#### How to run the Bearer Authencation API
-
-1. Run the command `dotnet run` at `source\BearerAuthAPI\BearerAuthAPI.Infrastructure` folder.
-```
-$ dotnet run
-Using launch settings from D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure\Properties\launchSettings.json...
-Hosting environment: Development
-Content root path: D:\git\myaccountbalanceapi\source\BearerAuthAPI\BearerAuthAPI.Infrastructure
-Now listening on: http://localhost:15878
-Application started. Press Ctrl+C to shut down.
-```
-2. Navigate to Swagger UI at (eg. http://localhost:15878/swagger).
-3. Post the following credentials:
-```
-{
-  "username": "ivanpaulovich",
-  "password": "mysecret"
-}
-```
-4. __Store the Bearer Token__ because you will need the token value later to log on Producer API.
-```
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJhYzA4MmE3OS1lMWY3LTQ4MTktYmU1Mi1hOTQwMTBkM2VjZTciLCJzdWIiOiJzdHJpbmciLCJleHAiOjE1MTI0Nzg5ODgsImlzcyI6Imh0dHA6Ly9teWFjY291bnRhcGkiLCJhdWQiOiJodHRwOi8vbXlhY2NvdW50YXBpIn0.9YKGmKaptLBDcExHhPOQ3_j9TsdbkcRf8ZtvIkdq8Go",
-  "expiration": "2017-12-05T13:03:08Z"
-}
-```
-#### How to run the Consumer API
-
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
+If you like to run a Docker container for this project use the latest image:
 
 ```
-{
-  "MongoDB": {
-    "ConnectionString": "mongodb://10.0.75.1:27017",
-    "Database": "MyAccountAPIv05"
-  },
-
-  "ServiceBus": {
-    "ConnectionString": "10.0.75.1:9092",
-    "Topic": "MyAccountAPIv05"
-  }
-}
+$ docker run -p 8000:80 -d \
+	-e modules__2__properties__ConnectionString=mongodb://10.0.75.1:27017 \
+	--name manga-backend \
+	ivanpaulovich/manga:latest
 ```
+Then navigate to http://localhost:8000/swagger and play with de API.
 
-2. Run the command `dotnet run` at `source\MyAccountBalanceAPI\MyAccountAPI.Consumer.Infrastructure` folder 
+# We are live on Azure
 
-```
-$ dotnet run
-11/5/2017 11:17:20 AM Waiting for events..
-11/5/2017 11:18:20 AM Waiting for events..
-11/5/2017 11:19:20 AM Waiting for events..
-11/5/2017 11:20:20 AM Waiting for events..
-11/5/2017 11:21:20 AM Waiting for events..
-11/5/2017 11:22:20 AM Waiting for events..
-```
+![Live on Azure](https://raw.githubusercontent.com/ivanpaulovich/manga/master/docs/Swagger.png)
 
-3. __Attention:__ keep the Console App running for events processing.
+You can play with the latest build by navigating to [the Swagger client](http://grape.westus2.cloudapp.azure.com:8800/swagger "Manga Swagger").
 
-#### How to run the Producer API
-
-![Authorization](https://github.com/ivanpaulovich/myaccountbalanceapi/blob/master/Producer.png)
-
-1. At `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder, update the appsettings.json with the appropriate connections strings or leave with the default values:
-
-```
-{
-  "MongoDB": {
-    "ConnectionString": "mongodb://10.0.75.1:27017",
-    "Database": "MyAccountAPIv05"
-  },
-
-  "ServiceBus": {
-    "ConnectionString": "10.0.75.1:9092",
-    "Topic": "MyAccountAPIv05"
-  }
-}
-```
-
-2. Run the command `dotnet run` at the `source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure` folder.
-
-```
-$ dotnet run
-Using launch settings from D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure\Properties\launchSettings.json...
-Hosting environment: Development
-Content root path: D:\git\myaccountbalanceapi\source\MyAccountBalanceAPI\MyAccountAPI.Producer.Infrastructure
-Now listening on: http://localhost:14398
-Application started. Press Ctrl+C to shut down.
-```
-
-2. Navigate to the Swagger UI (eg. http://localhost:14398/swagger).
-Following a few sample requests:
-
-__POST__ api/Customers
-
-```
-{
-  "pin": "08724050601",
-  "name": "Ivan Paulovich",
-  "initialAmount": 1600
-}
-```
-
-returns
-
-```
-{
-  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
-  "ssn": "08724050601",
-  "name": "Ivan Paulovich",
-  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
-  "currentBalance": {
-    "value": 1600
-  }
-}
-```
-
-__GET__ api/Customers will returns
-
-```
-[
-  {
-    "_id": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
-    "_version": 1,
-    "name": {
-      "Text": "Ivan Paulovich"
-    },
-    "pin": {
-      "Text": "08724050601"
-    }
-  }
-]
-```
-
-__GET__ api/Accounts will returns
-
-```
-[
-  {
-    "_id": "f78c4764-5df2-4ad9-a6c8-210871e03313",
-    "_version": 1,
-    "currentBalance": {
-      "Value": 1600
-    },
-    "transactions": null,
-    "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183"
-  }
-]
-```
-
-__PATCH__ /api/Accounts/Deposit
-
-```
-{
-  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
-  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
-  "amount": 350
-}
-```
-
-__PATCH__ /api/Accounts/Withdraw
-
-```
-{
-  "customerId": "f5ea8e65-d9e1-4b33-aad5-b5ca022bc183",
-  "accountId": "f78c4764-5df2-4ad9-a6c8-210871e03313",
-  "amount": 670
-}
-```
+This source code and website should be used only for learning purposes and **all data will be erased weekly**.
