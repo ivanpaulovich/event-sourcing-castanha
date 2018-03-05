@@ -1,6 +1,6 @@
 ﻿namespace Castanha.Application
 {
-    public interface IResponseConverter
+    public interface IOutputConverter
     {
         T Map<T>(object source);
     }

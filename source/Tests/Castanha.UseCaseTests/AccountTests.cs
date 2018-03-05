@@ -16,13 +16,13 @@ namespace Castanha.UseCaseTests
         public ICustomerWriteOnlyRepository customerWriteOnlyRepository;
         public IPublisher bus;
 
-        public IResponseConverter converter;
+        public IOutputConverter converter;
 
         public AccountTests()
         {
             customerReadOnlyRepository = Substitute.For<ICustomerReadOnlyRepository>();
             customerWriteOnlyRepository = Substitute.For<ICustomerWriteOnlyRepository>();  
-            converter = new ResponseConverter();
+            converter = new OutputConverter();
             bus = Substitute.For<IPublisher>();
         }
 

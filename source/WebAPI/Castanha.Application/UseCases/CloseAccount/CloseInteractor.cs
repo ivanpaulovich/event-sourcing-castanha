@@ -10,13 +10,13 @@
         private readonly IPublisher bus;
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IOutputBoundary<CloseOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter responseConverter;
 
         public CloseInteractor(
             IAccountReadOnlyRepository accountReadOnlyRepository,
             IPublisher bus,
             IOutputBoundary<CloseOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.bus = bus;
             this.accountReadOnlyRepository = accountReadOnlyRepository;

@@ -12,13 +12,13 @@
         private readonly IPublisher bus;
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IOutputBoundary<DepositOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter responseConverter;
 
         public DepositInteractor(
             IAccountReadOnlyRepository accountReadOnlyRepository,
             IPublisher bus,
             IOutputBoundary<DepositOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.accountReadOnlyRepository = accountReadOnlyRepository;
             this.bus = bus;

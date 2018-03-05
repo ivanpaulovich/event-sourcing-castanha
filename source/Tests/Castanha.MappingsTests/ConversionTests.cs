@@ -8,11 +8,11 @@ namespace Castanha.MappingsTests
 
     public class ConversionTests
     {
-        public IResponseConverter converter;
+        public IOutputConverter converter;
 
         public ConversionTests()
         {
-            converter = new ResponseConverter();
+            converter = new OutputConverter();
         }
 
         [Fact]

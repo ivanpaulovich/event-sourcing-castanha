@@ -12,13 +12,13 @@
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IPublisher bus;
         private readonly IOutputBoundary<WithdrawOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter responseConverter;
         
         public WithdrawInteractor(
             IAccountReadOnlyRepository accountReadOnlyRepository,
             IPublisher bus,
             IOutputBoundary<WithdrawOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.accountReadOnlyRepository = accountReadOnlyRepository;
             this.bus = bus;
@@ -38,10 +38,10 @@
             var domainEvents = account.GetEvents();
             await bus.Publish(domainEvents);
 
-            TransactionOutput transactionResponse = responseConverter.Map<TransactionOutput>(debit);
-            WithdrawOutput response = new WithdrawOutput(transactionResponse, account.GetCurrentBalance().Value);
+            TransactionOutput transactionOutput = responseConverter.Map<TransactionOutput>(debit);
+            WithdrawOutput output = new WithdrawOutput(transactionOutput, account.GetCurrentBalance().Value);
 
-            outputBoundary.Populate(response);
+            outputBoundary.Populate(output);
         }
     }
 }

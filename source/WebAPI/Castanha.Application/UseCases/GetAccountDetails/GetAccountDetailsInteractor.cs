@@ -8,16 +8,16 @@
     {
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IOutputBoundary<AccountOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter outputConverter;
 
         public GetAccountDetailsInteractor(
             IAccountReadOnlyRepository accountReadOnlyRepository,
             IOutputBoundary<AccountOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.accountReadOnlyRepository = accountReadOnlyRepository;
             this.outputBoundary = outputBoundary;
-            this.responseConverter = responseConverter;
+            this.outputConverter = responseConverter;
         }
 
         public async Task Process(GetAccountDetailsInput message)
@@ -29,8 +29,8 @@
                 return;
             }
 
-            AccountOutput response = responseConverter.Map<AccountOutput>(account);
-            outputBoundary.Populate(response);
+            AccountOutput output = outputConverter.Map<AccountOutput>(account);
+            outputBoundary.Populate(output);
         }
     }
 }

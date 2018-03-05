@@ -11,12 +11,12 @@
     {
         private readonly IPublisher bus;
         private readonly IOutputBoundary<RegisterOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter responseConverter;
         
         public RegisterInteractor(
             IPublisher bus,
             IOutputBoundary<RegisterOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.bus = bus;
             this.outputBoundary = outputBoundary;
@@ -39,11 +39,11 @@
             await bus.Publish(customerEvents);
             await bus.Publish(accountEvents);
 
-            CustomerOutput customerResponse = responseConverter.Map<CustomerOutput>(customer);
-            AccountOutput accountResponse = responseConverter.Map<AccountOutput>(account);
-            RegisterOutput response = new RegisterOutput(customerResponse, accountResponse);
+            CustomerOutput customerOutput = responseConverter.Map<CustomerOutput>(customer);
+            AccountOutput accountOutput = responseConverter.Map<AccountOutput>(account);
+            RegisterOutput output = new RegisterOutput(customerOutput, accountOutput);
 
-            outputBoundary.Populate(response);
+            outputBoundary.Populate(output);
         }
     }
 }

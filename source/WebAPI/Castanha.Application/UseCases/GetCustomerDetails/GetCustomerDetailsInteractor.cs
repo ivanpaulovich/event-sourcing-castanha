@@ -12,13 +12,13 @@
         private readonly ICustomerReadOnlyRepository customerReadOnlyRepository;
         private readonly IAccountReadOnlyRepository accountReadOnlyRepository;
         private readonly IOutputBoundary<CustomerOutput> outputBoundary;
-        private readonly IResponseConverter responseConverter;
+        private readonly IOutputConverter responseConverter;
 
         public GetCustomerDetailsInteractor(
             ICustomerReadOnlyRepository customerReadOnlyRepository,
             IAccountReadOnlyRepository accountReadOnlyRepository,
             IOutputBoundary<CustomerOutput> outputBoundary,
-            IResponseConverter responseConverter)
+            IOutputConverter responseConverter)
         {
             this.customerReadOnlyRepository = customerReadOnlyRepository;
             this.accountReadOnlyRepository = accountReadOnlyRepository;
@@ -51,15 +51,15 @@
                 }
             }
 
-            CustomerOutput response = responseConverter.Map<CustomerOutput>(customer);
+            CustomerOutput output = responseConverter.Map<CustomerOutput>(customer);
 
-            response = new CustomerOutput(
+            output = new CustomerOutput(
                 customer.Id,
                 customer.PIN.Text, 
                 customer.Name.Text, 
                 accounts);
 
-            outputBoundary.Populate(response);
+            outputBoundary.Populate(output);
         }
     }
 }

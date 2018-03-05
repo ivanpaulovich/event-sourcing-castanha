@@ -15,14 +15,14 @@ namespace Castanha.Domain.UnitTests
         public ICustomerWriteOnlyRepository customerWriteOnlyRepository;
         public IPublisher bus;
 
-        public IResponseConverter converter;
+        public IOutputConverter converter;
 
         public CustomerTests()
         {
             customerReadOnlyRepository = Substitute.For<ICustomerReadOnlyRepository>();
             customerWriteOnlyRepository = Substitute.For<ICustomerWriteOnlyRepository>();
             bus = Substitute.For<IPublisher>();
-            converter = new ResponseConverter();
+            converter = new OutputConverter();
         }
 
         [Theory]
