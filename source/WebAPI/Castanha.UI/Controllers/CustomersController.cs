@@ -48,8 +48,8 @@
         public async Task<IActionResult> GetCustomer(Guid customerId)
         {
             var request = new GetCustomerDetailsInput(customerId);
-            await this.getCustomerInput.Process(request);
-            return this.getCustomerDetailsPresenter.ViewModel;
+            await getCustomerInput.Process(request);
+            return getCustomerDetailsPresenter.ViewModel;
         }
     }
 }
