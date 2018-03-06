@@ -1,26 +1,32 @@
 namespace Castanha.Domain.UnitTests
 {
     using Xunit;
-    using Castanha.Domain.Customers;
     using NSubstitute;
     using Castanha.Application;
     using Castanha.Infrastructure.Mappings;
     using Castanha.UseCaseTests;
     using System;
     using Castanha.Application.ServiceBus;
+    using Castanha.Application.Repositories;
 
     public class CustomerTests
     {
+        public IAccountReadOnlyRepository accountReadOnlyRepository;
+        public IAccountWriteOnlyRepository accountWriteOnlyRepository;
         public ICustomerReadOnlyRepository customerReadOnlyRepository;
         public ICustomerWriteOnlyRepository customerWriteOnlyRepository;
+
         public IPublisher bus;
 
         public IOutputConverter converter;
 
         public CustomerTests()
         {
+            accountReadOnlyRepository = Substitute.For<IAccountReadOnlyRepository>();
+            accountWriteOnlyRepository = Substitute.For<IAccountWriteOnlyRepository>();
             customerReadOnlyRepository = Substitute.For<ICustomerReadOnlyRepository>();
             customerWriteOnlyRepository = Substitute.For<ICustomerWriteOnlyRepository>();
+
             bus = Substitute.For<IPublisher>();
             converter = new OutputConverter();
         }

@@ -2,7 +2,7 @@
   "defaultAssembly": "Castanha.UI",
   "modules": [
     {
-      "type": "Castanha.UI.Modules.UIModuley",
+      "type": "Castanha.UI.Modules.UIModule",
       "properties": {
       }
     },
@@ -15,7 +15,14 @@
       "type": "Castanha.UI.Modules.InfrastructureModule",
       "properties": {
         "ConnectionString": "mongodb://10.0.75.1:27017",
-        "DatabaseName": "Castanha-Tests-V01"
+        "DatabaseName": "Castanha-Tests-V03"
+      }
+    },
+    {
+      "type": "Castanha.UI.Modules.BusModule",
+      "properties": {
+        "BrokerList": "10.0.75.1:9092",
+        "Topic": "Castanha-Tests-V03"
       }
     }
   ]

@@ -3,8 +3,8 @@ namespace Castanha.Domain.UnitTests
     using Xunit;
     using Castanha.Domain.Customers;
     using NSubstitute;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Domain.ValueObjects;
+    using Castanha.Domain.Accounts;
 
     public class CustomerTests
     {
@@ -18,11 +18,11 @@ namespace Castanha.Domain.UnitTests
 
             //
             // Act
-            sut.Register(account);
+            sut.Register(account.Id);
 
             //
             // Assert
-            Assert.Equal(1, sut.Accounts.Count);
+            Assert.Equal(1, sut.Accounts.Items.Count);
         }
     }
 }

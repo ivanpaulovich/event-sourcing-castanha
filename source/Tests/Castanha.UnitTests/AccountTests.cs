@@ -3,7 +3,7 @@ namespace Castanha.Domain.UnitTests
     using Xunit;
     using Castanha.Domain.ValueObjects;
     using NSubstitute;
-    using Castanha.Domain.Customers.Accounts;
+    using Castanha.Domain.Accounts;
 
     public class AccountTests
     {
@@ -21,7 +21,7 @@ namespace Castanha.Domain.UnitTests
 
             //
             // Assert
-            Assert.Equal(100, sut.CurrentBalance.Value);
+            Assert.Equal(100, sut.GetCurrentBalance().Value);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Castanha.Domain.UnitTests
 
             //
             // Assert
-            Assert.Equal(900, sut.CurrentBalance.Value);
+            Assert.Equal(900, sut.GetCurrentBalance().Value);
         }
 
         [Fact]

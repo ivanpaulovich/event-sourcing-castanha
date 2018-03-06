@@ -7,21 +7,28 @@ namespace Castanha.UseCaseTests
     using Castanha.Infrastructure.Mappings;
     using System;
     using Castanha.Domain.ValueObjects;
-    using Castanha.Domain.Customers.Accounts;
     using Castanha.Application.ServiceBus;
+    using Castanha.Application.Repositories;
+    using Castanha.Domain.Accounts;
 
     public class AccountTests
     {
+        public IAccountReadOnlyRepository accountReadOnlyRepository;
+        public IAccountWriteOnlyRepository accountWriteOnlyRepository;
         public ICustomerReadOnlyRepository customerReadOnlyRepository;
         public ICustomerWriteOnlyRepository customerWriteOnlyRepository;
+
         public IPublisher bus;
 
         public IOutputConverter converter;
 
         public AccountTests()
         {
+            accountReadOnlyRepository = Substitute.For<IAccountReadOnlyRepository>();
+            accountWriteOnlyRepository = Substitute.For<IAccountWriteOnlyRepository>();
             customerReadOnlyRepository = Substitute.For<ICustomerReadOnlyRepository>();
-            customerWriteOnlyRepository = Substitute.For<ICustomerWriteOnlyRepository>();  
+            customerWriteOnlyRepository = Substitute.For<ICustomerWriteOnlyRepository>();
+
             converter = new OutputConverter();
             bus = Substitute.For<IPublisher>();
         }
@@ -62,17 +69,15 @@ namespace Castanha.UseCaseTests
         {
             var account = Substitute.For<Account>();
             var customer = Substitute.For<Customer>();
-            customer.FindAccount(Arg.Any<Guid>())
-                .Returns(account);
 
-            customerReadOnlyRepository
-                .GetByAccount(Guid.Parse(accountId))
-                .Returns(customer);
+            accountReadOnlyRepository
+                .Get(Guid.Parse(accountId))
+                .Returns(account);
 
             var output = Substitute.For<CustomPresenter<Application.UseCases.Deposit.DepositOutput>>();
 
             var depositUseCase = new Application.UseCases.Deposit.DepositInteractor(
-                customerReadOnlyRepository,
+                accountReadOnlyRepository,
                 bus,
                 output,
                 converter
@@ -88,11 +93,6 @@ namespace Castanha.UseCaseTests
             Assert.Equal(request.Amount, output.Response.Transaction.Amount);
         }
 
-        private int IList<T>()
-        {
-            throw new NotImplementedException();
-        }
-
         [Theory]
         [InlineData("c725315a-1de6-4bf7-aecf-3af8f0083681", 100)]
         public async void Withdraw_Valid_Amount(string accountId, double amount)
@@ -100,18 +100,14 @@ namespace Castanha.UseCaseTests
             Account account = Substitute.For<Account>();
             account.Deposit(new Credit(new Amount(amount)));
 
-            var customer = Substitute.For<Customer>();
-            customer.FindAccount(Arg.Any<Guid>())
+            accountReadOnlyRepository
+                .Get(Guid.Parse(accountId))
                 .Returns(account);
-
-            customerReadOnlyRepository
-                .GetByAccount(Guid.Parse(accountId))
-                .Returns(customer);
 
             var output = Substitute.For<CustomPresenter<Application.UseCases.Withdraw.WithdrawOutput>>();
 
             var depositUseCase = new Application.UseCases.Withdraw.WithdrawInteractor(
-                customerReadOnlyRepository,
+                accountReadOnlyRepository,
                 bus,
                 output,
                 converter
