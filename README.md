@@ -1,101 +1,66 @@
-![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha.png)
+![Castanha](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha-icon.png) Castanha: Clean Architecture
+=========
+[![Castanha latest Docker build](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)](https://hub.docker.com/r/ivanpaulovich/castanha/)
 
-# Architectural Style
-In this project the usecases are first-class modules, when you open the source code you will see that the system looks like an Account Balance Application.  
+Castanha is a Service Template for helping you to build evolvable, adaptable and maintainable applications. It follows the principles from the [Clean Architecture book](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164) and has a Domain built on Domain-Driven Design. It is easy for you to start your new microservice based on its guidelines and patterns.
+
+## Compiling from source
+
+To run Castanha from source, clone this repository to your machine, compile and test it:
+
+```sh
+git clone https://github.com/ivanpaulovich/castanha.git
+cd castanha/source/WebAPI/Castanha.UI
+dotnet run
+```
+
+## The Clean Architecture
+
+The implementation result of the Clean Architecture is a software that encapsulate Business Rules in Use Cases and the Enterprise Rules in Entities. Also the Use Cases are independent from details like User Interface, Data Access, Web Server or any external agency. 
+
+![Clean Architecture by Uncle Bob](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/CleanArchitecture-Uncle-Bob.jpg)
+> The Clean Architecture Diagram by [Uncle Bob](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html).
+
+| Concept | Description |
+| --- | --- |
+| DDD | The Use Cases of the Account Balance are the Ubiquitious Language designed in the Domain and Application layers, we use the Eric Evans terms like Entities, Value Object, Aggregates Root and Bounded Context. |
+| TDD | From the beginning of the project we developed Unit Tests that helped us to enforce the business rules and to create an application that prevents bugs intead of finding them. We also have more sophisticated tests like Use Case Tests, Mapping Tests and Integration Tests. |
+| SOLID | The SOLID principles are all over the the solution. The knowledge of SOLID is not a prerequisite but it is highly recommended. |
+| Entity-Boundary-Interactor (EBI) | The goal of EBI architecture is to produce a software implementation agnostic to technology, framework, or database. The result is focus on  use cases and input/output. |
+| Microservice | We designed the software around the Business Domain, having Continous Delivery and Independent Deployment. |
+| Logging | Logging is a detail. We plugged Serilog and configured it to redirect every log message to the file system. |
+| Docker | Docker is a detail. It was implemented to help us make a faster and reliable deployment. |
+| MongoDB | MongoDB is a detail. You could create new Data Access implementation and setup it with Autofac. |
+| .NET Core 2.0 | .NET Core is a detail. Almost everything in this code base could be ported to other versions. |
+
+## Flow of Control: The Register Use Case
 
 ![Flow of Control: Customer Registration](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Flow-Of-Control.png)
 
-# Main Architectural Concepts
-On of the goals of the clean architecture is to encapsulate the business logic in an clean way, with no dependencies to details like (UI, Database version or Frameworks). And by building a software that looks like your Business Domain at the first look of the source code.
-
-If you are interested check out [The Clean Architecture post by Uncle Bob](https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html) or his latest book [Clean Architecture](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164/ref=sr_1_1?ie=UTF8&qid=1518796865&sr=8-1&keywords=clean+architecture).
-
-By following Uncle Bob material, we developed this project to have this Dimensions (Fitness Functions will came later):
-
-* Independent of Frameworks.
-* Testable. 
-* Independent of UI. 
-* Independent of Database. 
-* Independent of any external agency.
-
-![Clean Architecture by Uncle Bob](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/CleanArchitecture-Uncle-Bob.jpg)
-
-## DDD
-The use cases of this project is to manage an account balance with deposit and credits and its concepts is enforced by the Domain and Application. Also we use the Eric Evans terms like Entities, Value Object, Aggregates, Aggregate Root and etc. And everything is on a single Bounded Context.
-
-## TDD
-From the beginning of the project we developed Unit Tests and that helped us to enforce the business rules and to create an application that prevents bugs intead of finding them. We also have Use Case tests and Mapping Tests and a more sophistecated Integration Tests. 
-
-## SOLID
-The SOLID principles are all over the the solution. Knowledge of SOLID is not a prerequisite to understand and run the solution but it is highly recommended.
-
-## Entity-Boundary-Interactor (EBI)
-The goal of EBI architecture is to produce a software implementation agnostic to technology, framework and to have a focus on the use cases and input/output. 
-
-## Microservice
-Even though the definition of microservice may be different for different professionals. We have tried to value some aspects like Continous Delivery, modelled around Business Domain and Independent Deployment.
-
-## Logging
-Loggin is a detail. We plugged Serilog and configured it to redirect every log message to files.
-
-## Docker
-Docker is a detail of this architecture. And it was implemented to help us make a faster and reliable deployment. You could pull the [Castanha latest image any time.](https://hub.docker.com/r/ivanpaulovich/castanha/)
-
-## Mongo DB
-Mongo DB is a detail. At infrastructure layer we implemented the ICustomerWriteOnlyRepository to update the Mongo database.
-
-## .NET Core 2.0
-.NET Core is a detail. Almost everything in this code base could be ported to older versions.
-
-# Requirements
+## Requirements
 * [Visual Studio 2017 with Update 3](https://www.visualstudio.com/en-us/news/releasenotes/vs2017-relnotes)
 * [.NET SDK 2.0](https://www.microsoft.com/net/download/core)
 * [Docker](https://docs.docker.com/docker-for-windows/install/)
 
-# Environment setup
+## Prerequisites Setup
 
-* Run the `./prerequisites.sh` script to download the MongoDB image and run as a Docker container. 
-Please wait until the ~400mb download to be complete.
+The only one prerequisite to run the Web API is a valid connection string to MongoDB. To help you run it without hard work follow the steps on [prerequisites setup](https://github.com/ivanpaulovich/castanha/wiki/Prerequisites-setup) page.
 
-```
-$ ./prerequisites.sh
-Pulling mongodb (mongo:latest)...
-latest: Pulling from library/mongo
-Digest: sha256:2c55bcc870c269771aeade05fc3dd3657800540e0a48755876a1dc70db1e76d9
-Status: Downloaded newer image for mongo:latest
-Creating setup_mongodb_1 ...
-Creating setup_mongodb_1
-Creating setup_mongodb_1 ... done
-```
-* Check Mongo image with the the following commands:
+## Running the latest Docker Build
 
-```
-$ docker images
-REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
-mongo               latest              d22888af0ce0        17 hours ago        361MB
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                                            NAMES
-ba28cf144478        mongo               "docker-entrypoint..."   2 days ago          Up 2 days           0.0.0.0:27017->27017/tcp                         setup_mongodb_1
-```
+You can run the Docker container of this project with the following command:
 
-If everything goes well MongoDB will be running with the following connection string `mongodb://10.0.75.1:27017`.
-
-# Running the latest Docker Build ![Authorization](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)
-
-If you like to run a Docker container for this project use the latest image:
-
-```
+```sh
 $ docker run -p 8000:80 -d \
 	-e modules__2__properties__ConnectionString=mongodb://10.0.75.1:27017 \
-	--name castanha-backend \
+	--name castanha \
 	ivanpaulovich/castanha:latest
 ```
-Then navigate to http://localhost:8000/swagger and play with de API.
+Then navigate to http://localhost:8000/swagger and play with de Swagger.
 
-# We are live on Azure
+## Live Demo on Azure
 
-![Live on Azure](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Swagger.png)
+[![Castanha Live Demo on Azure](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Swagger.png)](http://grape.westus2.cloudapp.azure.com:8800/swagger)
 
-You can play with the latest build by navigating to [the Swagger client](http://grape.westus2.cloudapp.azure.com:8040/swagger "Castanha Swagger").
-
-This source code and website should be used only for learning purposes and **all data will be erased weekly**.
+You can play with the latest build of [Castanha](http://grape.westus2.cloudapp.azure.com:8800/swagger "Castanha").
+> This source code and website should be used only for learning purposes and **all data will be erased weekly**.
