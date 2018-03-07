@@ -51,7 +51,7 @@ The only one prerequisite to run the Web API is a valid connection string to Mon
 You can run the Docker container of this project with the following command:
 
 ```sh
-$ docker run -p 8000:80 -d \
+$ docker run -d -p 8000:80 \
 	-e modules__2__properties__ConnectionString=mongodb://10.0.75.1:27017 \
 	--name castanha \
 	ivanpaulovich/castanha:latest
