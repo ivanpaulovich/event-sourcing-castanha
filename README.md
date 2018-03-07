@@ -2,7 +2,7 @@
 =========
 [![Castanha latest Docker build](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)](https://hub.docker.com/r/ivanpaulovich/castanha/)
 
-Castanha is a Service Template for helping you to build evolvable, adaptable and maintainable applications. It follows the principles from the [Clean Architecture book](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164) and has a Domain built on Domain-Driven Design. It is easy for you to start your new microservice based on its guidelines and patterns.
+Castanha is a Service Template for helping you to build evolvable, adaptable and maintainable Event Sourcing applications. It follows the principles from the [Clean Architecture book](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164) and has a Domain built on Domain-Driven Design. It is easy for you to start your new microservice based on its guidelines and patterns.
 
 ## Compiling from source
 
@@ -60,7 +60,7 @@ Then navigate to http://localhost:8000/swagger and play with de Swagger.
 
 ## Live Demo on Azure
 
-[![Castanha Live Demo on Azure](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Swagger.png)](http://grape.westus2.cloudapp.azure.com:8800/swagger)
+[![Castanha Live Demo on Azure](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/Swagger.png)](http://grape.westus2.cloudapp.azure.com:8040/swagger)
 
-You can play with the latest build of [Castanha](http://grape.westus2.cloudapp.azure.com:8800/swagger "Castanha").
+You can play with the latest build of [Castanha](http://grape.westus2.cloudapp.azure.com:8040/swagger "Castanha").
 > This source code and website should be used only for learning purposes and **all data will be erased weekly**.
