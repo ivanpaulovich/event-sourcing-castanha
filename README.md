@@ -1,4 +1,4 @@
-![Castanha](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha-icon.png) Event Sourcing with Clean Architecture
+![Castanha](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha-icon.png) Event Sourcing
 =========
 [![Castanha latest Docker build](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)](https://hub.docker.com/r/ivanpaulovich/castanha/)
 
