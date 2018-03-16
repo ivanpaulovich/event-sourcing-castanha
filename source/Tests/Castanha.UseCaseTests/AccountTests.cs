@@ -58,10 +58,10 @@ namespace Castanha.UseCaseTests
 
             await registerUseCase.Process(request);
 
-            Assert.Equal(request.PIN, output.Response.Customer.Personnummer);
-            Assert.Equal(request.Name, output.Response.Customer.Name);
-            Assert.True(Guid.Empty != output.Response.Customer.CustomerId);
-            Assert.True(Guid.Empty != output.Response.Account.AccountId);
+            Assert.Equal(request.PIN, output.Output.Customer.Personnummer);
+            Assert.Equal(request.Name, output.Output.Customer.Name);
+            Assert.True(Guid.Empty != output.Output.Customer.CustomerId);
+            Assert.True(Guid.Empty != output.Output.Account.AccountId);
         }
 
 
@@ -92,7 +92,7 @@ namespace Castanha.UseCaseTests
 
             await depositUseCase.Process(request);
 
-            Assert.Equal(request.Amount, output.Response.Transaction.Amount);
+            Assert.Equal(request.Amount, output.Output.Transaction.Amount);
         }
 
         [Theory]
@@ -122,7 +122,7 @@ namespace Castanha.UseCaseTests
 
             await depositUseCase.Process(request);
 
-            Assert.Equal(request.Amount, output.Response.Transaction.Amount);
+            Assert.Equal(request.Amount, output.Output.Transaction.Amount);
         }
 
         [Theory]

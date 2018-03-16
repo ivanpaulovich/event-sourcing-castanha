@@ -54,10 +54,10 @@ namespace Castanha.Domain.UnitTests
 
             await registerUseCase.Process(request);
 
-            Assert.Equal(request.PIN, output.Response.Customer.Personnummer);
-            Assert.Equal(request.Name, output.Response.Customer.Name);
-            Assert.True(output.Response.Customer.CustomerId != Guid.Empty);
-            Assert.True(output.Response.Account.AccountId != Guid.Empty);
+            Assert.Equal(request.PIN, output.Output.Customer.Personnummer);
+            Assert.Equal(request.Name, output.Output.Customer.Name);
+            Assert.True(output.Output.Customer.CustomerId != Guid.Empty);
+            Assert.True(output.Output.Account.AccountId != Guid.Empty);
         }
     }
 }

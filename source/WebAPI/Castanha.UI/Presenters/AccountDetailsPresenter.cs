@@ -9,11 +9,11 @@
     public class AccountDetailsPresenter : IOutputBoundary<AccountOutput>
     {
         public IActionResult ViewModel { get; private set; }
-        public AccountOutput Response { get; private set; }
+        public AccountOutput Output { get; private set; }
 
         public void Populate(AccountOutput response)
         {
-            Response = response;
+            Output = response;
 
             if (response == null)
             {

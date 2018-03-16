@@ -9,23 +9,23 @@
     {
         public IActionResult ViewModel { get; private set; }
 
-        public DepositOutput Response { get; private set; }
+        public DepositOutput Output { get; private set; }
 
-        public void Populate(DepositOutput response)
+        public void Populate(DepositOutput output)
         {
-            Response = response;
+            Output = output;
 
-            if (response == null)
+            if (output == null)
             {
                 ViewModel = new NoContentResult();
                 return;
             }
 
             ViewModel = new ObjectResult(new DepositModel(
-                response.Transaction.Amount,
-                response.Transaction.Description,
-                response.Transaction.TransactionDate,
-                response.UpdatedBalance
+                output.Transaction.Amount,
+                output.Transaction.Description,
+                output.Transaction.TransactionDate,
+                output.UpdatedBalance
             ));
         }
     }

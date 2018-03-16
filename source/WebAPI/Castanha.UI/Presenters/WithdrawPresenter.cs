@@ -8,13 +8,13 @@
     {
         public IActionResult ViewModel { get; private set; }
 
-        public WithdrawOutput Response { get; private set; }
+        public WithdrawOutput Output { get; private set; }
 
-        public void Populate(WithdrawOutput response)
+        public void Populate(WithdrawOutput output)
         {
-            Response = response;
+            Output = output;
 
-            if (response == null)
+            if (output == null)
             {
                 ViewModel = new NoContentResult();
                 return;
@@ -22,10 +22,10 @@
 
             ViewModel = new ObjectResult(new
             {
-                Amount = response.Transaction.Amount,
-                Description = response.Transaction.Description,
-                TransactionDate = response.Transaction.TransactionDate,
-                UpdateBalance = response.UpdatedBalance,
+                Amount = output.Transaction.Amount,
+                Description = output.Transaction.Description,
+                TransactionDate = output.Transaction.TransactionDate,
+                UpdateBalance = output.UpdatedBalance,
             });
         }
     }
