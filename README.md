@@ -1,6 +1,6 @@
 ![Castanha](https://raw.githubusercontent.com/ivanpaulovich/castanha/master/docs/castanha-icon.png)
 =========
-[![Castanha latest Docker build](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)](https://hub.docker.com/r/ivanpaulovich/castanha/) [![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/ivanpaulovich/Lobby)
+[![Castanha latest Docker build](https://dockerbuildbadges.quelltext.eu/status.svg?organization=ivanpaulovich&repository=castanha)](https://hub.docker.com/r/ivanpaulovich/castanha/) [![Gitter](https://img.shields.io/badge/chat-on%20gitter-blue.svg)](https://gitter.im/ivanpaulovich/)
 
 Castanha is a Service Template for helping you to build evolvable, adaptable and maintainable Event Sourcing applications. It follows the principles from the [Clean Architecture book](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164) and has a Domain built on Domain-Driven Design. It is easy for you to start your new microservice based on its guidelines and patterns.
 
