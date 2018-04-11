@@ -5,18 +5,25 @@
 
     public abstract class Transaction : Entity
     {
-        public Amount Amount { get; private set; }
+        public virtual Amount Amount { get; protected set; }
+        public virtual DateTime TransactionDate { get; protected set; }
+        public virtual Guid AccountId { get; protected set; }
         public abstract string Description { get; }
-        public DateTime TransactionDate { get; private set; }
 
-        public Transaction(Amount amount)
+        protected Transaction()
         {
+
+        }
+
+        public Transaction(Guid accountId, Amount amount)
+        {
+            AccountId = accountId;
             TransactionDate = DateTime.Now;
             Amount = amount;
         }
 
-        public Transaction(Amount amount, DateTime transactionDate)
-            : this(amount)
+        public Transaction(Guid accountId, Amount amount, DateTime transactionDate)
+            : this(accountId, amount)
         {
             TransactionDate = transactionDate;
         }

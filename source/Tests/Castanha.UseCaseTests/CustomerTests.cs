@@ -41,6 +41,8 @@ namespace Castanha.Domain.UnitTests
             var output = Substitute.For<CustomPresenter<Application.UseCases.Register.RegisterOutput>>();
 
             var registerUseCase = new Application.UseCases.Register.RegisterInteractor(
+                customerReadOnlyRepository,
+                accountReadOnlyRepository,
                 bus,
                 output,
                 converter

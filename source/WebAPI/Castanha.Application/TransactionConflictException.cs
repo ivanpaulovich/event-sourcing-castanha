@@ -1,8 +1,9 @@
 ﻿using Castanha.Domain;
+using System;
 
 namespace Castanha.Application
 {
-    public class TransactionConflictException : CastanhaException
+    public class TransactionConflictException : Exception
     {
         public IAggregateRoot AggregateRoot { get; private set; }
         public IDomainEvent DomainEvent { get; private set; }

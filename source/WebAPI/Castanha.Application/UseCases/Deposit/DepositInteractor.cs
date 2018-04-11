@@ -26,13 +26,13 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Process(DepositInput command)
+        public async Task Process(DepositInput input)
         {
-            Account account = await accountReadOnlyRepository.Get(command.AccountId);
+            Account account = await accountReadOnlyRepository.Get(input.AccountId);
             if (account == null)
-                throw new AccountNotFoundException($"The account {command.AccountId} does not exists or is already closed.");
+                throw new AccountNotFoundException($"The account {input.AccountId} does not exists or is already closed.");
 
-            Credit credit = new Credit(new Amount(command.Amount));
+            Credit credit = new Credit(account.Id, input.Amount);
             account.Deposit(credit);
 
             var domainEvents = account.GetEvents();

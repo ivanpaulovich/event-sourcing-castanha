@@ -1,16 +1,22 @@
 ﻿namespace Castanha.Domain.Accounts
 {
     using Castanha.Domain.ValueObjects;
+    using System;
 
     public class Debit : Transaction
     {
-        public Debit(Amount amount)
-            : base(amount)
+        protected Debit()
+        {
+
+        }
+
+        public Debit(Guid accountId, Amount amount)
+            : base(accountId, amount)
         {
         }
 
-        public Debit(System.Guid transactionId, Amount amount, System.DateTime transactionDate)
-            : base(amount, transactionDate)
+        public Debit(Guid transactionId, Guid accountId, Amount amount, DateTime transactionDate)
+            : base(accountId, amount, transactionDate)
         {
             Id = transactionId;
         }

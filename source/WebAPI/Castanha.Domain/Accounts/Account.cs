@@ -1,13 +1,13 @@
 ﻿namespace Castanha.Domain.Accounts
 {
-    using System;
     using Castanha.Domain.Accounts.Events;
-    using Castanha.Domain.Customers.Events;
     using Castanha.Domain.ValueObjects;
+	using System;
 
     public class Account : AggregateRoot
     {
-        public TransactionCollection Transactions { get; private set; }
+        public virtual Guid CustomerId { get; protected set; }
+        public virtual TransactionCollection Transactions { get; protected set; }
 
         public Account()
         {
@@ -19,10 +19,11 @@
             Transactions = new TransactionCollection();
         }
 
-        public void Open(Credit credit)
+        public void Open(Guid customerId, Credit credit)
         {
             var domainEvent = new OpenedDomainEvent(
                     Id,
+                    customerId,
                     Version,
                     credit.Id,
                     credit.Amount,
@@ -38,7 +39,8 @@
                     Id,
                     Version,
                     credit.Id,
-                    credit.Amount
+                    credit.Amount,
+                    DateTime.Now
                 );
 
             Raise(domainEvent);
@@ -53,7 +55,8 @@
                     Id,
                     Version,
                     debit.Id,
-                    debit.Amount
+                    debit.Amount,
+                    DateTime.Now
                 );
 
             Raise(domainEvent);
@@ -61,7 +64,7 @@
 
         public void Close()
         {
-            if (Transactions.GetCurrentBalance() > new Amount(0))
+            if (Transactions.GetCurrentBalance() > 0)
                 throw new AccountCannotBeClosedException($"The account {Id} can not be closed because it has funds.");
 
             var domainEvent = new ClosedDomainEvent(
@@ -79,9 +82,11 @@
             //
 
             Id = domainEvent.AggregateRootId;
+            CustomerId = domainEvent.CustomerId;
             Transactions = new TransactionCollection();
 
             Transaction credit = new Credit(
+                domainEvent.AggregateRootId,
                 domainEvent.TransactionId,
                 domainEvent.TransactionAmount,
                 domainEvent.TransactionDate);
@@ -96,13 +101,13 @@
 
         protected void When(DepositedDomainEvent domainEvent)
         {
-            Transaction credit = new Credit(domainEvent.TransactionAmount);
+            Transaction credit = new Credit(domainEvent.AggregateRootId, domainEvent.TransactionAmount);
             Transactions.Add(credit);
         }
 
         protected void When(WithdrewDomainEvent domainEvent)
         {
-            Transaction debit = new Debit(domainEvent.TransactionAmount);
+            Transaction debit = new Debit(domainEvent.AggregateRootId, domainEvent.TransactionAmount);
             Transactions.Add(debit);
         }
 

@@ -2,23 +2,26 @@
 {
     using Castanha.Application;
     using Castanha.Domain;
-    using System.Collections.Generic;
-    using System;
-    using Castanha.Domain.Customers.Events;
-    using System.Reflection;
     using Castanha.Domain.Accounts.Events;
+    using Castanha.Domain.Customers.Events;
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
 
     public class Dispatcher : IDispatcher
     {
         private readonly Dictionary<Type, List<object>> handlers = new Dictionary<Type, List<object>>();
 
         public Dispatcher(
+
             IEventHandler<RegisteredDomainEvent> customerRegisteredEventhandler,
             IEventHandler<DepositedDomainEvent> depositedEventhandler,
             IEventHandler<WithdrewDomainEvent> withdrewEventhandler,
             IEventHandler<ClosedDomainEvent> closedEventhandler,
-            IEventHandler<OpenedDomainEvent> openedEventhandler)
+            IEventHandler<OpenedDomainEvent> openedEventhandler
+        )
         {
+
             Register(customerRegisteredEventhandler);
             Register(depositedEventhandler);
             Register(withdrewEventhandler);

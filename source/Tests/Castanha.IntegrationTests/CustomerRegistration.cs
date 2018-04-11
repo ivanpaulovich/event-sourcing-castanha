@@ -3,7 +3,7 @@ namespace Castanha.IntegrationTests
     using Microsoft.AspNetCore.Hosting;
     using Autofac.Extensions.DependencyInjection;
     using Microsoft.Extensions.Configuration;
-    using Castanha.UI;
+    using Castanha.WebApi;
     using Microsoft.AspNetCore.TestHost;
     using Xunit;
     using System.Threading.Tasks;

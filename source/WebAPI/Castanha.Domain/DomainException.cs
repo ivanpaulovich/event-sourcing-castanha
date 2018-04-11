@@ -1,6 +1,8 @@
-﻿namespace Castanha.Domain
+﻿using System;
+
+namespace Castanha.Domain
 {
-    public class DomainException : CastanhaException
+    public class DomainException : Exception
     {
         public string BusinessMessage { get; private set; }
 

@@ -1,25 +1,25 @@
 ﻿{
-  "defaultAssembly": "Castanha.UI",
+  "defaultAssembly": "Castanha.Infrastructure",
   "modules": [
     {
-      "type": "Castanha.UI.Modules.UIModule",
+      "type": "Castanha.Infrastructure.Modules.WebApiModule",
       "properties": {
       }
     },
     {
-      "type": "Castanha.UI.Modules.ApplicationModule",
+      "type": "Castanha.Infrastructure.Modules.ApplicationModule",
       "properties": {
       }
     },
     {
-      "type": "Castanha.UI.Modules.InfrastructureModule",
+      "type": "Castanha.Infrastructure.Modules.InfrastructureModule",
       "properties": {
         "ConnectionString": "mongodb://10.0.75.1:27017",
         "DatabaseName": "Castanha-Tests-V03"
       }
     },
     {
-      "type": "Castanha.UI.Modules.BusModule",
+      "type": "Castanha.Infrastructure.Modules.BusModule",
       "properties": {
         "BrokerList": "10.0.75.1:9092",
         "Topic": "Castanha-Tests-V03"

@@ -82,10 +82,6 @@
                     {
                         Console.WriteLine(ex.DomainEvent.ToString());
                     }
-                    catch (CastanhaException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
                 };
 
                 consumer.OnPartitionEOF += (_, end)

@@ -3,8 +3,8 @@ namespace Castanha.MappingsTests
     using Castanha.Application;
     using Castanha.Application.Outputs;
     using Castanha.Domain.Accounts;
-    using Castanha.Domain.ValueObjects;
     using Castanha.Infrastructure.Mappings;
+    using System;
     using Xunit;
 
     public class ConversionTests
@@ -19,7 +19,7 @@ namespace Castanha.MappingsTests
         [Fact]
         public void Convert_Debit_Valid_TransactionResponse()
         {
-            Debit debit = new Debit(new Amount(100));
+            Debit debit = new Debit(Guid.NewGuid(), 100);
 
             var result = converter.Map<TransactionOutput>(debit);
             Assert.Equal(debit.Amount.Value, result.Amount);

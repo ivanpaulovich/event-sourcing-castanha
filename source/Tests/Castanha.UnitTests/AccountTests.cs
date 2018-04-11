@@ -4,6 +4,7 @@ namespace Castanha.Domain.UnitTests
     using Castanha.Domain.ValueObjects;
     using NSubstitute;
     using Castanha.Domain.Accounts;
+    using System;
 
     public class AccountTests
     {
@@ -13,7 +14,7 @@ namespace Castanha.Domain.UnitTests
             //
             // Arrange
             Account sut = Substitute.For<Account>();
-            Credit credit = new Credit(new Amount(100.0));
+            Credit credit = new Credit(Guid.NewGuid(), 100.0);
 
             //
             // Act
@@ -30,10 +31,10 @@ namespace Castanha.Domain.UnitTests
             //
             // Arrange
             Account sut = Substitute.For<Account>();
-            Credit credit = new Credit(new Amount(1000.0));
+            Credit credit = new Credit(Guid.NewGuid(), 1000.0);
             sut.Deposit(credit);
 
-            Debit transaction = new Debit(new Amount(100.0));
+            Debit transaction = new Debit(Guid.NewGuid(), 100.0);
 
             //
             // Act
@@ -66,7 +67,7 @@ namespace Castanha.Domain.UnitTests
             //
             // Arrange
             Account sut = Substitute.For<Account>();
-            Credit credit = new Credit(new Amount(100));
+            Credit credit = new Credit(Guid.NewGuid(), 100);
             sut.Deposit(credit);
 
             //
@@ -82,10 +83,10 @@ namespace Castanha.Domain.UnitTests
             //
             // Arrange
             Account sut = Substitute.For<Account>();
-            Credit credit = new Credit(new Amount(200));
+            Credit credit = new Credit(Guid.NewGuid(), 200);
             sut.Deposit(credit);
 
-            Debit debit = new Debit(new Amount(5000.0));
+            Debit debit = new Debit(Guid.NewGuid(), 5000.0);
 
             //
             // Act and Assert

@@ -26,17 +26,20 @@
             this.responseConverter = responseConverter;
         }
 
-        public async Task Process(GetCustomerDetailsInput message)
+        public async Task Process(GetCustomerDetailsInput input)
         {
             //
             // TODO: The following queries could be simplified
             //
 
-            Customer customer = await customerReadOnlyRepository.Get(message.CustomerId);
+            Customer customer = await customerReadOnlyRepository.Get(input.CustomerId);
+			
+			if (customer == null)
+                throw new CustomerNotFoundException($"The customer {input.CustomerId} does not exists.");
 
             List<AccountOutput> accounts = new List<AccountOutput>();
 
-            foreach (var accountId in customer.Accounts.Items)
+            foreach (var accountId in customer.Accounts)
             {
                 Account account = await accountReadOnlyRepository.Get(accountId);
 

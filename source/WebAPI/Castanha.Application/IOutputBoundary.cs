@@ -3,6 +3,6 @@
     public interface IOutputBoundary<T>
     {
         T Output { get; }
-        void Populate(T output);
+        void Populate(T response);
     }
 }

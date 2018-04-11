@@ -69,7 +69,7 @@ namespace Castanha.UseCaseTests
         [InlineData("c725315a-1de6-4bf7-aecf-3af8f0083681", 100)]
         public async void Deposit_Valid_Amount(string accountId, double amount)
         {
-            var account = Substitute.For<Account>();
+            var account = new Account();
             var customer = Substitute.For<Customer>();
 
             accountReadOnlyRepository
@@ -99,8 +99,8 @@ namespace Castanha.UseCaseTests
         [InlineData("c725315a-1de6-4bf7-aecf-3af8f0083681", 100)]
         public async void Withdraw_Valid_Amount(string accountId, double amount)
         {
-            Account account = Substitute.For<Account>();
-            account.Deposit(new Credit(new Amount(amount)));
+            Account account = new Account();
+            account.Deposit(new Credit(Guid.NewGuid(), amount));
 
             accountReadOnlyRepository
                 .Get(Guid.Parse(accountId))
@@ -130,7 +130,7 @@ namespace Castanha.UseCaseTests
         public void Account_With_Credits_Should_Not_Allow_Close(double amount)
         {
             var account = new Account();
-            account.Deposit(new Credit(new Amount(amount)));
+            account.Deposit(new Credit(Guid.NewGuid(), amount));
 
             Assert.Throws<AccountCannotBeClosedException>(
                 () => account.Close());

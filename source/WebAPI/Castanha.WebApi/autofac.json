@@ -1,0 +1,29 @@
+﻿{
+  "defaultAssembly": "Castanha.Infrastructure",
+  "modules": [
+    {
+      "type": "Castanha.Infrastructure.Modules.WebApiModule",
+      "properties": {
+      }
+    },
+    {
+      "type": "Castanha.Infrastructure.Modules.ApplicationModule",
+      "properties": {
+      }
+    },
+    {
+      "type": "Castanha.Infrastructure.Modules.InfrastructureModule",
+      "properties": {
+        "ConnectionString": "mongodb://10.0.75.1:27017",
+        "DatabaseName": "Castanha-V01"
+      }
+    },
+    {
+      "type": "Castanha.Infrastructure.Modules.BusModule",
+      "properties": {
+        "BrokerList": "10.0.75.1:9092",
+        "Topic": "Castanha-V01"
+      }
+    }
+  ]
+}
